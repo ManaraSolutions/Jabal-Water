@@ -1,0 +1,12 @@
+# OS / editor cruft
+.DS_Store
+Thumbs.db
+desktop.ini
+*.log
+*.tmp
+
+# dependencies (project is build-free; none required)
+node_modules/
+
+# local backups
+*-backup-*/
