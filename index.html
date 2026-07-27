@@ -1,0 +1,1818 @@
+<!DOCTYPE html>
+<!--
+  ╔══════════════════════════════════════════════════════════════════════╗
+  ║  JABAL · High Quality Water — reimagined                              ║
+  ║  Faithful to the real brand: pink-mountain logo, blue/navy/magenta    ║
+  ║  palette, real product photography, and the original site structure   ║
+  ║  (Cover → Mission → Quench → Shop → CTA → Contact → Footer),           ║
+  ║  rebuilt premium & futuristic, bilingual AR/EN.                       ║
+  ║                                                                        ║
+  ║  Live animation:                                                       ║
+  ║   • Full-page interactive WebGL water (Three.js) — the real "water    ║
+  ║     the bottles sit on" — with click splashes, ripples, refraction,   ║
+  ║     reflections and foam (height-field GPU simulation).               ║
+  ║   • The brand's own animated morphing-blob hero (assets/hero).        ║
+  ║   • Scroll reveals, floating bottles, marquee.                        ║
+  ║                                                                        ║
+  ║  Assets are the ACTUAL files pulled from jabalwater.com (assets/).     ║
+  ║  Modules:  i18n · WaterSim · Splash · Stage · UI                       ║
+  ╚══════════════════════════════════════════════════════════════════════╝
+-->
+<html lang="en" dir="ltr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>JABAL · High Quality Water — Pure Hydration for a Vibrant Life</title>
+<meta name="description" content="JABAL High Quality Water — premium purified drinking water. Reverse Osmosis + ozone disinfection, freshly filled on order and delivered in 100% recyclable bottles. pH 7.2 · TDS 100 mg/L. Gallons, utility packs & offers across Egypt." />
+<meta name="keywords" content="JABAL water, Jabal High Quality Water, purified water Egypt, reverse osmosis water, ozone disinfection, 18.5L gallon, 11L water gallon, drinking water delivery, low sodium water, مياه جبل, مياه شرب نقية" />
+<meta name="author" content="JABAL High Quality Water" />
+<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
+<meta name="theme-color" content="#0b2138" />
+<link rel="canonical" href="https://jabalwater.com/" />
+
+<!-- Favicons / PWA -->
+<link rel="icon" href="assets/favicon/favicon.ico" sizes="any" />
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon/icon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon/icon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="assets/favicon/icon-180.png" />
+<link rel="manifest" href="site.webmanifest" />
+
+<!-- Open Graph (Facebook / WhatsApp / LinkedIn) -->
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="JABAL High Quality Water" />
+<meta property="og:title" content="JABAL · Pure Hydration for a Vibrant Life" />
+<meta property="og:description" content="Premium purified water — Reverse Osmosis + ozone, freshly filled on order, 100% recyclable. pH 7.2 · TDS 100 mg/L." />
+<meta property="og:url" content="https://jabalwater.com/" />
+<meta property="og:image" content="https://jabalwater.com/assets/og-image.jpg" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="JABAL High Quality Water — Pure hydration for a vibrant life" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:locale:alternate" content="ar_EG" />
+
+<!-- Twitter / X -->
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="JABAL · Pure Hydration for a Vibrant Life" />
+<meta name="twitter:description" content="Premium purified water — Reverse Osmosis + ozone, freshly filled on order. pH 7.2 · TDS 100 mg/L." />
+<meta name="twitter:image" content="https://jabalwater.com/assets/og-image.jpg" />
+
+<!-- Structured data: Organization + Product catalogue (rich results) -->
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org","@graph":[
+  {"@type":"Organization","@id":"https://jabalwater.com/#org","name":"JABAL High Quality Water","url":"https://jabalwater.com/","logo":"https://jabalwater.com/assets/favicon/icon-512.png","description":"Premium purified drinking water using Reverse Osmosis with ozone disinfection, freshly filled on order.","email":"info@jabalwater.com","telephone":"+201119559955","contactPoint":{"@type":"ContactPoint","telephone":"+201119559955","contactType":"customer service","areaServed":"EG","availableLanguage":["en","ar"]}},
+  {"@type":"WebSite","@id":"https://jabalwater.com/#website","url":"https://jabalwater.com/","name":"JABAL High Quality Water","publisher":{"@id":"https://jabalwater.com/#org"},"inLanguage":["en","ar"]},
+  {"@type":"Product","name":"JABAL 18.5L Water Gallon","image":"https://jabalwater.com/assets/promo/promo-trio-en.jpg","description":"18.5L purified water gallon — Reverse Osmosis + ozone, pH 7.2, TDS 100 mg/L.","brand":{"@id":"https://jabalwater.com/#org"},"offers":{"@type":"Offer","price":"157.02","priceCurrency":"EGP","availability":"https://schema.org/InStock"}},
+  {"@type":"Product","name":"JABAL 11L Water Gallon","image":"https://jabalwater.com/assets/og-image.jpg","description":"11L purified water gallon, freshly filled on order.","brand":{"@id":"https://jabalwater.com/#org"},"offers":{"@type":"Offer","price":"39.47","priceCurrency":"EGP","availability":"https://schema.org/InStock"}},
+  {"@type":"Product","name":"JABAL 7L Water Gallon","image":"https://jabalwater.com/assets/og-image.jpg","description":"7L purified water gallon, freshly filled on order.","brand":{"@id":"https://jabalwater.com/#org"},"offers":{"@type":"Offer","price":"26.32","priceCurrency":"EGP","availability":"https://schema.org/InStock"}}
+  ]
+}
+</script>
+
+<!-- Performance: preconnect font hosts + preload the hero background -->
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link rel="preconnect" href="https://api.fontshare.com" crossorigin />
+<link rel="preload" as="image" href="assets/underwater.jpg" fetchpriority="high" />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Tajawal:wght@400;500;700;800&family=Cairo:wght@600;700;800;900&display=swap" rel="stylesheet" />
+<!-- premium editorial display type (award-style) -->
+<link href="https://api.fontshare.com/v2/css?f[]=clash-display@500,600,700&f[]=general-sans@400,500,600&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   DESIGN TOKENS — real JABAL brand palette
+   ============================================================ */
+:root{
+  --blue:#29abe2;          /* JABAL water blue */
+  --blue-deep:#1477c0;
+  --blue-ink:#0e5a97;
+  --navy:#15255f;          /* label navy */
+  --pink:#ec1e8c;          /* mountain magenta */
+  --pink-soft:#f45db0;
+  --ink:#14224a;           /* body text (navy) */
+  --ink-dim:#5b6b8c;
+  --ink-faint:#8fa0bd;
+  --paper:#ffffff;
+  --paper-2:#f3f9ff;
+  --glass:rgba(255,255,255,.72);
+  --glass-brd:rgba(41,171,226,.18);
+  --shadow:0 24px 60px rgba(21,37,95,.14);
+  --shadow-sm:0 10px 26px rgba(21,37,95,.10);
+  --radius:20px;
+  --maxw:1180px;
+  --grad:linear-gradient(120deg,var(--blue),var(--blue-deep));
+  --grad-pink:linear-gradient(120deg,var(--pink),var(--pink-soft));
+  --font-disp:'Clash Display','Poppins',system-ui,sans-serif;
+  --font-body:'General Sans','Inter',system-ui,sans-serif;
+}
+html[dir="rtl"]{ --font-disp:'Cairo','Tajawal',system-ui,sans-serif; --font-body:'Tajawal',system-ui,sans-serif; }
+
+*{ box-sizing:border-box; margin:0; padding:0; }
+html,body{ height:100%; }
+body{
+  background:linear-gradient(180deg,#0b2a5c 0%, #0b3a66 40%, #06213f 100%);
+  color:var(--ink);
+  font-family:var(--font-body);
+  line-height:1.6;
+  overflow-x:hidden;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4,.disp{ font-family:var(--font-disp); font-weight:600; line-height:1.05; letter-spacing:-.025em; color:var(--navy); }
+html[dir="rtl"] h1,html[dir="rtl"] h2,html[dir="rtl"] h3,html[dir="rtl"] h4{ letter-spacing:0; }
+a{ color:inherit; text-decoration:none; }
+::selection{ background:rgba(236,30,140,.18); color:var(--navy); }
+
+/* ============================================================
+   WEBGL WATER — fixed full-page living surface (the bottles' water)
+   ============================================================ */
+#splashbg{ position:fixed; inset:0; width:100%; height:100%; border:0; z-index:0; pointer-events:none; background:#0b3a66; }
+/* your underwater photo — BANNER background only, translucent + slowly drifting */
+#underwater{ position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden;
+  background:url('assets/underwater.jpg') center/cover no-repeat; opacity:.62;
+  animation:uwDrift 30s ease-in-out infinite alternate; will-change:transform; }
+@keyframes uwDrift{ 0%{ transform:scale(1.08) translate3d(0,0,0); } 100%{ transform:scale(1.2) translate3d(-3%,-2%,0); } }
+#home .wrap{ position:relative; z-index:2; }
+#home .scroll-hint{ z-index:2; }
+#gl{ position:fixed; inset:0; width:100%; height:100%; z-index:1; display:block; pointer-events:none; }
+/* subtle deepening at the edges so content stays legible over the splash */
+#veil{ position:fixed; inset:0; z-index:1; pointer-events:none;
+  background:radial-gradient(125% 90% at 50% -5%, transparent 52%, rgba(4,12,34,.55) 100%); }
+.content{ position:relative; z-index:2; }
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+header{
+  position:fixed; top:0; left:0; right:0; z-index:50;
+  display:flex; align-items:center; justify-content:space-between; gap:20px;
+  padding:14px clamp(16px,4vw,40px); transition:.4s ease;
+}
+header.scrolled{
+  background:rgba(6,18,36,.82); backdrop-filter:blur(16px) saturate(150%);
+  -webkit-backdrop-filter:blur(16px) saturate(150%);
+  box-shadow:0 6px 24px rgba(0,6,20,.4); border-bottom:1px solid rgba(255,255,255,.06);
+  padding-top:10px; padding-bottom:10px;
+}
+header.scrolled nav.links a{ color:rgba(230,242,255,.8); }
+header.scrolled nav.links a:hover{ color:#fff; background:rgba(255,255,255,.1); }
+header.scrolled nav.links a.active{ color:#fff; }
+header.scrolled .btn.ghost{ color:#fff; border-color:rgba(255,255,255,.3); }
+header.scrolled .lang span[role=button]{ color:#fff; }
+header.scrolled .lang span.on{ color:var(--pink-soft); }
+header.scrolled .menu-toggle{ color:#fff; border-color:rgba(255,255,255,.25); background:rgba(255,255,255,.06); }
+.brand{ display:flex; align-items:center; gap:10px; cursor:pointer; }
+.brand img{ height:34px; width:auto; display:block; transition:.4s; }
+header.scrolled .brand img{ height:30px; }
+
+nav.links{ display:flex; align-items:center; gap:4px; }
+nav.links a{ position:relative; padding:9px 16px; border-radius:999px; font-size:14.5px; font-weight:600; color:var(--ink-dim); transition:.25s; cursor:pointer; }
+nav.links a:hover{ color:var(--navy); background:rgba(41,171,226,.10); }
+nav.links a.active{ color:var(--blue-deep); }
+nav.links a.active::after{ content:""; position:absolute; left:16px; right:16px; bottom:3px; height:2.5px; border-radius:3px; background:var(--grad-pink); }
+
+.nav-actions{ display:flex; align-items:center; gap:10px; }
+.btn{ font-family:var(--font-body); font-weight:700; font-size:14px; cursor:pointer;
+  border:1.5px solid var(--glass-brd); background:rgba(255,255,255,.7); color:var(--navy);
+  padding:10px 18px; border-radius:999px; transition:.25s; white-space:nowrap; }
+.btn:hover{ border-color:var(--blue); transform:translateY(-1px); box-shadow:var(--shadow-sm); }
+.btn.primary{ border:none; color:#fff; background:var(--grad); box-shadow:0 10px 24px rgba(41,171,226,.35); }
+.btn.primary:hover{ filter:brightness(1.05); box-shadow:0 14px 30px rgba(41,171,226,.45); }
+.btn.pink{ border:none; color:#fff; background:var(--grad-pink); box-shadow:0 10px 24px rgba(236,30,140,.3); }
+.btn.ghost{ background:transparent; }
+
+.lang{ display:flex; align-items:center; gap:6px; font-weight:800; font-size:14px; }
+.lang .sep{ opacity:.3; }
+.lang span[role=button]{ cursor:pointer; opacity:.5; transition:.2s; color:var(--navy); }
+.lang span[role=button]:hover{ opacity:1; }
+.lang span.on{ opacity:1; color:var(--pink); }
+
+.cart-btn{ position:relative; display:grid; place-items:center; width:44px; height:44px; padding:0; }
+.cart-count{ position:absolute; top:-5px; inset-inline-end:-5px; min-width:19px; height:19px; padding:0 5px;
+  display:grid; place-items:center; border-radius:999px; font-size:11px; font-weight:800; color:#fff;
+  background:var(--grad-pink); transform:scale(0); transition:transform .3s cubic-bezier(.34,1.56,.64,1); }
+.cart-count.show{ transform:scale(1); }
+.menu-toggle{ display:none; }
+
+/* ============================================================
+   LAYOUT PRIMITIVES
+   ============================================================ */
+.wrap{ max-width:var(--maxw); margin:0 auto; }
+section{ padding:clamp(64px,9vw,120px) clamp(16px,4vw,40px); position:relative; }
+.eyebrow{ display:inline-flex; align-items:center; gap:9px; font-size:12.5px; font-weight:700;
+  letter-spacing:.18em; text-transform:uppercase; color:var(--pink);
+  padding:7px 15px; border:1.5px solid rgba(236,30,140,.22); border-radius:999px; background:rgba(236,30,140,.05); }
+html[dir="rtl"] .eyebrow{ letter-spacing:.04em; }
+.eyebrow .dot{ width:7px; height:7px; border-radius:50%; background:var(--pink); box-shadow:0 0 8px var(--pink); animation:pulse 2s infinite; }
+@keyframes pulse{ 0%,100%{opacity:1} 50%{opacity:.3} }
+.sec-head{ max-width:620px; margin-bottom:48px; }
+.sec-head.center{ margin-inline:auto; text-align:center; }
+.sec-head h2{ font-size:clamp(34px,5vw,62px); line-height:1.0; margin:18px 0 16px; }
+.sec-head p{ color:var(--ink-dim); font-size:17px; }
+.grad-txt{ background:var(--grad); -webkit-background-clip:text; background-clip:text; color:transparent; }
+.pink-txt{ background:var(--grad-pink); -webkit-background-clip:text; background-clip:text; color:transparent; }
+
+/* frosted card that lets the water glow through */
+.glass{ background:var(--glass); backdrop-filter:blur(14px) saturate(140%); -webkit-backdrop-filter:blur(14px) saturate(140%);
+  border:1px solid rgba(255,255,255,.6); box-shadow:var(--shadow); }
+
+/* ============================================================
+   HERO / COVER  ("Pure hydration for a vibrant life")
+   ============================================================ */
+#home{ min-height:100vh; display:flex; align-items:center; padding-top:110px; }
+.hero-grid{ display:grid; grid-template-columns:1.05fr .95fr; gap:30px; align-items:center; width:100%; }
+.hero-copy h1{ font-size:clamp(46px,7.4vw,102px); line-height:.98; margin:22px 0 20px; }
+.hero-copy p.lead{ font-size:clamp(16px,1.9vw,20px); color:var(--ink); max-width:46ch; margin-bottom:32px; text-shadow:0 1px 10px rgba(255,255,255,.5); }
+.hero-cta{ display:flex; gap:14px; flex-wrap:wrap; align-items:center; }
+.trust{ display:flex; gap:22px; margin-top:34px; flex-wrap:wrap; }
+.trust .t{ display:flex; align-items:center; gap:9px; font-size:13.5px; font-weight:600; color:var(--navy); }
+.trust .t svg{ color:var(--blue); flex:0 0 auto; }
+
+/* animated brand blob holding the real bottles image */
+.hero-visual{ position:relative; display:grid; place-items:center; min-height:520px; }
+#bottle3d{ width:min(100%,520px); height:520px; display:block; cursor:grab; touch-action:none; filter:drop-shadow(0 30px 50px rgba(21,37,95,.22)); }
+/* loading pulse while the real 3D model streams in (hides the placeholder) */
+.bottle-loading{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; pointer-events:none; transition:opacity .6s ease; }
+.bottle-loading.hide{ opacity:0; }
+.bottle-loading span{ width:54px; height:54px; border-radius:50%;
+  border:3px solid rgba(143,224,255,.25); border-top-color:#8fe0ff; animation:bl-spin 1s linear infinite;
+  box-shadow:0 0 24px rgba(56,225,255,.35); }
+.bottle-loading b{ font-family:var(--font-disp); font-weight:600; font-size:14px; letter-spacing:.05em;
+  color:#bfe9ff; text-shadow:0 1px 8px rgba(0,0,0,.4); min-height:1em; }
+@keyframes bl-spin{ to{ transform:rotate(360deg); } }
+#bottle3d:active{ cursor:grabbing; }
+@keyframes floaty{ 0%,100%{transform:translateY(0)} 50%{transform:translateY(-16px)} }
+.hero-visual .ring{ position:absolute; inset:0; margin:auto; width:78%; aspect-ratio:1; border:2px dashed rgba(41,171,226,.35); border-radius:50%; animation:spin 26s linear infinite; }
+@keyframes spin{ to{transform:rotate(360deg)} }
+
+.scroll-hint{ position:absolute; bottom:22px; left:50%; transform:translateX(-50%);
+  display:flex; flex-direction:column; align-items:center; gap:7px; color:var(--blue-ink); font-size:11px; letter-spacing:.2em; text-transform:uppercase; }
+.scroll-hint .mouse{ width:22px; height:34px; border:2px solid var(--blue); border-radius:12px; position:relative; }
+.scroll-hint .mouse::after{ content:""; position:absolute; top:6px; left:50%; transform:translateX(-50%); width:3px; height:7px; border-radius:2px; background:var(--pink); animation:wheel 1.6s infinite; }
+@keyframes wheel{ 0%{opacity:0;top:6px} 40%{opacity:1} 100%{opacity:0;top:16px} }
+
+/* ============================================================
+   MARQUEE
+   ============================================================ */
+.marquee{ background:var(--navy); overflow:hidden; padding:15px 0; }
+.marquee-track{ display:flex; gap:52px; white-space:nowrap; width:max-content; animation:scrollx 24s linear infinite; }
+html[dir="rtl"] .marquee-track{ animation-direction:reverse; }
+@keyframes scrollx{ to{transform:translateX(-50%)} }
+.marquee-track span{ font-family:var(--font-disp); font-weight:700; font-size:18px; color:#fff; display:inline-flex; align-items:center; gap:52px; }
+.marquee-track span b{ color:var(--pink-soft); }
+
+/* the content sheet DESCENDS from bright surface into deep water as you scroll */
+.sheet{ background:linear-gradient(180deg,
+   rgba(9,26,48,.34) 0%, rgba(11,33,56,.70) 10%, rgba(9,27,45,.78) 42%, rgba(6,20,36,.82) 74%, rgba(3,14,26,.86) 100%);
+  border-radius:40px 40px 0 0; box-shadow:0 -30px 90px rgba(0,6,20,.6); margin-top:-10px; }
+/* subtle film grain for premium texture (fixed, above content, non-interactive) */
+body::after{ content:""; position:fixed; inset:0; z-index:3; pointer-events:none; opacity:.04; mix-blend-mode:overlay;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); }
+
+/* ── navy hero: readable UI over YOUR water-splash background ── */
+#home{ min-height:100vh; }
+#home .hero-copy h1{ color:#fff; text-shadow:0 4px 30px rgba(0,0,0,.35); }
+#home .hero-copy p.lead{ color:#dbe9ff; text-shadow:0 2px 16px rgba(0,0,0,.45); }
+#home .trust .t{ color:#eaf3ff; }
+#home .trust .t svg{ color:var(--pink-soft); }
+header:not(.scrolled) nav.links a{ color:rgba(255,255,255,.82); }
+header:not(.scrolled) nav.links a:hover{ color:#fff; background:rgba(255,255,255,.12); }
+header:not(.scrolled) .btn.ghost{ color:#fff; border-color:rgba(255,255,255,.35); }
+header:not(.scrolled) .lang span[role=button]{ color:#fff; }
+header:not(.scrolled) .lang span.on{ color:var(--pink-soft); }
+header:not(.scrolled) .menu-toggle{ color:#fff; border-color:rgba(255,255,255,.3); background:rgba(255,255,255,.08); }
+/* transparent logo (mountain + JABAL name) with a soft shadow for legibility */
+.brand img{ filter:drop-shadow(0 2px 7px rgba(0,0,0,.45)); }
+header.scrolled .brand img{ filter:drop-shadow(0 1px 3px rgba(0,0,0,.18)); }
+.scroll-hint{ color:#bcd4ff; }
+.scroll-hint .mouse{ border-color:rgba(255,255,255,.6); }
+
+/* ============================================================
+   MISSION  ("Pure and Simple ...")
+   ============================================================ */
+.mission-grid{ display:grid; grid-template-columns:1fr 1fr; gap:50px; align-items:center; }
+.mission-copy p{ color:var(--ink-dim); font-size:16.5px; margin-bottom:16px; }
+.mission-visual{ display:grid; place-items:center; }
+.mission-visual img{ width:min(100%,540px); }
+
+/* ============================================================
+   SPEC CARDS
+   ============================================================ */
+.specs{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; }
+.spec-card{ border-radius:var(--radius); padding:26px 22px; background:#fff; box-shadow:var(--shadow-sm);
+  border:1px solid #e7f1fb; transition:.4s; position:relative; overflow:hidden; }
+.spec-card:hover{ transform:translateY(-6px); box-shadow:var(--shadow); }
+.spec-card .ico{ width:46px; height:46px; border-radius:13px; display:grid; place-items:center; margin-bottom:16px; color:#fff; background:var(--grad); }
+.spec-card:nth-child(even) .ico{ background:var(--grad-pink); }
+.spec-card .big{ font-family:var(--font-disp); font-size:38px; font-weight:800; color:var(--navy); line-height:1; margin-bottom:6px; }
+.spec-card .big small{ font-size:15px; color:var(--ink-faint); font-weight:600; }
+.spec-card h3{ font-size:16px; margin-bottom:6px; }
+.spec-card p{ font-size:13.5px; color:var(--ink-dim); }
+
+/* ============================================================
+   PROCESS
+   ============================================================ */
+.process{ display:grid; grid-template-columns:repeat(4,1fr); gap:22px; }
+.step{ text-align:center; position:relative; }
+.step .orb{ width:74px; height:74px; border-radius:50%; margin:0 auto 18px; display:grid; place-items:center;
+  color:#fff; background:var(--grad); box-shadow:0 14px 30px rgba(41,171,226,.3); position:relative; }
+.step:nth-child(even) .orb{ background:var(--grad-pink); box-shadow:0 14px 30px rgba(236,30,140,.28); }
+.step .orb .n{ position:absolute; top:-8px; inset-inline-end:-8px; width:26px; height:26px; border-radius:50%; background:#fff; color:var(--navy); font-family:var(--font-disp); font-weight:800; font-size:13px; display:grid; place-items:center; box-shadow:var(--shadow-sm); }
+.step h3{ font-size:18px; margin-bottom:8px; }
+.step p{ font-size:14px; color:var(--ink-dim); }
+
+/* ============================================================
+   SHOP
+   ============================================================ */
+.shop-bar{ display:flex; justify-content:space-between; align-items:flex-end; gap:20px; margin-bottom:34px; flex-wrap:wrap; }
+.chips{ display:flex; gap:8px; flex-wrap:wrap; }
+.chip{ font-size:13.5px; font-weight:600; color:var(--ink-dim); padding:9px 17px; border-radius:999px; border:1.5px solid #dceafa; cursor:pointer; transition:.25s; background:#fff; }
+.chip:hover{ color:var(--navy); border-color:var(--blue); }
+.chip.on{ color:#fff; background:var(--grad); border-color:transparent; }
+.grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.product{ border-radius:var(--radius); overflow:hidden; background:#fff; border:1px solid #e7f1fb; box-shadow:var(--shadow-sm);
+  transition:.4s; display:flex; flex-direction:column; position:relative; }
+.product:hover{ transform:translateY(-8px); box-shadow:var(--shadow); }
+.product .badge{ position:absolute; top:14px; inset-inline-start:14px; z-index:3; font-size:11px; font-weight:800; letter-spacing:.05em;
+  padding:6px 12px; border-radius:999px; color:#fff; background:var(--grad-pink); box-shadow:var(--shadow-sm); }
+.product .badge.blue{ background:var(--grad); }
+.product .badge.sold{ background:#c3d0e2; color:#fff; }
+.product .art{ height:230px; background:#f2f9ff; display:block; background-size:cover; background-position:center; position:relative; }
+.product .art.contain{ background-size:contain; background-repeat:no-repeat; }
+/* single gallon: framed from the real cover photo */
+.product .art.gallon{ background-image:url('assets/cover-bg.jpg'); background-size:280%; background-position:50% 26%; }
+.product:hover .art{ filter:saturate(1.05); }
+.product .body{ padding:20px; display:flex; flex-direction:column; gap:10px; flex:1; }
+.product .vol{ font-size:12px; color:var(--blue-deep); font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
+html[dir="rtl"] .product .vol{ letter-spacing:0; text-transform:none; }
+.product h3{ font-size:16.5px; line-height:1.3; }
+.product .desc{ font-size:13px; color:var(--ink-faint); flex:1; }
+.product .foot{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-top:4px; }
+.product .price{ font-family:var(--font-disp); font-size:22px; font-weight:800; color:var(--navy); }
+.product .price small{ font-size:12px; color:var(--ink-faint); font-weight:600; }
+.add{ border:none; cursor:pointer; width:46px; height:46px; border-radius:13px; flex:0 0 auto; color:#fff; background:var(--grad);
+  display:grid; place-items:center; transition:.25s; box-shadow:0 8px 18px rgba(41,171,226,.3); }
+.add:hover{ transform:rotate(90deg) scale(1.05); }
+.add:disabled{ background:#cdd9ea; box-shadow:none; cursor:not-allowed; }
+
+/* ============================================================
+   CTA BANNER  ("Pure hydration for a vibrant life")
+   ============================================================ */
+.cta-band{ border-radius:30px; overflow:hidden; position:relative; padding:clamp(40px,6vw,72px); text-align:center; color:#fff;
+  background:linear-gradient(120deg,var(--blue-deep),var(--blue) 55%,var(--pink-soft)); box-shadow:var(--shadow); }
+.cta-band::before{ content:""; position:absolute; inset:0; background:radial-gradient(60% 120% at 50% -20%, rgba(255,255,255,.28), transparent); }
+.cta-band h2{ color:#fff; font-size:clamp(30px,4.6vw,54px); margin-bottom:14px; position:relative; }
+.cta-band p{ color:rgba(255,255,255,.9); max-width:52ch; margin:0 auto 28px; position:relative; }
+.cta-band .btn{ position:relative; background:#fff; color:var(--blue-deep); }
+.cta-band .btn:hover{ box-shadow:0 14px 30px rgba(0,0,0,.2); }
+
+/* ============================================================
+   CONTACT
+   ============================================================ */
+.contact-grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:40px; }
+.contact-info .line{ display:flex; gap:16px; align-items:flex-start; padding:20px 0; border-bottom:1px solid #e7f1fb; }
+.contact-info .line .ico{ width:46px; height:46px; border-radius:13px; flex:0 0 auto; display:grid; place-items:center; color:#fff; background:var(--grad); }
+.contact-info .line:nth-child(even) .ico{ background:var(--grad-pink); }
+.contact-info .line .l{ font-size:12px; color:var(--ink-faint); letter-spacing:.08em; text-transform:uppercase; margin-bottom:2px; font-weight:600; }
+html[dir="rtl"] .contact-info .line .l{ letter-spacing:0; text-transform:none; }
+.contact-info .line .v{ font-size:17px; font-weight:700; color:var(--navy); }
+.form{ border-radius:var(--radius); padding:30px; background:#fff; box-shadow:var(--shadow-sm); border:1px solid #e7f1fb; }
+.field{ margin-bottom:18px; }
+.field label{ display:block; font-size:13px; color:var(--ink-dim); margin-bottom:8px; font-weight:600; }
+.field input,.field textarea{ width:100%; background:#f6fbff; border:1.5px solid #e0eefb; border-radius:12px; padding:13px 15px; color:var(--navy);
+  font-family:var(--font-body); font-size:15px; transition:.25s; resize:vertical; }
+.field input:focus,.field textarea:focus{ outline:none; border-color:var(--blue); box-shadow:0 0 0 3px rgba(41,171,226,.14); }
+.form .btn.primary{ width:100%; justify-content:center; padding:14px; }
+.form-ok{ text-align:center; padding:13px; margin-top:14px; border-radius:12px; font-size:14px; font-weight:600;
+  background:rgba(41,171,226,.1); border:1px solid rgba(41,171,226,.3); color:var(--blue-deep); display:none; }
+.form-ok.show{ display:block; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+footer{ background:var(--navy); color:#c9d6f0; padding:60px clamp(16px,4vw,40px) 28px; position:relative; z-index:2; }
+.foot-grid{ display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; margin-bottom:40px; }
+.foot-brand img{ height:56px; background:#fff; padding:8px 12px; border-radius:12px; }
+.foot-brand p{ font-size:14px; margin:16px 0 20px; max-width:36ch; color:#a9baDb; }
+.foot-grid h4{ color:#fff; font-size:13px; letter-spacing:.12em; text-transform:uppercase; margin-bottom:16px; }
+html[dir="rtl"] .foot-grid h4{ letter-spacing:0; text-transform:none; }
+.foot-grid a{ display:block; color:#b6c5e6; font-size:14px; padding:6px 0; cursor:pointer; transition:.2s; }
+.foot-grid a:hover{ color:var(--pink-soft); }
+.socials{ display:flex; gap:10px; }
+.socials a{ width:40px; height:40px; border-radius:11px; background:rgba(255,255,255,.08); display:grid; place-items:center; color:#fff; transition:.25s; padding:0; }
+.socials a:hover{ background:var(--grad-pink); transform:translateY(-3px); }
+.foot-bot{ display:flex; justify-content:space-between; align-items:center; gap:16px; padding-top:22px; border-top:1px solid rgba(255,255,255,.12); flex-wrap:wrap; font-size:13px; color:#93a6cc; }
+
+/* ============================================================
+   CART DRAWER
+   ============================================================ */
+.overlay{ position:fixed; inset:0; z-index:60; background:rgba(21,37,95,.35); backdrop-filter:blur(3px); opacity:0; pointer-events:none; transition:.3s; }
+.overlay.open{ opacity:1; pointer-events:auto; }
+.drawer{ position:fixed; top:0; inset-inline-end:0; height:100%; width:min(420px,100%); z-index:61; background:#fff;
+  box-shadow:-20px 0 60px rgba(21,37,95,.2); transform:translateX(100%); transition:transform .4s cubic-bezier(.5,0,.2,1); display:flex; flex-direction:column; }
+html[dir="rtl"] .drawer{ transform:translateX(-100%); }
+.drawer.open{ transform:translateX(0); }
+.drawer-head{ display:flex; justify-content:space-between; align-items:center; padding:22px 24px; border-bottom:1px solid #eef4fb; }
+.drawer-head h3{ font-size:20px; }
+.drawer-close{ cursor:pointer; width:36px; height:36px; border-radius:10px; border:1px solid #e7f1fb; background:#fff; color:var(--navy); display:grid; place-items:center; font-size:15px; }
+.drawer-body{ flex:1; overflow-y:auto; padding:12px 24px; }
+.cart-empty{ text-align:center; color:var(--ink-faint); padding:56px 20px; }
+.cart-item{ display:flex; gap:14px; align-items:center; padding:16px 0; border-bottom:1px solid #eef4fb; }
+.cart-item .thumb{ width:54px; height:54px; border-radius:11px; background:#f2f9ff; flex:0 0 auto; background-size:cover; background-position:center; }
+.cart-item .info{ flex:1; min-width:0; }
+.cart-item .info h4{ font-size:14px; font-weight:700; margin-bottom:3px; }
+.cart-item .info .p{ font-size:13px; color:var(--blue-deep); font-weight:700; }
+.qty{ display:flex; align-items:center; gap:8px; }
+.qty button{ width:27px; height:27px; border-radius:8px; border:1px solid #e7f1fb; background:#fff; color:var(--navy); cursor:pointer; font-size:15px; line-height:1; }
+.qty span{ min-width:18px; text-align:center; font-size:14px; font-weight:700; }
+.drawer-foot{ padding:22px 24px; border-top:1px solid #eef4fb; }
+.drawer-foot .total{ display:flex; justify-content:space-between; margin-bottom:16px; font-size:16px; align-items:baseline; }
+.drawer-foot .total b{ font-family:var(--font-disp); font-size:24px; color:var(--navy); }
+
+/* ============================================================
+   PROMO CAROUSEL — reflective, water-like
+   ============================================================ */
+.carousel{ position:relative; padding:10px 60px 0; }
+.car-viewport{ overflow:hidden; }
+.car-track{ display:flex; gap:40px; align-items:center; min-height:500px; transition:transform .85s cubic-bezier(.16,1,.3,1); will-change:transform; padding:24px 0 40px; }
+.car-slide{ flex:0 0 auto; width:min(370px,74vw); display:flex; justify-content:center;
+  opacity:.4; transform:scale(.82); filter:saturate(.8) brightness(.7) blur(4px); transition:opacity .7s, transform .7s, filter .7s; }
+.car-slide.active{ opacity:1; transform:scale(1); filter:none; }
+/* posters as living water drops — soft rounded shape (keeps content visible) + gentle sway */
+.car-img{ display:block; width:auto; max-width:100%; max-height:470px;
+  border:1px solid rgba(160,220,255,.28);
+  box-shadow:0 40px 90px rgba(3,10,28,.6), inset 0 0 40px rgba(180,230,255,.16), inset 0 6px 16px rgba(255,255,255,.2);
+  cursor:pointer;
+  border-radius:30% 30% 34% 34% / 20% 20% 26% 26%;
+  animation:dropMorph 8s ease-in-out infinite, dropSway 6.5s ease-in-out infinite; }
+.car-img:hover{ scale:1.03; }
+@keyframes dropMorph{
+  0%,100%{ border-radius:30% 30% 34% 34% / 20% 20% 26% 26%; }
+  50%{ border-radius:34% 34% 30% 30% / 26% 26% 22% 22%; } }
+@keyframes dropSway{ 0%,100%{ rotate:-3.5deg; } 50%{ rotate:3.5deg; } }
+.car-arrow{ position:absolute; top:46%; transform:translateY(-50%); z-index:5; width:50px; height:50px; border-radius:50%;
+  border:1px solid rgba(255,255,255,.28); background:rgba(255,255,255,.09); backdrop-filter:blur(12px); color:#fff;
+  font-size:20px; line-height:1; cursor:pointer; display:grid; place-items:center; transition:.3s; }
+.car-arrow:hover{ background:#fff; color:var(--navy); border-color:#fff; transform:translateY(-50%) scale(1.06); box-shadow:0 10px 30px rgba(0,0,0,.3); }
+.car-arrow.prev{ left:6px; } .car-arrow.next{ right:6px; }
+html[dir="rtl"] .car-arrow.prev{ left:auto; right:6px; } html[dir="rtl"] .car-arrow.next{ right:auto; left:6px; }
+.car-dots{ display:flex; gap:8px; justify-content:center; margin-top:6px; }
+.car-dot{ width:7px; height:7px; border-radius:50%; border:none; background:rgba(255,255,255,.35); cursor:pointer; transition:.35s; padding:0; }
+.car-dot.on{ background:#fff; width:30px; border-radius:6px; }
+
+/* ============================================================
+   WATER-INTERACTIVE SURFACES — cursor sheen + 3D tilt on cards
+   ============================================================ */
+.tilt{ transition:transform .25s cubic-bezier(.2,.7,.2,1); transform-style:preserve-3d; will-change:transform; }
+.tilt::after{ content:""; position:absolute; inset:0; border-radius:inherit; pointer-events:none; z-index:4;
+  background:radial-gradient(240px circle at var(--mx,50%) var(--my,50%), rgba(255,255,255,.45), transparent 55%);
+  opacity:0; transition:opacity .3s ease; mix-blend-mode:screen; }
+.tilt:hover::after{ opacity:.9; }
+/* light caustic sweep across the white content sheet */
+.sheet{ position:relative; overflow:hidden; }
+.sheet::before{ content:""; position:absolute; inset:0; z-index:0; pointer-events:none; opacity:.5;
+  background:
+   radial-gradient(60% 30% at 20% 8%, rgba(41,171,226,.10), transparent 60%),
+   radial-gradient(50% 26% at 85% 22%, rgba(236,30,140,.07), transparent 60%),
+   radial-gradient(45% 24% at 60% 60%, rgba(41,171,226,.08), transparent 60%);
+  animation:causticShift 16s ease-in-out infinite alternate; }
+@keyframes causticShift{ 0%{ transform:translate3d(0,0,0) scale(1); } 100%{ transform:translate3d(-2%,1.5%,0) scale(1.08); } }
+.sheet > section{ position:relative; z-index:1; }
+/* animated wave divider sitting on top of the white sheet */
+.wave-top{ position:absolute; top:-1px; left:0; width:100%; height:60px; z-index:2; pointer-events:none; line-height:0; }
+.wave-top svg{ width:100%; height:100%; display:block; }
+.wave-top .w1{ animation:waveDrift 9s ease-in-out infinite alternate; }
+@keyframes waveDrift{ from{ transform:translateX(0); } to{ transform:translateX(-24px); } }
+
+/* rising bubbles accent (added via JS to some sections) */
+.bubble{ position:absolute; bottom:-20px; border-radius:50%; background:radial-gradient(circle at 30% 30%, rgba(255,255,255,.9), rgba(41,171,226,.25));
+  box-shadow:0 0 8px rgba(41,171,226,.3); pointer-events:none; opacity:0; animation:rise linear infinite; z-index:0; }
+@keyframes rise{ 0%{ transform:translateY(0) scale(.6); opacity:0; } 15%{ opacity:.7; } 100%{ transform:translateY(-320px) scale(1); opacity:0; } }
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal{ opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s cubic-bezier(.2,.7,.2,1); }
+.reveal.in{ opacity:1; transform:none; }
+
+/* ============================================================
+   DESCENT — deep-water sections flip to light text as you sink
+   ============================================================ */
+.sheet h1,.sheet h2,.sheet h3,.sheet h4{ color:#eef6ff; }
+.sheet .sec-head p{ color:#9fbdd8; }
+.sheet .mission-copy p{ color:#9fbdd8; }
+.sheet .eyebrow{ color:#7fd8ff; border-color:rgba(127,216,255,.28); background:rgba(127,216,255,.06); }
+.sheet .eyebrow .dot{ background:#7fd8ff; box-shadow:0 0 8px #7fd8ff; }
+.sheet .spec-card{ background:rgba(13,34,60,.5); border-color:rgba(255,255,255,.1); box-shadow:0 24px 60px rgba(0,8,24,.4); backdrop-filter:blur(12px); }
+.sheet .spec-card .big{ color:#fff; }
+.sheet .spec-card h3{ color:#fff; }
+.sheet .spec-card p{ color:#9fc0dd; }
+.sheet .step h3{ color:#fff; }
+.sheet .step p{ color:#9fc0dd; }
+.sheet .chip{ background:rgba(255,255,255,.07); color:#cfe6fb; border-color:rgba(255,255,255,.16); }
+.sheet .chip:hover{ color:#fff; border-color:#7fd8ff; }
+.sheet .chip.on{ color:#052a4c; background:linear-gradient(135deg,#8fe6ff,#39c0e8); border-color:transparent; }
+.sheet .product{ background:rgba(13,34,60,.5); border-color:rgba(255,255,255,.1); backdrop-filter:blur(12px); box-shadow:0 26px 60px rgba(0,8,24,.45); }
+.sheet .product h3,.sheet .product .price{ color:#fff; }
+.sheet .product .desc{ color:#9fc0dd; }
+.sheet .product .vol{ color:#7fd0f5; }
+.sheet .product .art{ background-color:#0b1e34; }
+.sheet .contact-info .line{ border-color:rgba(255,255,255,.12); }
+.sheet .contact-info .line .v{ color:#fff; }
+.sheet .contact-info .line .l{ color:#8fb4d6; }
+.sheet .form{ background:rgba(13,34,60,.5); border-color:rgba(255,255,255,.1); backdrop-filter:blur(12px); }
+.sheet .field label{ color:#bcd7ef; }
+.sheet .field input,.sheet .field textarea{ background:rgba(4,16,32,.6); border-color:rgba(255,255,255,.14); color:#fff; }
+.sheet .field input::placeholder,.sheet .field textarea::placeholder{ color:#7fa0c0; }
+
+/* ============================================================
+   SCROLL PROGRESS RAIL — the descent depth-meter (00 → 06)
+   ============================================================ */
+.rail{ position:fixed; top:50%; inset-inline-end:24px; transform:translateY(-50%); z-index:45; display:flex; flex-direction:column; }
+.rail-line{ position:absolute; top:10px; bottom:10px; inset-inline-end:5px; width:2px; background:rgba(150,175,200,.4); border-radius:2px; }
+.rail-fill{ position:absolute; top:10px; inset-inline-end:5px; width:2px; height:0; background:linear-gradient(#bff0ff,#2aa8e0); border-radius:2px; transition:height .15s linear; }
+.rail-item{ display:flex; align-items:center; gap:12px; padding:11px 0; cursor:pointer; position:relative; justify-content:flex-end; }
+html[dir="rtl"] .rail-item{ justify-content:flex-start; }
+.rail-item .label{ font-size:12px; font-weight:600; color:#fff; background:rgba(6,22,44,.82); padding:4px 11px; border-radius:999px; backdrop-filter:blur(4px); opacity:0; transform:translateX(8px); transition:.3s; white-space:nowrap; pointer-events:none; }
+html[dir="rtl"] .rail-item .label{ transform:translateX(-8px); }
+.rail-item .num{ font-family:var(--font-disp); font-size:10.5px; font-weight:700; color:#8aa2bd; text-shadow:0 1px 2px rgba(255,255,255,.35); min-width:16px; text-align:center; }
+.rail-item .dot{ width:11px; height:11px; border-radius:50%; background:#c9d8ea; border:2px solid rgba(255,255,255,.9); box-shadow:0 1px 4px rgba(0,0,0,.25); transition:.3s; z-index:1; }
+.rail-item:hover .label{ opacity:1; transform:none; }
+.rail-item.on .label{ opacity:1; transform:none; }
+.rail-item.on .num{ color:#26b4e6; }
+.rail-item.on .dot{ background:#26b4e6; border-color:#eaffff; box-shadow:0 0 12px #26b4e6; transform:scale(1.25); }
+
+/* ============================================================
+   WATER COLUMN — god-ray light shafts + drifting marine particles
+   ============================================================ */
+.watercol{ position:absolute; inset:0; z-index:0; pointer-events:none; overflow:hidden; }
+.rays{ position:absolute; inset:-15% -25%;
+  background:
+    linear-gradient(101deg, transparent 45%, rgba(255,255,255,.07) 48.5%, transparent 52%),
+    linear-gradient(96deg,  transparent 58%, rgba(200,240,255,.06) 61.5%, transparent 65%),
+    linear-gradient(106deg, transparent 28%, rgba(190,235,255,.05) 31.5%, transparent 35%),
+    linear-gradient(92deg,  transparent 72%, rgba(255,255,255,.05) 75%, transparent 78%);
+  -webkit-mask:linear-gradient(180deg, transparent 28%, #000 58%);
+  mask:linear-gradient(180deg, transparent 28%, #000 58%);
+  animation:rayDrift 15s ease-in-out infinite alternate; }
+@keyframes rayDrift{ from{ transform:translateX(-24px) skewX(-2deg);} to{ transform:translateX(24px) skewX(2deg);} }
+.mote{ position:absolute; border-radius:50%; background:rgba(220,245,255,.55);
+  box-shadow:0 0 6px rgba(180,230,255,.55); pointer-events:none; opacity:0; animation:moteDrift linear infinite; }
+@keyframes moteDrift{ 0%{ transform:translateY(0) translateX(0); opacity:0; } 12%{ opacity:.6; } 88%{ opacity:.45; }
+  100%{ transform:translateY(-280px) translateX(24px); opacity:0; } }
+/* parallax + plunge transforms need GPU hints */
+.hero-copy, .hero-visual{ will-change:transform, opacity; }
+[data-par]{ will-change:transform; }
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width:940px){
+  .hero-grid,.mission-grid,.contact-grid{ grid-template-columns:1fr; }
+  .hero-visual{ order:-1; }
+  .specs{ grid-template-columns:repeat(2,1fr); }
+  .process{ grid-template-columns:repeat(2,1fr); }
+  .grid{ grid-template-columns:repeat(2,1fr); }
+  .foot-grid{ grid-template-columns:1fr 1fr; gap:28px; }
+  nav.links{ display:none; }
+  .menu-toggle{ display:grid; place-items:center; width:44px; height:44px; border-radius:11px; border:1.5px solid var(--glass-brd); background:#fff; color:var(--navy); cursor:pointer; }
+  .mobile-hide{ display:none; }
+  .rail{ display:none; }
+}
+@media (max-width:560px){
+  .specs,.grid,.foot-grid,.process{ grid-template-columns:1fr; }
+  .hero-copy h1{ font-size:44px; }
+  .carousel{ padding:8px 14px 0; }
+  .car-arrow{ width:40px; height:40px; font-size:18px; }
+  .car-slide{ width:84vw; }
+  .car-track{ gap:22px; min-height:440px; }
+  .car-img{ max-height:420px; }
+  .sec-head h2{ font-size:34px; }
+}
+.msheet{ position:fixed; inset:0; z-index:55; background:rgba(255,255,255,.97); backdrop-filter:blur(16px);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:6px; opacity:0; pointer-events:none; transition:.3s; }
+.msheet.open{ opacity:1; pointer-events:auto; }
+.msheet a{ font-family:var(--font-disp); font-weight:700; font-size:28px; color:var(--navy); padding:12px; cursor:pointer; }
+.msheet .btn{ margin-top:18px; }
+</style>
+</head>
+
+<body>
+
+<!-- ══ YOUR water-splash background (assets/water-splash.html) ══ -->
+<iframe id="splashbg" src="assets/water-splash.html" title="JABAL water splash" scrolling="no" tabindex="-1"></iframe>
+<canvas id="gl"></canvas><!-- transparent droplet overlay for click splashes -->
+<div id="veil"></div>
+
+<div class="content">
+
+<!-- ══════════════════ HEADER ══════════════════ -->
+<header id="hdr">
+  <div class="brand" onclick="scrollToId('home')">
+    <img src="assets/logo.png" alt="JABAL — High Quality Water" width="1024" height="167" decoding="async" fetchpriority="high" />
+  </div>
+  <nav class="links" id="navlinks">
+    <a data-nav="home" class="active" onclick="scrollToId('home')" data-i18n="nav_home">Home</a>
+    <a data-nav="mission" onclick="scrollToId('mission')" data-i18n="nav_about">About</a>
+    <a data-nav="tech" onclick="scrollToId('tech')" data-i18n="nav_tech">Process</a>
+    <a data-nav="shop" onclick="scrollToId('shop')" data-i18n="nav_shop">Shop</a>
+    <a data-nav="contact" onclick="scrollToId('contact')" data-i18n="nav_contact">Contact Us</a>
+  </nav>
+  <div class="nav-actions">
+    <div class="lang" title="Language">
+      <span role="button" class="on" data-lang="en" onclick="setLang('en')">EN</span>
+      <span class="sep">/</span>
+      <span role="button" data-lang="ar" onclick="setLang('ar')">ع</span>
+    </div>
+    <button class="btn ghost mobile-hide" data-i18n="nav_login">Login</button>
+    <button class="btn cart-btn pink" onclick="openCart()" aria-label="Cart" style="color:#fff">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M6 6 5 3H2"/></svg>
+      <span class="cart-count" id="cartCount">0</span>
+    </button>
+    <button class="menu-toggle" onclick="toggleMenu()" aria-label="Menu">
+      <svg width="20" height="20" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+  </div>
+</header>
+
+<div class="msheet" id="msheet">
+  <a onclick="scrollToId('home');toggleMenu()" data-i18n="nav_home">Home</a>
+  <a onclick="scrollToId('mission');toggleMenu()" data-i18n="nav_about">About</a>
+  <a onclick="scrollToId('tech');toggleMenu()" data-i18n="nav_tech">Process</a>
+  <a onclick="scrollToId('shop');toggleMenu()" data-i18n="nav_shop">Shop</a>
+  <a onclick="scrollToId('contact');toggleMenu()" data-i18n="nav_contact">Contact Us</a>
+  <button class="btn primary" data-i18n="nav_login">Login</button>
+</div>
+
+<!-- ══════════════════ HERO / COVER ══════════════════ -->
+<section id="home">
+  <div id="underwater" aria-hidden="true"></div><!-- animated underwater photo — banner background only -->
+  <div class="wrap hero-grid">
+    <div class="hero-copy">
+      <span class="eyebrow"><span class="dot"></span><span data-i18n="hero_eyebrow">Reverse Osmosis · Ozone Purified</span></span>
+      <h1><span data-i18n="hero_h1a">Pure hydration for a</span> <span class="pink-txt" data-i18n="hero_h1b">vibrant life</span></h1>
+      <p class="lead" data-i18n="hero_lead">Quench your thirst and rejuvenate your body with our premium bottled water — freshly filled the moment you order, never stored.</p>
+      <div class="hero-cta">
+        <button class="btn primary" onclick="scrollToId('shop')" data-i18n="hero_cta1">Shop Now</button>
+        <button class="btn ghost" onclick="scrollToId('mission')" data-i18n="hero_cta2">Discover our water</button>
+      </div>
+      <div class="trust">
+        <div class="t"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="trust1">pH 7.2 balanced</span></div>
+        <div class="t"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="trust2">TDS 100 mg/L</span></div>
+        <div class="t"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg><span data-i18n="trust3">100% recyclable</span></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="ring"></div>
+      <!-- LIVE 3D scene: a real rotating JABAL gallon (Three.js perspective) -->
+      <canvas id="bottle3d" aria-label="3D JABAL water bottle"></canvas>
+      <div id="bottleLoading" class="bottle-loading" aria-hidden="true"><span></span><b id="bottlePct"></b></div>
+    </div>
+  </div>
+  <div class="scroll-hint"><div class="mouse"></div><span data-i18n="scroll">Scroll</span></div>
+</section>
+
+<!-- ══════════════════ MARQUEE ══════════════════ -->
+<div class="marquee"><div class="marquee-track" id="marquee"></div></div>
+
+<!-- ══ white content sheet floating on the water ══ -->
+<div class="sheet">
+  <div class="wave-top">
+    <svg viewBox="0 0 1440 60" preserveAspectRatio="none"><path class="w1" fill="#0b2138" d="M0,30 C240,60 480,0 720,24 C960,48 1200,10 1440,34 L1440,60 L0,60 Z"/></svg>
+  </div>
+  <div class="watercol" aria-hidden="true"><div class="rays"></div></div>
+
+<!-- ══════════════════ MISSION ══════════════════ -->
+<section id="mission">
+  <div class="wrap mission-grid">
+    <div class="mission-copy reveal">
+      <span class="eyebrow"><span class="dot"></span><span data-i18n="m_eyebrow">Our Mission</span></span>
+      <h2 style="font-size:clamp(28px,4vw,44px);margin:16px 0 20px" data-i18n="m_h2">Pure &amp; Simple: our commitment to quality and sustainability</h2>
+      <p data-i18n="m_p1">Our mission is to bring you the purest water, straight from our state-of-the-art purification plant. We use a Reverse Osmosis (RO) system with ozone disinfection to ensure every drop is of the highest quality.</p>
+      <p data-i18n="m_p2">Our water is not stored — it's freshly filled upon your order and delivered in 100% reusable and recyclable bottles. Experience the pure taste of Jabal water.</p>
+      <button class="btn pink" onclick="scrollToId('shop')" data-i18n="m_cta">Find your plan</button>
+    </div>
+    <div class="mission-visual reveal">
+      <img src="assets/hero-bottles.svg" alt="JABAL bottle sizes" data-par="0.3" />
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ SPECS ══════════════════ -->
+<section id="quality" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow"><span class="dot"></span><span data-i18n="q_eyebrow">The Standard</span></span>
+      <h2 data-i18n="q_h2">Purity you can measure</h2>
+      <p data-i18n="q_p">Every bottle is engineered to a lab-grade specification, then delivered with an obsession for freshness.</p>
+    </div>
+    <div class="specs">
+      <div class="spec-card reveal">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/></svg></div>
+        <div class="big">7.2<small> pH</small></div><h3 data-i18n="q1_h">Perfectly balanced</h3><p data-i18n="q1_p">A clean, neutral pH that tastes crisp and treats your body kindly.</p>
+      </div>
+      <div class="spec-card reveal">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg></div>
+        <div class="big">100<small> mg/L</small></div><h3 data-i18n="q2_h">Ideal mineral TDS</h3><p data-i18n="q2_p">Total dissolved solids tuned for a smooth, light finish.</p>
+      </div>
+      <div class="spec-card reveal">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 6a6 6 0 1 0 6 6"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></svg></div>
+        <div class="big">O₃</div><h3 data-i18n="q3_h">Ozone disinfection</h3><p data-i18n="q3_p">Reverse osmosis paired with ozone for a flawlessly clean result.</p>
+      </div>
+      <div class="spec-card reveal">
+        <div class="ico"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3a9 9 0 0 1 9 9"/><path d="M7 12a5 5 0 0 1 10 0"/><path d="M3 12a9 9 0 0 1 4-7.5"/><path d="m8 20 2-3 3 1"/></svg></div>
+        <div class="big">100<small> %</small></div><h3 data-i18n="q4_h">Reusable bottles</h3><p data-i18n="q4_p">Fully reusable and recyclable — hydration without the waste.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ PROCESS ══════════════════ -->
+<section id="tech" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow"><span class="dot"></span><span data-i18n="t_eyebrow">The Process</span></span>
+      <h2 data-i18n="t_h2">From source to sip</h2>
+      <p data-i18n="t_p">A state-of-the-art facility where nothing is stored and everything is filled fresh, on demand.</p>
+    </div>
+    <div class="process">
+      <div class="step reveal"><div class="orb"><span class="n">1</span><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M12 3s7 7 7 12a7 7 0 0 1-14 0c0-5 7-12 7-12z"/></svg></div><h3 data-i18n="t1_h">Source</h3><p data-i18n="t1_p">Carefully selected water enters our purification line.</p></div>
+      <div class="step reveal"><div class="orb"><span class="n">2</span><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M4 10h16M10 4v16"/></svg></div><h3 data-i18n="t2_h">Reverse Osmosis</h3><p data-i18n="t2_p">Multi-stage membranes strip impurities at the molecular level.</p></div>
+      <div class="step reveal"><div class="orb"><span class="n">3</span><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="8"/><circle cx="12" cy="12" r="3.5"/></svg></div><h3 data-i18n="t3_h">Ozone Shield</h3><p data-i18n="t3_p">Ozone disinfection guarantees a pristine, pathogen-free result.</p></div>
+      <div class="step reveal"><div class="orb"><span class="n">4</span><svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M6 3h12l-1 4H7z"/><path d="M7 7v10a3 3 0 0 0 3 3h4a3 3 0 0 0 3-3V7"/></svg></div><h3 data-i18n="t4_h">Fresh Fill</h3><p data-i18n="t4_p">Bottled the instant you order — delivered, never shelved.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ PROMO CAROUSEL ══════════════════ -->
+<section id="promos" class="deep" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow"><span class="dot"></span><span data-i18n="promo_eyebrow">Featured Offers</span></span>
+      <h2 data-i18n="promo_h2">Dive into the deals</h2>
+      <p data-i18n="promo_p">Limited-time offers on our premium gallons — tap any poster to shop.</p>
+    </div>
+    <div class="carousel reveal" id="carousel">
+      <button class="car-arrow prev" onclick="carousel.go(-1)" aria-label="Previous">‹</button>
+      <div class="car-viewport" data-par="0.18"><div class="car-track" id="carTrack"></div></div>
+      <button class="car-arrow next" onclick="carousel.go(1)" aria-label="Next">›</button>
+      <div class="car-dots" id="carDots"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ SHOP ══════════════════ -->
+<section id="shop" class="deep" style="padding-top:0">
+  <div class="wrap">
+    <div class="shop-bar reveal">
+      <div class="sec-head" style="margin:0">
+        <span class="eyebrow"><span class="dot"></span><span data-i18n="s_eyebrow">The Shop</span></span>
+        <h2 style="margin:14px 0 0" data-i18n="s_h2">Choose your plan</h2>
+      </div>
+      <div class="chips" id="chips"></div>
+    </div>
+    <div class="grid" id="productGrid"></div>
+  </div>
+</section>
+
+<!-- ══════════════════ CTA ══════════════════ -->
+<section style="padding-top:0">
+  <div class="wrap">
+    <div class="cta-band reveal">
+      <h2 data-i18n="cta_h">Pure hydration for a vibrant life</h2>
+      <p data-i18n="cta_p">Freshly filled, delivered fast, and kind to the planet. Find the perfect plan for you and your family.</p>
+      <button class="btn" onclick="scrollToId('shop')" data-i18n="cta_btn">Shop Now</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ CONTACT ══════════════════ -->
+<section id="contact" class="deep" style="padding-top:0">
+  <div class="wrap">
+    <div class="sec-head center reveal">
+      <span class="eyebrow"><span class="dot"></span><span data-i18n="c_eyebrow">Contact Us</span></span>
+      <h2 data-i18n="c_h2">Let's get you flowing</h2>
+      <p data-i18n="c_p">Questions, bulk orders, or partnerships — reach out and we'll respond fast.</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-info reveal">
+        <div class="line"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5c0 9 6 15 15 15l1-4-5-2-2 2a12 12 0 0 1-5-5l2-2-2-5z"/></svg></div><div><div class="l" data-i18n="c_phone">Phone</div><div class="v" dir="ltr">011 1955 9955</div></div></div>
+        <div class="line"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div><div><div class="l" data-i18n="c_email">Email</div><div class="v">info@jabalwater.com</div></div></div>
+        <div class="line"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8z"/></svg></div><div><div class="l" data-i18n="c_deliv">Delivery</div><div class="v" data-i18n="c_deliv_v">Fresh, on-demand — 7 days a week</div></div></div>
+      </div>
+      <form class="form reveal" onsubmit="return submitForm(event)">
+        <div class="field"><label data-i18n="f_name">Name</label><input required type="text" data-i18n-ph="f_name_ph" placeholder="Your name" /></div>
+        <div class="field"><label data-i18n="f_email">Email</label><input required type="email" data-i18n-ph="f_email_ph" placeholder="you@email.com" /></div>
+        <div class="field"><label data-i18n="f_msg">Message</label><textarea required rows="4" data-i18n-ph="f_msg_ph" placeholder="How can we help?"></textarea></div>
+        <button class="btn primary" type="submit" data-i18n="f_send">Send message</button>
+        <div class="form-ok" id="formOk" data-i18n="f_ok">Thank you — we'll be in touch shortly. 💧</div>
+      </form>
+    </div>
+  </div>
+</section>
+
+</div><!-- /.sheet -->
+
+<!-- ══════════════════ FOOTER ══════════════════ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <img src="assets/logo.png" alt="JABAL High Quality Water" width="1024" height="167" decoding="async" loading="lazy" />
+        <p data-i18n="foot_tag">At Jabal, we're dedicated to providing pure, high-quality water — freshly filled on order. Our commitment to quality and sustainability, in every drop.</p>
+        <div class="socials">
+          <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l.5-3H13V9c0-1 .3-1.6 1.7-1.6H17V4.8C16.5 4.7 15.4 4.6 14.2 4.6 11.7 4.6 10 6.1 10 8.7V11H7v3h3v8z"/></svg></a>
+          <a href="#" aria-label="Twitter"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 3H22l-7 8 8.2 10H17l-5-6.4L6.2 21H3l7.5-8.6L2.5 3H10l4.5 6zM17 19h1.7L7.1 4.8H5.3z"/></svg></a>
+          <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 8.5v9h-3v-9zM5 4a1.8 1.8 0 1 1 0 3.6A1.8 1.8 0 0 1 5 4zM20.5 17.5h-3v-4.7c0-1.2-.5-1.9-1.5-1.9s-1.6.7-1.6 1.9v4.7h-3v-9h2.9v1.2c.5-.8 1.4-1.4 2.6-1.4 2 0 3.6 1.3 3.6 4z"/></svg></a>
+        </div>
+      </div>
+      <div><h4 data-i18n="nav_home">Home</h4>
+        <a onclick="scrollToId('mission')" data-i18n="nav_about">About</a>
+        <a onclick="scrollToId('tech')" data-i18n="nav_tech">Process</a>
+        <a onclick="scrollToId('quality')" data-i18n="q_eyebrow">The Standard</a>
+      </div>
+      <div><h4 data-i18n="nav_shop">Shop</h4>
+        <a onclick="scrollToId('shop')" data-i18n="foot_gallons">Gallons</a>
+        <a onclick="scrollToId('shop')" data-i18n="foot_packs">Utility Packs</a>
+        <a onclick="scrollToId('shop')" data-i18n="foot_offers">Offers</a>
+      </div>
+      <div><h4 data-i18n="nav_contact">Contact Us</h4>
+        <a href="tel:01119559955" dir="ltr">011 1955 9955</a>
+        <a href="mailto:info@jabalwater.com">info@jabalwater.com</a>
+      </div>
+    </div>
+    <div class="foot-bot">
+      <span>© <span id="year"></span> JABAL High Quality Water. <span data-i18n="foot_rights">All rights reserved.</span></span>
+      <span data-i18n="foot_made">Pure &amp; Simple 💧</span>
+    </div>
+  </div>
+</footer>
+
+</div><!-- /.content -->
+
+<!-- ══════════════════ CART DRAWER ══════════════════ -->
+<div class="overlay" id="overlay" onclick="closeCart()"></div>
+<aside class="drawer" id="drawer" aria-hidden="true">
+  <div class="drawer-head"><h3 data-i18n="cart_title">Your Cart</h3><button class="drawer-close" onclick="closeCart()">✕</button></div>
+  <div class="drawer-body" id="cartBody"></div>
+  <div class="drawer-foot">
+    <div class="total"><span data-i18n="cart_total">Total</span><b id="cartTotal">0.00 <small>EGP</small></b></div>
+    <button class="btn primary" style="width:100%;justify-content:center;padding:14px" onclick="checkout()" data-i18n="cart_checkout">Checkout</button>
+  </div>
+</aside>
+
+<!-- ══════════════════ THREE.JS — local first (works fully offline), CDN fallback ══════════════════ -->
+<script src="assets/three.min.js"></script>
+<script>window.THREE||document.write('<scr'+'ipt src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"><\/scr'+'ipt>');</script>
+<!-- GLTFLoader so an exported Rodin/Hyper3D model (assets/model.glb) loads automatically -->
+<script src="assets/GLTFLoader.js" onerror="window.__noGLTF=1"></script>
+<script>window.THREE&&THREE.GLTFLoader||document.write('<scr'+'ipt src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/loaders/GLTFLoader.js"><\/scr'+'ipt>');</script>
+<script>
+/* ============================================================================
+   MODULE 1 · i18n
+   ========================================================================== */
+const I18N = {
+  en:{
+    nav_home:"Home", nav_about:"About", nav_tech:"Process", nav_shop:"Shop", nav_contact:"Contact Us", nav_login:"Login",
+    hero_eyebrow:"Reverse Osmosis · Ozone Purified",
+    hero_h1a:"Pure hydration for a", hero_h1b:"vibrant life",
+    hero_lead:"Quench your thirst and rejuvenate your body with our premium bottled water — freshly filled the moment you order, never stored.",
+    hero_cta1:"Shop Now", hero_cta2:"Discover our water",
+    trust1:"pH 7.2 balanced", trust2:"TDS 100 mg/L", trust3:"100% recyclable", scroll:"Scroll",
+    m_eyebrow:"Our Mission", m_h2:"Pure & Simple: our commitment to quality and sustainability",
+    m_p1:"Our mission is to bring you the purest water, straight from our state-of-the-art purification plant. We use a Reverse Osmosis (RO) system with ozone disinfection to ensure every drop is of the highest quality.",
+    m_p2:"Our water is not stored — it's freshly filled upon your order and delivered in 100% reusable and recyclable bottles. Experience the pure taste of Jabal water.",
+    m_cta:"Find your plan",
+    q_eyebrow:"The Standard", q_h2:"Purity you can measure",
+    q_p:"Every bottle is engineered to a lab-grade specification, then delivered with an obsession for freshness.",
+    q1_h:"Perfectly balanced", q1_p:"A clean, neutral pH that tastes crisp and treats your body kindly.",
+    q2_h:"Ideal mineral TDS", q2_p:"Total dissolved solids tuned for a smooth, light finish.",
+    q3_h:"Ozone disinfection", q3_p:"Reverse osmosis paired with ozone for a flawlessly clean result.",
+    q4_h:"Reusable bottles", q4_p:"Fully reusable and recyclable — hydration without the waste.",
+    t_eyebrow:"The Process", t_h2:"From source to sip",
+    t_p:"A state-of-the-art facility where nothing is stored and everything is filled fresh, on demand.",
+    t1_h:"Source", t1_p:"Carefully selected water enters our purification line.",
+    t2_h:"Reverse Osmosis", t2_p:"Multi-stage membranes strip impurities at the molecular level.",
+    t3_h:"Ozone Shield", t3_p:"Ozone disinfection guarantees a pristine, pathogen-free result.",
+    t4_h:"Fresh Fill", t4_p:"Bottled the instant you order — delivered, never shelved.",
+    s_eyebrow:"The Shop", s_h2:"Choose your plan",
+    promo_eyebrow:"Featured Offers", promo_h2:"Dive into the deals", promo_p:"Limited-time offers on our premium gallons — tap any poster to shop.",
+    cta_h:"Pure hydration for a vibrant life",
+    cta_p:"Freshly filled, delivered fast, and kind to the planet. Find the perfect plan for you and your family.",
+    cta_btn:"Shop Now",
+    c_eyebrow:"Contact Us", c_h2:"Let's get you flowing",
+    c_p:"Questions, bulk orders, or partnerships — reach out and we'll respond fast.",
+    c_phone:"Phone", c_email:"Email", c_deliv:"Delivery", c_deliv_v:"Fresh, on-demand — 7 days a week",
+    f_name:"Name", f_name_ph:"Your name", f_email:"Email", f_email_ph:"you@email.com",
+    f_msg:"Message", f_msg_ph:"How can we help?", f_send:"Send message", f_ok:"Thank you — we'll be in touch shortly. 💧",
+    foot_tag:"At Jabal, we're dedicated to providing pure, high-quality water — freshly filled on order. Our commitment to quality and sustainability, in every drop.",
+    foot_gallons:"Gallons", foot_packs:"Utility Packs", foot_offers:"Offers",
+    foot_rights:"All rights reserved.", foot_made:"Pure & Simple 💧",
+    cart_title:"Your Cart", cart_total:"Total", cart_checkout:"Checkout", cart_empty:"Your cart is empty",
+    add_to_cart:"Add to cart", sold_out:"Sold out", offer:"OFFER", new:"NEW", best:"BEST VALUE",
+    all:"All", gallons:"Gallons", packs:"Packs", offers:"Offers",
+    checkout_msg:"This is a demo checkout — in production it connects to secure payment. 💧"
+  },
+  ar:{
+    nav_home:"الرئيسية", nav_about:"من نحن", nav_tech:"العملية", nav_shop:"المتجر", nav_contact:"تواصل معنا", nav_login:"تسجيل الدخول",
+    hero_eyebrow:"تناضح عكسي · تعقيم بالأوزون",
+    hero_h1a:"ترطيب نقي من أجل", hero_h1b:"حياة نابضة",
+    hero_lead:"أرْوِ عطشك وجدِّد نشاط جسمك بمياهنا الفاخرة المعبأة — تُملأ طازجة لحظة طلبك، دون أي تخزين.",
+    hero_cta1:"تسوّق الآن", hero_cta2:"اكتشف مياهنا",
+    trust1:"درجة حموضة 7.2", trust2:"مواد ذائبة 100 مجم/لتر", trust3:"قابلة للتدوير 100%", scroll:"مرِّر",
+    m_eyebrow:"مهمتنا", m_h2:"نقي وبسيط: التزامنا بالجودة والاستدامة",
+    m_p1:"مهمتنا أن نقدّم لك أنقى مياه، مباشرة من محطة التنقية المتطورة لدينا. نستخدم نظام التناضح العكسي مع التعقيم بالأوزون لضمان أن كل قطرة بأعلى جودة.",
+    m_p2:"مياهنا لا تُخزَّن — بل تُعبأ طازجة عند طلبك وتُسلَّم في عبوات قابلة 100% لإعادة الاستخدام والتدوير. اختبر المذاق النقي لمياه جبل.",
+    m_cta:"اختر خطتك",
+    q_eyebrow:"المعيار", q_h2:"نقاء يمكنك قياسه",
+    q_p:"كل عبوة مُصممة وفق مواصفات مخبرية دقيقة، ثم تُسلَّم بعناية فائقة للنضارة.",
+    q1_h:"توازن مثالي", q1_p:"درجة حموضة نقية ومتعادلة، مذاق منعش ولطيف على جسمك.",
+    q2_h:"مواد ذائبة مثالية", q2_p:"إجمالي مواد ذائبة مضبوط لمذاق ناعم وخفيف.",
+    q3_h:"تعقيم بالأوزون", q3_p:"تناضح عكسي مع الأوزون لنتيجة نقية تمامًا.",
+    q4_h:"عبوات قابلة لإعادة الاستخدام", q4_p:"قابلة تمامًا لإعادة الاستخدام والتدوير — ترطيب بلا هدر.",
+    t_eyebrow:"العملية", t_h2:"من المصدر إلى الرشفة",
+    t_p:"منشأة متطورة لا يُخزَّن فيها شيء، وكل شيء يُعبأ طازجًا عند الطلب.",
+    t1_h:"المصدر", t1_p:"مياه مختارة بعناية تدخل خط التنقية لدينا.",
+    t2_h:"تناضح عكسي", t2_p:"أغشية متعددة المراحل تزيل الشوائب على المستوى الجزيئي.",
+    t3_h:"درع الأوزون", t3_p:"تعقيم بالأوزون يضمن نتيجة نقية وخالية من الجراثيم.",
+    t4_h:"تعبئة طازجة", t4_p:"تُعبأ لحظة طلبك — تُسلَّم طازجة، دون تخزين.",
+    s_eyebrow:"المتجر", s_h2:"اختر خطتك",
+    promo_eyebrow:"عروض مميزة", promo_h2:"انغمس في العروض", promo_p:"عروض لفترة محدودة على جالوناتنا الفاخرة — انقر أي إعلان للتسوق.",
+    cta_h:"ترطيب نقي من أجل حياة نابضة",
+    cta_p:"تُعبأ طازجة، وتُسلَّم بسرعة، وصديقة للبيئة. اعثر على الخطة المثالية لك ولعائلتك.",
+    cta_btn:"تسوّق الآن",
+    c_eyebrow:"تواصل معنا", c_h2:"لنجعل مياهك تتدفق",
+    c_p:"أسئلة أو طلبات بالجملة أو شراكات — تواصل معنا وسنرد بسرعة.",
+    c_phone:"الهاتف", c_email:"البريد", c_deliv:"التوصيل", c_deliv_v:"طازجة وعند الطلب — طوال الأسبوع",
+    f_name:"الاسم", f_name_ph:"اسمك", f_email:"البريد الإلكتروني", f_email_ph:"you@email.com",
+    f_msg:"رسالتك", f_msg_ph:"كيف يمكننا مساعدتك؟", f_send:"إرسال الرسالة", f_ok:"شكرًا لك — سنتواصل معك قريبًا. 💧",
+    foot_tag:"في جبل، نلتزم بتقديم مياه نقية عالية الجودة — تُعبأ طازجة عند الطلب. التزامنا بالجودة والاستدامة، في كل قطرة.",
+    foot_gallons:"الجالونات", foot_packs:"عبوات الاستخدام", foot_offers:"العروض",
+    foot_rights:"جميع الحقوق محفوظة.", foot_made:"نقي وبسيط 💧",
+    cart_title:"سلتك", cart_total:"الإجمالي", cart_checkout:"إتمام الشراء", cart_empty:"سلتك فارغة",
+    add_to_cart:"أضف إلى السلة", sold_out:"غير متوفر", offer:"عرض", new:"جديد", best:"أفضل قيمة",
+    all:"الكل", gallons:"الجالونات", packs:"العبوات", offers:"العروض",
+    checkout_msg:"هذا إتمام تجريبي — في الإصدار الفعلي يتصل بنظام دفع آمن. 💧"
+  }
+};
+let LANG = "en";
+const t = k => (I18N[LANG] && I18N[LANG][k]) || k;
+
+function setLang(lang){
+  LANG = lang;
+  document.documentElement.lang = lang;
+  document.documentElement.dir = lang==="ar" ? "rtl" : "ltr";
+  document.querySelectorAll("[data-i18n]").forEach(el=> el.textContent = t(el.getAttribute("data-i18n")));
+  document.querySelectorAll("[data-i18n-ph]").forEach(el=> el.placeholder = t(el.getAttribute("data-i18n-ph")));
+  document.querySelectorAll(".lang [data-lang]").forEach(s=> s.classList.toggle("on", s.dataset.lang===lang));
+  buildMarquee(); renderChips(); renderProducts(); renderCart();
+  if(typeof carousel!=="undefined" && carousel.build) carousel.build();   // swap promo posters per language
+  if(typeof buildRail==="function"){ buildRail(); updateRail(); }          // swap rail labels per language
+}
+
+/* ============================================================================
+   MODULE 2 · WaterSim  —  GPU height-field ripple simulation (bright water)
+   ----------------------------------------------------------------------------
+   Ping-pong float targets hold height & velocity. A wave-equation pass
+   propagates ripples; a drop pass injects click impulses; a final shader
+   renders a lit, refractive, foamy BRIGHT-BLUE surface — matching JABAL's
+   real "bottles on water" cover (white foam on top → azure below).
+   ========================================================================== */
+const WaterSim = (function(){
+  let renderer, simScene, simCam, dispScene, quadGeo;
+  let rtA, rtB, updateMat, dropMat, dispMat;
+  const SIMW = 256, SIMH = 256;
+
+  const VERT = `varying vec2 vUv; void main(){ vUv = uv; gl_Position = vec4(position.xy,0.0,1.0); }`;
+
+  const UPDATE_FS = `
+    precision highp float; varying vec2 vUv;
+    uniform sampler2D u_prev; uniform vec2 u_texel;
+    void main(){
+      vec2 d = u_texel;
+      float h = texture2D(u_prev, vUv).r, v = texture2D(u_prev, vUv).g;
+      float l = texture2D(u_prev, vUv+vec2(-d.x,0.0)).r;
+      float r = texture2D(u_prev, vUv+vec2( d.x,0.0)).r;
+      float u = texture2D(u_prev, vUv+vec2(0.0, d.y)).r;
+      float b = texture2D(u_prev, vUv+vec2(0.0,-d.y)).r;
+      v += ((l+r+u+b)*0.25 - h) * 2.0;
+      v *= 0.982; h += v; h *= 0.999;
+      gl_FragColor = vec4(h, v, 0.0, 1.0);
+    }`;
+
+  const DROP_FS = `
+    precision highp float; varying vec2 vUv;
+    uniform sampler2D u_prev; uniform vec2 u_center;
+    uniform float u_radius, u_strength, u_aspect;
+    void main(){
+      vec4 s = texture2D(u_prev, vUv);
+      vec2 p = vUv - u_center; p.x *= u_aspect;
+      float drop = max(0.0, 1.0 - length(p)/u_radius);
+      drop = 0.5 - cos(drop*3.14159)*0.5;
+      s.r += drop * u_strength;
+      gl_FragColor = s;
+    }`;
+
+  const DISPLAY_FS = `
+    precision highp float; varying vec2 vUv;
+    uniform sampler2D u_water; uniform vec2 u_texel; uniform float u_time;
+    // bright water floor: azure deep (bottom) -> water blue -> white foam (top)
+    vec3 floorColor(vec2 uv, float caustic){
+      vec3 deep = vec3(0.09,0.42,0.78);
+      vec3 mid  = vec3(0.30,0.72,0.92);
+      vec3 top  = vec3(0.93,0.98,1.0);
+      float g = clamp(uv.y,0.0,1.0);
+      vec3 base = mix(deep, mid, smoothstep(0.0,0.75,g));
+      base = mix(base, top, smoothstep(0.62,1.0,g));
+      base = mix(base, vec3(1.0), caustic*0.22);           // sun caustics
+      base += vec3(0.06,-0.02,0.02) * caustic * 0.10;      // faint warm/pink shimmer
+      return base;
+    }
+    void main(){
+      vec2 d = u_texel;
+      float hl = texture2D(u_water, vUv+vec2(-d.x,0.0)).r;
+      float hr = texture2D(u_water, vUv+vec2( d.x,0.0)).r;
+      float hu = texture2D(u_water, vUv+vec2(0.0, d.y)).r;
+      float hb = texture2D(u_water, vUv+vec2(0.0,-d.y)).r;
+      float h  = texture2D(u_water, vUv).r;
+      vec3 normal = normalize(vec3(hl-hr, hb-hu, 0.30));
+
+      float cau = 0.5 + 0.5*sin((vUv.x*15.0+normal.x*7.0)+u_time*0.6)
+                          *cos((vUv.y*15.0+normal.y*7.0)-u_time*0.5);
+      cau = pow(cau,2.0);
+
+      vec2 refr = vUv + normal.xy*0.07;
+      vec3 col = floorColor(refr, cau);
+
+      vec3 lightDir = normalize(vec3(0.3,0.55,0.78));
+      vec3 viewDir  = vec3(0.0,0.0,1.0);
+      col += vec3(0.06,0.10,0.12) * clamp(dot(normal,lightDir),0.0,1.0);
+
+      // white foam specular on crests
+      vec3 hlf = normalize(lightDir+viewDir);
+      float spec = pow(clamp(dot(normal,hlf),0.0,1.0),140.0);
+      col += vec3(1.0) * spec * 1.6;
+
+      // crest/trough energy tint
+      col += vec3(0.14,0.10,0.05) * clamp(h*6.0,-0.35,0.6);
+
+      // fresnel sky brighten
+      float fres = pow(1.0-clamp(normal.z,0.0,1.0),2.0);
+      col = mix(col, vec3(0.75,0.90,1.0), fres*0.4);
+
+      gl_FragColor = vec4(col,1.0);
+    }`;
+
+  function makeRT(){
+    return new THREE.WebGLRenderTarget(SIMW, SIMH, {
+      minFilter:THREE.LinearFilter, magFilter:THREE.LinearFilter,
+      wrapS:THREE.ClampToEdgeWrapping, wrapT:THREE.ClampToEdgeWrapping,
+      type:THREE.HalfFloatType, format:THREE.RGBAFormat, depthBuffer:false, stencilBuffer:false
+    });
+  }
+  function init(_r){
+    renderer=_r; simCam=new THREE.OrthographicCamera(-1,1,1,-1,0,1); quadGeo=new THREE.PlaneGeometry(2,2);
+    rtA=makeRT(); rtB=makeRT();
+    updateMat=new THREE.ShaderMaterial({vertexShader:VERT,fragmentShader:UPDATE_FS,
+      uniforms:{u_prev:{value:null},u_texel:{value:new THREE.Vector2(1/SIMW,1/SIMH)}}});
+    dropMat=new THREE.ShaderMaterial({vertexShader:VERT,fragmentShader:DROP_FS,
+      uniforms:{u_prev:{value:null},u_center:{value:new THREE.Vector2(.5,.5)},u_radius:{value:.03},u_strength:{value:.06},u_aspect:{value:SIMW/SIMH}}});
+    dispMat=new THREE.ShaderMaterial({vertexShader:VERT,fragmentShader:DISPLAY_FS,
+      uniforms:{u_water:{value:null},u_texel:{value:new THREE.Vector2(1/SIMW,1/SIMH)},u_time:{value:0}}});
+    simScene=new THREE.Scene(); dispScene=new THREE.Scene(); dispScene.add(new THREE.Mesh(quadGeo,dispMat));
+  }
+  function pass(mat,out){ const m=new THREE.Mesh(quadGeo,mat); simScene.add(m);
+    renderer.setRenderTarget(out); renderer.render(simScene,simCam); renderer.setRenderTarget(null); simScene.remove(m); }
+  function swap(){ const t=rtA; rtA=rtB; rtB=t; }
+  function drop(nx,ny,radius,strength){
+    dropMat.uniforms.u_prev.value=rtA.texture; dropMat.uniforms.u_center.value.set(nx,ny);
+    dropMat.uniforms.u_radius.value=radius||0.035; dropMat.uniforms.u_strength.value=strength||0.09;
+    pass(dropMat,rtB); swap();
+  }
+  function step(time){
+    for(let i=0;i<2;i++){ updateMat.uniforms.u_prev.value=rtA.texture; pass(updateMat,rtB); swap(); }
+    dispMat.uniforms.u_water.value=rtA.texture; dispMat.uniforms.u_time.value=time;
+    // The display quad is a fullscreen OPAQUE quad — it overwrites the whole
+    // canvas on its own. We deliberately keep autoClear OFF so that the droplet
+    // pass drawn afterwards is NOT wiped to black.
+    renderer.setRenderTarget(null); renderer.render(dispScene,simCam);
+  }
+  return { init, drop, step };
+})();
+
+/* ============================================================================
+   MODULE 3 · Splash  —  realistic click splash (screen-space, fluid physics)
+   ----------------------------------------------------------------------------
+   Two coordinated systems compose a believable water splash:
+     • DROPLETS — a dense crown of droplets flung up & out, each under gravity,
+       shrinking as it flies, with a soft round highlight (spray).
+     • FOAM RINGS — expanding thin white annuli that fade, reading as the
+       surface shockwave where the drop hits (the "splash ring").
+   Combined with the height-field ripple + refraction in WaterSim, a click
+   produces ripples, spray and foam — a real splash, anywhere on screen.
+   ========================================================================== */
+const Splash = (function(){
+  const MAXD=2600, MAXR=48;
+  let cam, scene;
+  // droplets
+  let dgeo, dpos, dsize, dalpha; const dvel=new Float32Array(MAXD*2); let dhead=0; const dlife=new Float32Array(MAXD);
+  // rings
+  let rgeo, rpos, rsize, ralpha; let rhead=0; const rlife=new Float32Array(MAXR); const rmax=new Float32Array(MAXR);
+
+  const D_VS=`attribute float aSize; attribute float aAlpha; varying float vA;
+    void main(){ vA=aAlpha; gl_PointSize=aSize; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }`;
+  const D_FS=`precision mediump float; varying float vA;
+    void main(){ vec2 c=gl_PointCoord-0.5; float d=length(c); if(d>0.5) discard;
+      float core=smoothstep(0.5,0.0,d);
+      vec3 col=mix(vec3(0.30,0.66,0.95), vec3(1.0), core);
+      gl_FragColor=vec4(col, core*vA); }`;
+
+  const R_VS=`attribute float aSize; attribute float aAlpha; varying float vA;
+    void main(){ vA=aAlpha; gl_PointSize=aSize; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }`;
+  const R_FS=`precision mediump float; varying float vA;
+    void main(){ float d=length(gl_PointCoord-0.5);
+      float ring=smoothstep(0.5,0.47,d)-smoothstep(0.44,0.40,d);   // thin annulus
+      if(ring<=0.001) discard;
+      gl_FragColor=vec4(vec3(1.0), ring*vA*0.9); }`;
+
+  function init(w,h){
+    cam=new THREE.OrthographicCamera(0,w,0,h,-100,100); scene=new THREE.Scene();
+    // droplets
+    dgeo=new THREE.BufferGeometry(); dpos=new Float32Array(MAXD*3); dsize=new Float32Array(MAXD); dalpha=new Float32Array(MAXD);
+    dgeo.setAttribute("position",new THREE.BufferAttribute(dpos,3));
+    dgeo.setAttribute("aSize",new THREE.BufferAttribute(dsize,1));
+    dgeo.setAttribute("aAlpha",new THREE.BufferAttribute(dalpha,1));
+    scene.add(new THREE.Points(dgeo,new THREE.ShaderMaterial({vertexShader:D_VS,fragmentShader:D_FS,transparent:true,depthTest:false,depthWrite:false})));
+    // rings
+    rgeo=new THREE.BufferGeometry(); rpos=new Float32Array(MAXR*3); rsize=new Float32Array(MAXR); ralpha=new Float32Array(MAXR);
+    rgeo.setAttribute("position",new THREE.BufferAttribute(rpos,3));
+    rgeo.setAttribute("aSize",new THREE.BufferAttribute(rsize,1));
+    rgeo.setAttribute("aAlpha",new THREE.BufferAttribute(ralpha,1));
+    scene.add(new THREE.Points(rgeo,new THREE.ShaderMaterial({vertexShader:R_VS,fragmentShader:R_FS,transparent:true,depthTest:false,depthWrite:false})));
+  }
+
+  function burst(px,py,power){
+    power=power||1;
+    // ---- droplet crown ----
+    const count=Math.round(46*power);
+    for(let i=0;i<count;i++){
+      const idx=dhead; dhead=(dhead+1)%MAXD;
+      // bias upward for a crown; strong central column + wide fan
+      const ang=-Math.PI/2 + (Math.random()-0.5)*2.7;
+      const spd=(3+Math.random()*11)*power;
+      dpos[idx*3]=px+(Math.random()-0.5)*8; dpos[idx*3+1]=py+(Math.random()-0.5)*8; dpos[idx*3+2]=0;
+      dvel[idx*2]=Math.cos(ang)*spd; dvel[idx*2+1]=Math.sin(ang)*spd - Math.random()*3;
+      dsize[idx]=(4+Math.random()*10)*Math.min(1.6,power); dlife[idx]=1.0; dalpha[idx]=1.0;
+    }
+    // a few heavy central jets
+    for(let i=0;i<Math.round(6*power);i++){
+      const idx=dhead; dhead=(dhead+1)%MAXD;
+      dpos[idx*3]=px; dpos[idx*3+1]=py; dpos[idx*3+2]=0;
+      dvel[idx*2]=(Math.random()-0.5)*3; dvel[idx*2+1]=-(9+Math.random()*7)*power;
+      dsize[idx]=(9+Math.random()*8)*Math.min(1.8,power); dlife[idx]=1.0; dalpha[idx]=1.0;
+    }
+    // ---- foam shock rings ----
+    const rings=1+Math.round(power);
+    for(let k=0;k<rings;k++){
+      const idx=rhead; rhead=(rhead+1)%MAXR;
+      rpos[idx*3]=px; rpos[idx*3+1]=py; rpos[idx*3+2]=0;
+      rsize[idx]=14; rmax[idx]=(120+Math.random()*90)*power; ralpha[idx]=0.9; rlife[idx]=1.0;
+      rlife[idx]-=k*0.12;   // stagger successive rings
+    }
+  }
+
+  function update(dt){
+    const G=1500*dt;   // px/s² gravity feel
+    for(let i=0;i<MAXD;i++){
+      if(dlife[i]<=0){ if(dalpha[i]!==0) dalpha[i]=0; continue; }
+      dvel[i*2+1]+=G*dt; dpos[i*3]+=dvel[i*2]*dt*60; dpos[i*3+1]+=dvel[i*2+1]*dt*60;
+      dlife[i]-=dt*1.25; dalpha[i]=Math.max(0,dlife[i]); dsize[i]*=0.985;
+    }
+    for(let i=0;i<MAXR;i++){
+      if(rlife[i]<=0){ if(ralpha[i]!==0) ralpha[i]=0; continue; }
+      rlife[i]-=dt*1.6; rsize[i]+=(rmax[i]-rsize[i])*Math.min(1,dt*6);
+      ralpha[i]=Math.max(0,rlife[i])*0.9;
+    }
+    dgeo.attributes.position.needsUpdate=dgeo.attributes.aSize.needsUpdate=dgeo.attributes.aAlpha.needsUpdate=true;
+    rgeo.attributes.position.needsUpdate=rgeo.attributes.aSize.needsUpdate=rgeo.attributes.aAlpha.needsUpdate=true;
+  }
+  function resize(w,h){ cam.right=w; cam.bottom=h; cam.updateProjectionMatrix(); }
+  function render(r){ r.render(scene,cam); }
+  return { init, burst, update, resize, render };
+})();
+
+/* ============================================================================
+   MODULE 3.5 · Bottle3D  —  a REAL 3D JABAL gallon (perspective scene)
+   ----------------------------------------------------------------------------
+   Built entirely from geometry (no external model): a LatheGeometry glass
+   gallon with reflective clear-coat material (cube-map reflections), navy
+   cap, a wrapped brand label (real logo texture), rippling 3D water surface
+   inside, rising bubbles, and a 3D droplet splash on click. Auto-rotates and
+   is drag-to-spin. This is the depth/perspective 3D animation.
+   ========================================================================== */
+const Bottle3D = (function(){
+  let renderer, scene, camera, group, waterTop, clock;
+  let bubbles=[], drops=[], dropPool=[], w=520, h=520;
+  let autoSpin=true, dragging=false, lastX=0, lastY=0, resumeT=null;
+  let bobT=0;
+  const G = -18;
+
+  // vertical gradient texture (white -> JABAL blue) reused for env + accents
+  function gradientTexture(){
+    const c=document.createElement("canvas"); c.width=8; c.height=256; const x=c.getContext("2d");
+    const g=x.createLinearGradient(0,0,0,256);
+    g.addColorStop(0,"#ffffff"); g.addColorStop(0.5,"#8fd6f5"); g.addColorStop(1,"#1477c0");
+    x.fillStyle=g; x.fillRect(0,0,8,256); const t=new THREE.CanvasTexture(c); return t;
+  }
+
+  function buildEnv(){
+    // capture a gradient sky into a cube map for glossy reflections
+    const envScene=new THREE.Scene();
+    const sky=new THREE.Mesh(new THREE.SphereGeometry(40,32,32),
+      new THREE.MeshBasicMaterial({side:THREE.BackSide, map:gradientTexture()}));
+    envScene.add(sky);
+    const cubeRT=new THREE.WebGLCubeRenderTarget(256,{generateMipmaps:true,minFilter:THREE.LinearMipmapLinearFilter});
+    const cubeCam=new THREE.CubeCamera(0.1,100,cubeRT);
+    cubeCam.update(renderer, envScene);
+    return cubeRT.texture;
+  }
+
+  // the gallon silhouette (radius, height) profiled from base -> cap
+  function bottleProfile(){
+    return [
+      [0.00,-2.05],[1.02,-2.05],[1.18,-1.95],[1.22,-1.7],[1.22,-0.2],
+      [1.20,0.9],[1.12,1.35],[0.86,1.62],[0.55,1.78],[0.42,1.95],
+      [0.40,2.25],[0.40,2.45]
+    ].map(p=>new THREE.Vector2(p[0],p[1]));
+  }
+
+  function makeLabelTexture(){
+    // brand label: white band with the real logo centred
+    const c=document.createElement("canvas"); c.width=1024; c.height=512; const x=c.getContext("2d");
+    x.fillStyle="#ffffff"; x.fillRect(0,0,1024,512);
+    const img=new Image(); const tex=new THREE.CanvasTexture(c);
+    img.onload=()=>{ // draw logo 4× around the band so it always faces the viewer as it spins
+      const iw=230, ih=iw*(img.height/img.width);
+      for(let k=0;k<4;k++){ x.drawImage(img, 128+k*256-iw/2, 256-ih/2, iw, ih); }
+      tex.needsUpdate=true;
+    };
+    img.src="assets/logo.png";
+    tex.wrapS=THREE.RepeatWrapping; tex.repeat.x=1;
+    return tex;
+  }
+
+  // logo with its white background knocked out -> a real transparent decal
+  function makeLogoCutout(){
+    const c=document.createElement("canvas"); c.width=512; c.height=331; const x=c.getContext("2d");
+    const img=new Image(); const tex=new THREE.CanvasTexture(c);
+    img.onload=()=>{
+      x.drawImage(img,0,0,c.width,c.height);
+      const d=x.getImageData(0,0,c.width,c.height); const a=d.data;
+      for(let i=0;i<a.length;i+=4){ if(a[i]>238&&a[i+1]>238&&a[i+2]>238) a[i+3]=0; } // near-white -> transparent
+      x.putImageData(d,0,0); tex.needsUpdate=true;
+    };
+    img.src="assets/logo.png";
+    return tex;
+  }
+
+  // a front label texture (rounded white card + centred logo) sized to a band aspect
+  function makeFrontLabel(aspect){
+    const W=1024, H=Math.max(64,Math.round(1024/aspect));
+    const c=document.createElement("canvas"); c.width=W; c.height=H; const x=c.getContext("2d");
+    const rr=(g,rx,ry,rw,rh,r)=>{ g.beginPath(); g.moveTo(rx+r,ry); g.arcTo(rx+rw,ry,rx+rw,ry+rh,r);
+      g.arcTo(rx+rw,ry+rh,rx,ry+rh,r); g.arcTo(rx,ry+rh,rx,ry,r); g.arcTo(rx,ry,rx+rw,ry,r); g.closePath(); };
+    x.fillStyle="rgba(255,255,255,0.94)"; rr(x, W*0.05, H*0.10, W*0.90, H*0.80, H*0.16); x.fill();
+    const img=new Image(); const tex=new THREE.CanvasTexture(c);
+    img.onload=()=>{ const iw=W*0.64, ih=iw*(img.height/img.width);
+      x.drawImage(img, (W-iw)/2, (H-ih)/2, iw, ih); tex.needsUpdate=true; };
+    img.src="assets/logo.png";
+    return tex;
+  }
+
+  // If the user exports their Rodin/Hyper3D model to assets/model.glb it loads
+  // here automatically, is auto-fitted, given the water env reflections, and
+  // gets the JABAL logo applied as a front decal. Otherwise the procedural
+  // gallon (built below) stays as the visible bottle.
+  function tryLoadModel(env){
+    const done=()=>{ const l=document.getElementById("bottleLoading"); if(l) l.classList.add("hide"); };
+    const showFallback=()=>{ if(group) group.visible=true; done(); };
+    if(window.__noGLTF || typeof THREE.GLTFLoader!=="function"){ showFallback(); return; }
+    group.visible=false;                         // hide the placeholder while the real model loads
+    const _to=setTimeout(showFallback, 12000);   // safety net if the load stalls
+    const loader=new THREE.GLTFLoader();
+    loader.load("assets/model.glb", (gltf)=>{
+      clearTimeout(_to);
+      const m=gltf.scene;
+      const box=new THREE.Box3().setFromObject(m);
+      const size=box.getSize(new THREE.Vector3()), center=box.getCenter(new THREE.Vector3());
+      const s=4.6/Math.max(size.x,size.y,size.z); m.scale.setScalar(s);
+      m.position.set(-center.x*s, -center.y*s, -center.z*s);
+      // naturalistic blue water gallon: real refraction (transmission) + env reflections
+      const glassMat=new THREE.MeshPhysicalMaterial({
+        color:0x9fdcf5, metalness:0.0, roughness:0.05,
+        transmission:0.9, ior:1.34, thickness:1.6,           // refraction / light bending
+        attenuationColor:new THREE.Color(0x1f8fce), attenuationDistance:3.2, // blue water tint through volume
+        clearcoat:1.0, clearcoatRoughness:0.05,               // glossy surface highlights
+        envMap:env, envMapIntensity:1.6, reflectivity:0.6,    // reflections
+        transparent:true, side:THREE.DoubleSide });
+      m.traverse(o=>{ if(o.isMesh) o.material=glassMat; });
+
+      // ---- label WRAPPED on the bottle surface (curved band), not a floating plane ----
+      const Rlab=(Math.max(size.x,size.z)/2)*s + 0.05;   // just outside the surface
+      const Hlab=1.25;                                    // label height
+      const arc=1.45;                                     // ~83° front arc (keeps the round label round)
+      const bandAspect=(arc*Rlab)/Hlab;
+      const bandMat=new THREE.MeshBasicMaterial({ map:makeFrontLabel(bandAspect),
+        transparent:true, side:THREE.DoubleSide, depthWrite:false, polygonOffset:true, polygonOffsetFactor:-2 });
+      // theta=0 is +Z (front, toward camera) in THREE.CylinderGeometry, so centre the arc there
+      const band=new THREE.Mesh(
+        new THREE.CylinderGeometry(Rlab, Rlab, Hlab, 64, 1, true, -arc/2, arc), bandMat);
+      band.position.y=-0.55;                              // label height on the smooth body band
+      band.userData.aspect=bandAspect;
+      // YOUR banner (assets/banner.png) replaces the placeholder label when present
+      new THREE.TextureLoader().load("assets/banner.png",(tex)=>{
+        tex.encoding=THREE.sRGBEncoding;   // front outer face already maps left→right correctly
+        // resize the wrap to the banner's own aspect so it never stretches
+        const ba=(tex.image&&tex.image.width)?tex.image.width/tex.image.height:bandAspect;
+        const newH=(arc*Rlab)/ba;
+        band.geometry.dispose();
+        band.geometry=new THREE.CylinderGeometry(Rlab, Rlab, newH, 64, 1, true, -arc/2, arc);
+        bandMat.map=tex; bandMat.needsUpdate=true;
+      }, undefined, ()=>{/* no banner.png yet — keep logo label */});
+
+      const mg=new THREE.Group(); mg.add(m); mg.add(band);
+      scene.remove(group); group=mg; scene.add(group); group.visible=true;
+      Bottle3D._label=band;   // expose for quick position tuning
+      done();
+    }, (xhr)=>{   // live download progress under the spinner
+      const pct=document.getElementById("bottlePct"); if(!pct) return;
+      if(xhr.lengthComputable && xhr.total){ pct.textContent=Math.min(100,Math.round(xhr.loaded/xhr.total*100))+"%"; }
+      else{ pct.textContent=Math.round(xhr.loaded/1048576*10)/10+" MB"; }
+    }, ()=>{ clearTimeout(_to); showFallback(); });
+  }
+
+  function build(){
+    const env=buildEnv();
+    scene.environment=env;
+
+    group=new THREE.Group(); scene.add(group);
+    tryLoadModel(env);   // swap in the exported model if available
+
+    // --- glass shell ---
+    const shellGeo=new THREE.LatheGeometry(bottleProfile(), 64);
+    const glass=new THREE.MeshPhysicalMaterial({
+      color:0xdff2ff, metalness:0, roughness:0.06, clearcoat:1, clearcoatRoughness:0.08,
+      transparent:true, opacity:0.32, envMap:env, envMapIntensity:1.35,
+      side:THREE.DoubleSide, depthWrite:false
+    });
+    const shell=new THREE.Mesh(shellGeo, glass); group.add(shell);
+
+    // --- water body inside ---
+    const waterGeo=new THREE.CylinderGeometry(1.08,0.98,3.35,48,1,false);
+    const waterMat=new THREE.MeshPhysicalMaterial({
+      color:0x1f9fe0, metalness:0, roughness:0.15, transparent:true, opacity:0.82,
+      envMap:env, envMapIntensity:0.8
+    });
+    const waterBody=new THREE.Mesh(waterGeo, waterMat); waterBody.position.y=-0.55; group.add(waterBody);
+
+    // --- rippling 3D water top surface (vertex-displaced) ---
+    const topGeo=new THREE.CircleGeometry(1.15,64); topGeo.rotateX(-Math.PI/2);
+    waterTop=new THREE.Mesh(topGeo, new THREE.MeshPhysicalMaterial({
+      color:0x63c3ff, metalness:0, roughness:0.1, transparent:true, opacity:0.9,
+      envMap:env, envMapIntensity:1.1, side:THREE.DoubleSide }));
+    waterTop.position.y=1.12; group.add(waterTop);
+    waterTop.geometry.userData.base=Float32Array.from(topGeo.attributes.position.array);
+
+    // --- navy cap ---
+    const cap=new THREE.Mesh(new THREE.CylinderGeometry(0.5,0.5,0.5,32),
+      new THREE.MeshStandardMaterial({color:0x15255f, metalness:0.3, roughness:0.4, envMap:env}));
+    cap.position.y=2.55; group.add(cap);
+    const collar=new THREE.Mesh(new THREE.TorusGeometry(0.42,0.06,12,32),
+      new THREE.MeshStandardMaterial({color:0x0e5a97, metalness:0.4, roughness:0.35, envMap:env}));
+    collar.rotation.x=Math.PI/2; collar.position.y=2.28; group.add(collar);
+
+    // --- wrapped brand label ---
+    const label=new THREE.Mesh(new THREE.CylinderGeometry(1.235,1.235,1.15,64,1,true),
+      new THREE.MeshStandardMaterial({map:makeLabelTexture(), roughness:0.6, metalness:0, transparent:true}));
+    label.position.y=0.15; group.add(label);
+
+    // --- handle (torus arc on the neck) ---
+    const handle=new THREE.Mesh(new THREE.TorusGeometry(0.34,0.075,12,24,Math.PI*1.1),
+      glass.clone()); handle.material.opacity=0.4;
+    handle.position.set(0.55,1.95,0); handle.rotation.z=-0.5; group.add(handle);
+
+    // --- rising bubbles ---
+    const bubMat=new THREE.MeshPhysicalMaterial({color:0xffffff, transparent:true, opacity:0.5, roughness:0.1, envMap:env});
+    for(let i=0;i<26;i++){
+      const b=new THREE.Mesh(new THREE.SphereGeometry(0.03+Math.random()*0.05,10,10), bubMat);
+      resetBubble(b, true); group.add(b); bubbles.push(b);
+    }
+
+    // --- droplet pool for the 3D splash ---
+    const dropMat=new THREE.MeshPhysicalMaterial({color:0x8fd6ff, transparent:true, opacity:0.9, roughness:0.05, metalness:0, envMap:env, envMapIntensity:1.2});
+    for(let i=0;i<70;i++){
+      const dgeo=new THREE.SphereGeometry(0.07,12,12);
+      const m=new THREE.Mesh(dgeo, dropMat.clone()); m.visible=false; scene.add(m);
+      dropPool.push({mesh:m, vel:new THREE.Vector3(), life:0});
+    }
+    // subtle floor reflection catcher
+    group.position.y=-0.1;
+  }
+
+  function resetBubble(b, seed){
+    b.position.set((Math.random()-0.5)*1.6, seed?(Math.random()*3-1.8):-1.8, (Math.random()-0.5)*1.6);
+    b.userData.sp=0.5+Math.random()*0.9;
+  }
+
+  // 3D splash: fling droplets up out of the bottle mouth
+  function splash(strength){
+    const n=Math.min(dropPool.length, 22+Math.floor(Math.random()*10));
+    let launched=0;
+    for(const d of dropPool){
+      if(d.life>0) continue;
+      d.mesh.visible=true;
+      d.mesh.position.set((Math.random()-0.5)*0.4, 2.4, (Math.random()-0.5)*0.4);
+      const a=Math.random()*Math.PI*2, r=1.6+Math.random()*2.4;
+      d.vel.set(Math.cos(a)*r, 3.2+Math.random()*2.6, Math.sin(a)*r);
+      d.life=1.0; const s=0.5+Math.random()*0.9; d.mesh.scale.setScalar(s);
+      if(++launched>=n) break;
+    }
+    // also ripple the water top
+    waterTop && (waterTop.userData.hit=1.0);
+  }
+
+  function rippleWaterTop(time){
+    if(!waterTop) return;
+    const pos=waterTop.geometry.attributes.position, base=waterTop.geometry.userData.base;
+    const hit=waterTop.userData.hit||0;
+    for(let i=0;i<pos.count;i++){
+      const x=base[i*3], z=base[i*3+2], dr=Math.sqrt(x*x+z*z);
+      let y=Math.sin(dr*6.0 - time*3.0)*0.03 + Math.cos(x*5.0+time*2.0)*0.02;
+      y += Math.sin(dr*10.0 - time*9.0)*0.06*hit; // splash ring
+      pos.setY(i, y);
+    }
+    pos.needsUpdate=true; waterTop.geometry.computeVertexNormals();
+    if(waterTop.userData.hit) waterTop.userData.hit=Math.max(0, waterTop.userData.hit-0.02);
+  }
+
+  function init(canvas){
+    w=canvas.clientWidth||520; h=canvas.clientHeight||520;
+    renderer=new THREE.WebGLRenderer({canvas, antialias:true, alpha:true, powerPreference:"high-performance"});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio,2)); renderer.setSize(w,h,false);
+    renderer.outputEncoding=THREE.sRGBEncoding;
+    scene=new THREE.Scene();
+    camera=new THREE.PerspectiveCamera(38, w/h, 0.1, 100); camera.position.set(0,0.4,8.4);
+
+    // lighting: key + pink rim + blue fill + ambient
+    scene.add(new THREE.AmbientLight(0xffffff,0.55));
+    const key=new THREE.DirectionalLight(0xffffff,1.2); key.position.set(4,6,6); scene.add(key);
+    const rim=new THREE.DirectionalLight(0xec1e8c,0.7); rim.position.set(-5,2,-3); scene.add(rim);
+    const fill=new THREE.DirectionalLight(0x29abe2,0.6); fill.position.set(-3,-2,4); scene.add(fill);
+
+    build();
+    clock=new THREE.Clock();
+
+    // drag to spin
+    // drag-to-trace: spin the bottle any direction with the pointer
+    canvas.addEventListener("pointerdown",(e)=>{ dragging=true; autoSpin=false; lastX=e.clientX; lastY=e.clientY;
+      clearTimeout(resumeT); if(canvas.setPointerCapture){ try{canvas.setPointerCapture(e.pointerId);}catch(_){} } });
+    window.addEventListener("pointerup",()=>{ if(!dragging) return; dragging=false;
+      resumeT=setTimeout(()=>autoSpin=true, 2500); });   // resume the slow auto-spin shortly after release
+    window.addEventListener("pointermove",(e)=>{ if(!dragging) return;
+      const dx=e.clientX-lastX, dy=e.clientY-lastY; lastX=e.clientX; lastY=e.clientY;
+      group.rotation.y += dx*0.012;                                  // horizontal drag = full-circle spin
+      group.rotation.x = Math.max(-0.6, Math.min(0.6, group.rotation.x + dy*0.008)); });  // vertical drag = tilt
+    window.addEventListener("resize",onResize);
+    animate();
+  }
+
+  function onResize(){
+    const canvas=renderer.domElement; w=canvas.clientWidth||520; h=canvas.clientHeight||520;
+    renderer.setSize(w,h,false); camera.aspect=w/h; camera.updateProjectionMatrix();
+  }
+
+  function animate(){
+    requestAnimationFrame(animate);
+    const time=clock.getElapsedTime(); let dt=clock.getDelta(); if(dt>0.05) dt=0.05;
+
+    // slow, continuous full-circle spin — the user can drag to trace it (below)
+    if(!dragging && autoSpin) group.rotation.y += dt*0.32;   // ≈20s per revolution
+    bobT+=dt; group.position.y = -0.1 + Math.sin(bobT*1.2)*0.05;
+    if(!dragging) group.rotation.x += (0 - group.rotation.x)*0.05;   // ease tilt back to level
+    group.rotation.z += (0 - group.rotation.z)*0.1;
+    // cinematic camera — gentle orbit + zoom (dolly) breathing so the 3D truly moves
+    if(!dragging){
+      camera.position.x = Math.sin(time*0.22)*0.75;
+      camera.position.y = 0.4 + Math.sin(time*0.30)*0.35;
+      camera.position.z = 8.4 + Math.sin(time*0.35)*0.95;   // zoom in / out
+      camera.lookAt(0, 0.1, 0);
+    }
+
+    // bubbles rise
+    for(const b of bubbles){ b.position.y += b.userData.sp*dt; b.position.x += Math.sin(time*2+b.position.y)*0.002; if(b.position.y>1.05) resetBubble(b,false); }
+
+    // droplets: 3D ballistic physics
+    for(const d of dropPool){
+      if(d.life<=0) continue;
+      d.vel.y += G*dt;
+      d.mesh.position.addScaledVector(d.vel, dt);
+      d.life -= dt*0.7;
+      d.mesh.material.opacity = Math.max(0, Math.min(0.9, d.life));
+      if(d.mesh.position.y < -2.2 || d.life<=0){ d.life=0; d.mesh.visible=false; }
+    }
+
+    rippleWaterTop(time);
+    renderer.render(scene, camera);
+  }
+
+  return { init, splash };
+})();
+
+/* ============================================================================
+   MODULE 4 · Stage
+   ========================================================================== */
+const Stage = (function(){
+  let renderer, clock, last=0;
+  function init(){
+    const canvas=document.getElementById("gl");
+    // transparent overlay: only the click-splash droplets/foam draw here,
+    // on TOP of your water-splash.html background
+    renderer=new THREE.WebGLRenderer({canvas,antialias:true,alpha:true,powerPreference:"high-performance"});
+    renderer.setPixelRatio(Math.min(window.devicePixelRatio,2));
+    renderer.setSize(window.innerWidth,window.innerHeight);
+    renderer.setClearColor(0x000000,0); renderer.autoClear=true;
+    Splash.init(window.innerWidth,window.innerHeight);
+    clock=new THREE.Clock();
+    window.addEventListener("resize",onResize);
+    animate();
+  }
+  function onResize(){ renderer.setSize(window.innerWidth,window.innerHeight); Splash.resize(window.innerWidth,window.innerHeight); }
+  function animate(){
+    requestAnimationFrame(animate);
+    const tt=clock.getElapsedTime(); let dt=tt-last; last=tt; if(dt>0.05) dt=0.05;
+    Splash.update(dt); Splash.render(renderer);   // click droplets + foam rings
+  }
+  function splashAt(x,y,big){ Splash.burst(x, y, big?1.9:1.25); }
+  return { init, splashAt };
+})();
+
+/* ============================================================================
+   MODULE 5 · UI
+   ========================================================================== */
+const PRODUCTS = [
+  { id:"g7", cat:"gallons", price:26.32, vol:"7L", art:"gallon",
+    name:{en:"JABAL 7L Gallon", ar:"جالون جبل 7 لتر"},
+    desc:{en:"Everyday pure hydration in a light, easy-carry gallon.", ar:"ترطيب نقي يومي في جالون خفيف وسهل الحمل."} },
+  { id:"g11", cat:"gallons", price:39.47, vol:"11L", art:"gallon",
+    name:{en:"JABAL 11L Gallon", ar:"جالون جبل 11 لتر"},
+    desc:{en:"The household favourite — more water, same purity.", ar:"المفضل للمنازل — مياه أكثر بنفس النقاء."} },
+  { id:"g185", cat:"gallons", price:157.02, vol:"18.5L", art:"gallon", badge:"new",
+    name:{en:"JABAL 18.5L Gallon", ar:"جالون جبل 18.5 لتر"},
+    desc:{en:"Our largest gallon — perfect for offices and big families.", ar:"أكبر جالون لدينا — مثالي للمكاتب والعائلات الكبيرة."} },
+  { id:"p7", cat:"packs", price:52.63, vol:"2 × 7L", img:"assets/p-2x7l.png",
+    name:{en:"Utility Pack · 2×7L", ar:"عبوة استخدام · 2×7 لتر"},
+    desc:{en:"Perfect for cooking, kitchen & travel — pure and portable.", ar:"مثالية للطبخ والمطبخ والسفر — نقية وسهلة الحمل."} },
+  { id:"p11", cat:"packs", price:78.95, vol:"2 × 11L", img:"assets/p-2x11l.png",
+    name:{en:"Utility Pack · 2×11L", ar:"عبوة استخدام · 2×11 لتر"},
+    desc:{en:"Double the volume for busy kitchens and journeys.", ar:"ضعف الكمية للمطابخ المزدحمة والرحلات."} },
+  { id:"mega", cat:"offers", price:346.49, vol:"Buy 5 · Get 5", img:"assets/p-megasaver.png", badge:"best",
+    name:{en:"Mega Saver — Buy 5, Get 5 Refills Free", ar:"عرض ميجا — اشترِ 5 واحصل على 5 إعادة تعبئة مجانًا"},
+    desc:{en:"Our best value: five bottles plus five free refills. Save 1058 EGP.", ar:"أفضل قيمة: خمس عبوات مع خمس إعادات تعبئة مجانية. وفّر 1058 جنيه."} },
+  { id:"free", cat:"offers", price:0, vol:"18.5L", art:"gallon", badge:"soldout", sold:true,
+    name:{en:"5 Free Refills · 18.5L", ar:"5 إعادات تعبئة مجانية · 18.5 لتر"},
+    desc:{en:"Loyalty refill reward — currently unavailable.", ar:"مكافأة إعادة تعبئة للولاء — غير متوفرة حاليًا."} },
+];
+const CATS=[{id:"all",k:"all"},{id:"gallons",k:"gallons"},{id:"packs",k:"packs"},{id:"offers",k:"offers"}];
+let activeCat="all";
+
+function artStyle(p){
+  if(p.img) return `class="art contain" style="background-image:url('${p.img}')"`;
+  return `class="art gallon"`;
+}
+function thumbStyle(p){
+  if(p.img) return `background-image:url('${p.img}');background-size:contain;background-repeat:no-repeat`;
+  return `background-image:url('assets/cover-bg.jpg');background-size:260%;background-position:50% 26%`;
+}
+
+function renderChips(){
+  const wrap=document.getElementById("chips"); wrap.innerHTML="";
+  CATS.forEach(c=>{ const b=document.createElement("button");
+    b.className="chip"+(activeCat===c.id?" on":""); b.textContent=t(c.k);
+    b.onclick=()=>{ activeCat=c.id; renderChips(); renderProducts(); }; wrap.appendChild(b); });
+}
+function renderProducts(){
+  const grid=document.getElementById("productGrid"); grid.innerHTML="";
+  PRODUCTS.filter(p=>activeCat==="all"||p.cat===activeCat).forEach(p=>{
+    const el=document.createElement("article"); el.className="product reveal in";
+    let badge="";
+    if(p.badge==="best") badge=`<span class="badge">${t("best")}</span>`;
+    else if(p.badge==="new") badge=`<span class="badge blue">${t("new")}</span>`;
+    else if(p.badge==="soldout") badge=`<span class="badge sold">${t("sold_out")}</span>`;
+    const price=p.sold?`<span class="price" style="color:var(--ink-faint)">—</span>`:`<span class="price">${p.price.toFixed(2)} <small>EGP</small></span>`;
+    el.innerHTML=`${badge}<div ${artStyle(p)}></div>
+      <div class="body">
+        <div class="vol">${p.vol}</div>
+        <h3>${p.name[LANG]}</h3>
+        <p class="desc">${p.desc[LANG]}</p>
+        <div class="foot">${price}
+          <button class="add" ${p.sold?"disabled":""} aria-label="${t("add_to_cart")}" onclick="addToCart('${p.id}')">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+          </button>
+        </div>
+      </div>`;
+    grid.appendChild(el);
+  });
+}
+
+const cart={};
+function addToCart(id){ const p=PRODUCTS.find(x=>x.id===id); if(!p||p.sold) return; cart[id]=(cart[id]||0)+1; renderCart(); bumpCount(); openCart(); }
+function changeQty(id,dl){ if(!cart[id]) return; cart[id]+=dl; if(cart[id]<=0) delete cart[id]; renderCart(); bumpCount(); }
+const cartCount=()=>Object.values(cart).reduce((a,b)=>a+b,0);
+const cartTotal=()=>Object.entries(cart).reduce((s,[id,q])=>{ const p=PRODUCTS.find(x=>x.id===id); return s+(p?p.price*q:0); },0);
+function bumpCount(){ const el=document.getElementById("cartCount"),n=cartCount(); el.textContent=n; el.classList.toggle("show",n>0);
+  el.style.transform="scale(1.35)"; setTimeout(()=>el.style.transform=n>0?"scale(1)":"scale(0)",160); }
+function renderCart(){
+  const body=document.getElementById("cartBody"), ids=Object.keys(cart);
+  if(!ids.length){ body.innerHTML=`<div class="cart-empty">💧<br>${t("cart_empty")}</div>`; }
+  else body.innerHTML=ids.map(id=>{ const p=PRODUCTS.find(x=>x.id===id),q=cart[id];
+    return `<div class="cart-item"><div class="thumb" style="${thumbStyle(p)}"></div>
+      <div class="info"><h4>${p.name[LANG]}</h4><div class="p">${(p.price*q).toFixed(2)} EGP</div></div>
+      <div class="qty"><button onclick="changeQty('${id}',-1)">−</button><span>${q}</span><button onclick="changeQty('${id}',1)">+</button></div></div>`;
+  }).join("");
+  document.getElementById("cartTotal").innerHTML=`${cartTotal().toFixed(2)} <small>EGP</small>`;
+}
+function openCart(){ document.getElementById("drawer").classList.add("open"); document.getElementById("overlay").classList.add("open"); }
+function closeCart(){ document.getElementById("drawer").classList.remove("open"); document.getElementById("overlay").classList.remove("open"); }
+function checkout(){ if(cartCount()===0) return; alert(t("checkout_msg")); }
+
+function buildMarquee(){
+  const el=document.getElementById("marquee");
+  const items = LANG==="ar"
+    ? ["نقاء","تناضح عكسي","تعقيم بالأوزون","درجة حموضة 7.2","قابلة للتدوير","تعبئة طازجة"]
+    : ["Purity","Reverse Osmosis","Ozone Disinfection","pH 7.2","Recyclable","Freshly Filled"];
+  el.innerHTML = items.concat(items).map(x=>`<span>${x} <b>◆</b></span>`).join("");
+}
+
+function scrollToId(id){ const el=document.getElementById(id); if(el) el.scrollIntoView({behavior:"smooth",block:"start"}); }
+function toggleMenu(){ document.getElementById("msheet").classList.toggle("open"); }
+function submitForm(e){ e.preventDefault(); document.getElementById("formOk").classList.add("show"); e.target.reset();
+  setTimeout(()=>document.getElementById("formOk").classList.remove("show"),4000); return false; }
+
+function onScroll(){
+  document.getElementById("hdr").classList.toggle("scrolled", window.scrollY>40);
+  const secs=["home","mission","tech","shop","contact"]; let cur="home";
+  secs.forEach(id=>{ const el=document.getElementById(id); if(el && el.getBoundingClientRect().top<=140) cur=id; });
+  document.querySelectorAll("nav.links a").forEach(a=>a.classList.toggle("active", a.dataset.nav===cur));
+  updateRail(); onScrollDepth();
+}
+function initReveal(){
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add("in"); io.unobserve(e.target); } }),{threshold:0.12});
+  document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+}
+
+/* ============================================================================
+   MODULE 6 · Promo carousel (reflective, language-aware) + water interactions
+   ========================================================================== */
+const carousel = (function(){
+  let idx=0, timer=null;
+  // each slide is language-aware; the waterfall poster is bilingual already
+  const data=[
+    { en:"assets/promo/promo-waterfall.jpg", ar:"assets/promo/promo-waterfall.jpg" }, // waterfall (bilingual)
+    { en:"assets/promo/promo-trust.jpg",     ar:"assets/promo/promo-trust.jpg" },     // "A Water You Can Trust" (bilingual)
+    { en:"assets/promo/promo-trio-en.jpg",   ar:"assets/promo/promo-trio-ar.jpg" },   // 11L Pay-for-2 promo (EN / AR from Downloads)
+  ];
+  function build(){
+    const track=document.getElementById("carTrack"); if(!track) return; track.innerHTML="";
+    data.forEach(d=>{ const s=document.createElement("div"); s.className="car-slide";
+      s.innerHTML='<img class="car-img" loading="lazy" decoding="async" src="'+(d[LANG]||d.en)+'" alt="JABAL High Quality Water — limited-time offer, tap to shop" onclick="scrollToId(\'shop\')">';
+      track.appendChild(s); });
+    const dots=document.getElementById("carDots"); dots.innerHTML="";
+    data.forEach((d,i)=>{ const b=document.createElement("button"); b.className="car-dot"+(i===idx?" on":"");
+      b.setAttribute("aria-label","Slide "+(i+1)); b.onclick=()=>set(i); dots.appendChild(b); });
+    update();
+  }
+  function update(){ const tr=document.getElementById("carTrack"); if(!tr) return;
+    const slides=[...tr.children]; slides.forEach((s,i)=>s.classList.toggle("active",i===idx));
+    const a=slides[idx], vp=tr.parentElement;
+    if(a){ const off=a.offsetLeft + a.offsetWidth/2 - vp.clientWidth/2; tr.style.transform="translateX("+(-off)+"px)"; }
+    [...document.querySelectorAll(".car-dot")].forEach((d,i)=>d.classList.toggle("on",i===idx)); }
+  function set(i){ idx=(i+data.length)%data.length; update(); restart(); }
+  function go(dir){ set(idx+dir); }
+  function restart(){ clearInterval(timer); timer=setInterval(()=>go(1),5500); }
+  function initSwipe(){ const vp=document.querySelector(".car-viewport"); if(!vp) return; let x0=null;
+    vp.addEventListener("pointerdown",e=>x0=e.clientX);
+    vp.addEventListener("pointerup",e=>{ if(x0==null) return; const dx=e.clientX-x0; if(Math.abs(dx)>40) go(dx<0?1:-1); x0=null; }); }
+  return { build, go, set, restart, initSwipe, sync:update };
+})();
+
+// cursor-follow sheen + subtle 3D tilt — makes surfaces feel wet/reflective
+function initWaterInteractions(){
+  document.querySelectorAll(".spec-card, .product, .step").forEach(c=>{
+    c.classList.add("tilt");
+    c.addEventListener("pointermove",e=>{
+      const r=c.getBoundingClientRect();
+      const px=(e.clientX-r.left)/r.width, py=(e.clientY-r.top)/r.height;
+      c.style.setProperty("--mx",(px*100)+"%"); c.style.setProperty("--my",(py*100)+"%");
+      c.style.transform="perspective(820px) rotateX("+((0.5-py)*7).toFixed(2)+"deg) rotateY("+((px-0.5)*7).toFixed(2)+"deg) translateY(-5px)";
+    });
+    c.addEventListener("pointerleave",()=>{ c.style.transform=""; });
+  });
+}
+// count the spec numbers up when they scroll into view
+function initCounters(){
+  const q=document.getElementById("quality"); if(!q) return;
+  const io=new IntersectionObserver(es=>es.forEach(e=>{ if(!e.isIntersecting) return;
+    e.target.querySelectorAll(".big").forEach(b=>{ const tn=b.firstChild; if(!tn||tn.nodeType!==3) return;
+      const raw=tn.nodeValue.trim(), target=parseFloat(raw); if(isNaN(target)) return;
+      const dec=raw.indexOf(".")>=0?1:0, t0=performance.now();
+      (function f(now){ let p=Math.min(1,(now-t0)/1100); p=1-Math.pow(1-p,3);
+        tn.nodeValue=(target*p).toFixed(dec)+" "; if(p<1) requestAnimationFrame(f); })(performance.now());
+    }); io.unobserve(e.target); }),{threshold:.3});
+  io.observe(q);
+}
+// rising bubbles inside the CTA band
+function initBubbles(){
+  document.querySelectorAll(".cta-band").forEach(host=>{
+    for(let i=0;i<16;i++){ const b=document.createElement("span"); b.className="bubble";
+      const s=5+Math.random()*16; b.style.width=b.style.height=s+"px";
+      b.style.left=(Math.random()*100)+"%"; b.style.animationDuration=(5+Math.random()*6)+"s";
+      b.style.animationDelay=(Math.random()*6)+"s"; host.appendChild(b); }
+  });
+}
+
+// ── Descent progress rail (00 → 06) ──
+const RAIL_SECTIONS=[
+  {id:"home",en:"Surface",ar:"السطح"}, {id:"mission",en:"Mission",ar:"المهمة"},
+  {id:"quality",en:"Standard",ar:"المعيار"}, {id:"tech",en:"Process",ar:"العملية"},
+  {id:"promos",en:"Offers",ar:"العروض"}, {id:"shop",en:"Shop",ar:"المتجر"},
+  {id:"contact",en:"Contact",ar:"تواصل"},
+];
+function buildRail(){
+  const rail=document.getElementById("rail"); if(!rail) return;
+  [...rail.querySelectorAll(".rail-item")].forEach(n=>n.remove());
+  RAIL_SECTIONS.forEach((s,i)=>{ const it=document.createElement("div"); it.className="rail-item"; it.dataset.id=s.id;
+    it.innerHTML='<span class="label">'+(s[LANG]||s.en)+'</span><span class="num">'+String(i).padStart(2,"0")+'</span><span class="dot"></span>';
+    it.onclick=()=>scrollToId(s.id); rail.appendChild(it); });
+}
+function updateRail(){
+  const rail=document.getElementById("rail"), fill=document.getElementById("railFill"); if(!rail||!fill) return;
+  const max=document.body.scrollHeight-window.innerHeight;
+  const frac=max>0?Math.min(1,Math.max(0,window.scrollY/max)):0;
+  fill.style.height=(frac*(rail.offsetHeight-20))+"px";
+  let cur=RAIL_SECTIONS[0].id;
+  RAIL_SECTIONS.forEach(s=>{ const el=document.getElementById(s.id); if(el && el.getBoundingClientRect().top<=window.innerHeight*0.4) cur=s.id; });
+  rail.querySelectorAll(".rail-item").forEach(it=>it.classList.toggle("on", it.dataset.id===cur));
+}
+
+/* ── Depth FX: hero plunge + parallax drift + drifting marine particles ── */
+let _heroCopy=null,_heroVisual=null,_parEls=[],_depthTick=false;
+function initDepthFX(){
+  _heroCopy=document.querySelector(".hero-copy");
+  _heroVisual=document.querySelector(".hero-visual");
+  _parEls=[...document.querySelectorAll("[data-par]")].map(el=>({el, sp:parseFloat(el.dataset.par)||0.2}));
+  const col=document.querySelector(".watercol");
+  if(col && !col.dataset.seeded){ col.dataset.seeded="1";
+    for(let i=0;i<46;i++){ const m=document.createElement("span"); m.className="mote";
+      const s=2+Math.random()*4; m.style.width=m.style.height=s+"px";
+      m.style.left=(Math.random()*100)+"%"; m.style.top=(34+Math.random()*66)+"%";
+      m.style.animationDuration=(9+Math.random()*12)+"s"; m.style.animationDelay=(Math.random()*12)+"s";
+      col.appendChild(m); } }
+  depthScroll();
+}
+function depthScroll(){
+  const vh=window.innerHeight, y=window.scrollY;
+  // 1) hero plunge — headline & bottle sink and fade as you dive into the first section
+  if(_heroCopy&&_heroVisual){ const p=Math.min(1,Math.max(0,y/vh));
+    _heroCopy.style.transform="translateY("+(p*150).toFixed(1)+"px)"; _heroCopy.style.opacity=(1-p*1.2).toFixed(2);
+    _heroVisual.style.transform="translateY("+(p*95).toFixed(1)+"px) scale("+(1-p*0.09).toFixed(3)+")"; _heroVisual.style.opacity=(1-p*0.85).toFixed(2);
+  }
+  // 2) parallax — elements drift at their own speed as they pass through the viewport
+  _parEls.forEach(({el,sp})=>{ const r=el.getBoundingClientRect(); const off=((r.top+r.height/2)-vh/2)/vh;
+    el.style.transform="translate3d(0,"+(off*sp*-100).toFixed(1)+"px,0)"; });
+}
+function onScrollDepth(){ if(_depthTick) return; _depthTick=true; requestAnimationFrame(()=>{ depthScroll(); _depthTick=false; }); }
+
+/* ============================================================================
+   BOOTSTRAP
+   ========================================================================== */
+window.addEventListener("DOMContentLoaded", ()=>{
+  document.getElementById("year").textContent=new Date().getFullYear();
+  try{ Stage.init(); }catch(err){ console.warn("WebGL water unavailable:",err); document.getElementById("gl").style.display="none"; document.body.style.background="linear-gradient(180deg,#eaf5fe,#cfeaff)"; }
+  try{ Bottle3D.init(document.getElementById("bottle3d")); }catch(err){ console.warn("3D bottle unavailable:",err); }
+  window.addEventListener("pointerdown",(e)=>{
+    const big=!!(e.target.closest&&e.target.closest(".btn,.add"));
+    if(window.Stage) Stage.splashAt(e.clientX,e.clientY,big);
+    try{ Bottle3D.splash(big?1.2:1.0); }catch(_){}   // 3D droplet burst from the gallon
+  });
+  let lastMove=0;
+  window.addEventListener("pointermove",(e)=>{ const now=performance.now(); if(now-lastMove<90) return; lastMove=now;
+    if(window.Splash&&Splash.burst) Splash.burst(e.clientX, e.clientY, 0.25); });   // light trailing spray
+  buildMarquee(); renderChips(); renderProducts(); renderCart(); initReveal();
+  carousel.build(); carousel.initSwipe(); carousel.restart();
+  initWaterInteractions(); initCounters(); initBubbles(); buildRail(); initDepthFX();
+  window.addEventListener("scroll",onScroll,{passive:true}); onScroll(); updateRail();
+  window.addEventListener("resize",()=>{ updateRail(); depthScroll(); if(carousel&&carousel.sync) carousel.sync(); });
+  setLang("en");
+});
+</script>
+</body>
+</html>
