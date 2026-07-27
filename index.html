@@ -393,6 +393,8 @@ footer{ background:linear-gradient(180deg,#06152a,#040e1a); color:#9fb4d0; paddi
 .foot-grid{ display:grid; grid-template-columns:1.7fr 1fr 1fr 1.1fr; gap:48px; margin-bottom:44px; align-items:start; }
 .foot-brand img{ height:40px; width:auto; filter:drop-shadow(0 2px 9px rgba(0,0,0,.5)); }
 .foot-brand p{ font-size:14px; margin:16px 0 20px; max-width:36ch; color:#a9baDb; }
+.foot-loc{ display:flex; align-items:flex-start; gap:7px; line-height:1.45; max-width:30ch; }
+.foot-loc svg{ margin-top:3px; flex:0 0 auto; color:var(--pink-soft); }
 .foot-grid h4{ color:#fff; font-size:13px; letter-spacing:.12em; text-transform:uppercase; margin-bottom:16px; }
 html[dir="rtl"] .foot-grid h4{ letter-spacing:0; text-transform:none; }
 .foot-grid a{ display:block; color:#b6c5e6; font-size:14px; padding:6px 0; cursor:pointer; transition:.2s; }
@@ -838,7 +840,7 @@ html[dir="rtl"] .rail-item .label{ transform:translateX(-8px); }
       <div><h4 data-i18n="nav_contact">Contact Us</h4>
         <a href="tel:01119559955" dir="ltr">011 1955 9955</a>
         <a href="mailto:info@jabalwater.com">info@jabalwater.com</a>
-        <a href="https://www.google.com/maps/search/?api=1&amp;query=JABAL+High+Quality+Water+Egypt" target="_blank" rel="noopener" class="foot-loc"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" style="vertical-align:-2px;margin-inline-end:5px"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8z"/></svg><span data-i18n="foot_location">Egypt</span></a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=All%20Seasons%20Park%20Mall%20Madinaty" target="_blank" rel="noopener" class="foot-loc" aria-label="Open JABAL store location in Google Maps"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8z"/></svg><span data-i18n="foot_location">Store No. G043, All Seasons Park Mall, Madinaty</span></a>
       </div>
     </div>
     <div class="foot-bot">
@@ -906,7 +908,7 @@ const I18N = {
     f_name:"Name", f_name_ph:"Your name", f_email:"Email", f_email_ph:"you@email.com",
     f_msg:"Message", f_msg_ph:"How can we help?", f_send:"Send message", f_ok:"Thank you — we'll be in touch shortly. 💧",
     foot_tag:"At Jabal, we're dedicated to providing pure, high-quality water — freshly filled on order. Our commitment to quality and sustainability, in every drop.",
-    foot_gallons:"Gallons", foot_packs:"Utility Packs", foot_offers:"Offers", foot_location:"Egypt",
+    foot_gallons:"Gallons", foot_packs:"Utility Packs", foot_offers:"Offers", foot_location:"Store No. G043, All Seasons Park Mall, Madinaty",
     foot_rights:"All rights reserved.", foot_made:"Pure & Simple 💧",
     cart_title:"Your Cart", cart_total:"Total", cart_checkout:"Checkout", cart_empty:"Your cart is empty",
     add_to_cart:"Add to cart", sold_out:"Sold out", offer:"OFFER", new:"NEW", best:"BEST VALUE",
@@ -947,7 +949,7 @@ const I18N = {
     f_name:"الاسم", f_name_ph:"اسمك", f_email:"البريد الإلكتروني", f_email_ph:"you@email.com",
     f_msg:"رسالتك", f_msg_ph:"كيف يمكننا مساعدتك؟", f_send:"إرسال الرسالة", f_ok:"شكرًا لك — سنتواصل معك قريبًا. 💧",
     foot_tag:"في جبل، نلتزم بتقديم مياه نقية عالية الجودة — تُعبأ طازجة عند الطلب. التزامنا بالجودة والاستدامة، في كل قطرة.",
-    foot_gallons:"الجالونات", foot_packs:"عبوات الاستخدام", foot_offers:"العروض", foot_location:"مصر",
+    foot_gallons:"الجالونات", foot_packs:"عبوات الاستخدام", foot_offers:"العروض", foot_location:"محل G043، أول سيزون بارك مول، مدينتي",
     foot_rights:"جميع الحقوق محفوظة.", foot_made:"نقي وبسيط 💧",
     cart_title:"سلتك", cart_total:"الإجمالي", cart_checkout:"إتمام الشراء", cart_empty:"سلتك فارغة",
     add_to_cart:"أضف إلى السلة", sold_out:"غير متوفر", offer:"عرض", new:"جديد", best:"أفضل قيمة",
