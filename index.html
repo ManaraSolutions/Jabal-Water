@@ -108,7 +108,7 @@
 html[dir="rtl"]{ --font-disp:'Cairo','Tajawal',system-ui,sans-serif; --font-body:'Tajawal',system-ui,sans-serif; }
 
 *{ box-sizing:border-box; margin:0; padding:0; }
-html,body{ height:100%; }
+html{ overflow-x:hidden; }   /* clip horizontal at the root; page scrolls normally (no fixed-height body scroller) */
 body{
   background:linear-gradient(180deg,#0b2a5c 0%, #0b3a66 40%, #06213f 100%);
   color:var(--ink);
@@ -238,7 +238,7 @@ html[dir="rtl"] .eyebrow{ letter-spacing:.04em; }
 
 /* animated brand blob holding the real bottles image */
 .hero-visual{ position:relative; display:grid; place-items:center; min-height:520px; }
-#bottle3d{ width:min(100%,520px); height:520px; display:block; cursor:grab; touch-action:none; filter:drop-shadow(0 30px 50px rgba(21,37,95,.22)); }
+#bottle3d{ width:min(100%,520px); height:520px; display:block; cursor:grab; touch-action:pan-y; filter:drop-shadow(0 30px 50px rgba(21,37,95,.22)); }
 /* loading pulse while the real 3D model streams in (hides the placeholder) */
 .bottle-loading{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; pointer-events:none; transition:opacity .6s ease; }
 .bottle-loading.hide{ opacity:0; }
@@ -1483,7 +1483,8 @@ const Bottle3D = (function(){
 
     // drag to spin
     // drag-to-trace: spin the bottle any direction with the pointer
-    canvas.addEventListener("pointerdown",(e)=>{ dragging=true; autoSpin=false; lastX=e.clientX; lastY=e.clientY;
+    canvas.addEventListener("pointerdown",(e)=>{ if(e.pointerType==="touch") return;   // let touch scroll the page, not drag the bottle
+      dragging=true; autoSpin=false; lastX=e.clientX; lastY=e.clientY;
       clearTimeout(resumeT); if(canvas.setPointerCapture){ try{canvas.setPointerCapture(e.pointerId);}catch(_){} } });
     window.addEventListener("pointerup",()=>{ if(!dragging) return; dragging=false;
       resumeT=setTimeout(()=>autoSpin=true, 2500); });   // resume the slow auto-spin shortly after release
@@ -1814,8 +1815,9 @@ window.addEventListener("DOMContentLoaded", ()=>{
     try{ Bottle3D.splash(big?1.2:1.0); }catch(_){}   // 3D droplet burst from the gallon
   });
   let lastMove=0;
-  window.addEventListener("pointermove",(e)=>{ const now=performance.now(); if(now-lastMove<90) return; lastMove=now;
-    if(window.Splash&&Splash.burst) Splash.burst(e.clientX, e.clientY, 0.25); });   // light trailing spray
+  window.addEventListener("pointermove",(e)=>{ if(e.pointerType==="touch") return;   // no trail-spray during touch scroll
+    const now=performance.now(); if(now-lastMove<90) return; lastMove=now;
+    if(window.Splash&&Splash.burst) Splash.burst(e.clientX, e.clientY, 0.25); });   // light trailing spray (mouse only)
   buildMarquee(); renderChips(); renderProducts(); renderCart(); initReveal();
   carousel.build(); carousel.initSwipe(); carousel.restart();
   initWaterInteractions(); initCounters(); initBubbles(); buildRail(); initDepthFX();
