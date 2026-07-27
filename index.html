@@ -199,12 +199,12 @@ nav.links a.active::after{ content:""; position:absolute; left:16px; right:16px;
 .wrap{ max-width:var(--maxw); margin:0 auto; }
 section{ padding:clamp(64px,9vw,120px) clamp(16px,4vw,40px); position:relative; }
 .eyebrow{ position:relative; overflow:hidden; display:inline-flex; align-items:center; gap:9px;
-  font-size:12.5px; font-weight:700; letter-spacing:.2em; text-transform:uppercase; color:var(--pink);
-  padding:8px 18px; border-radius:999px; border:1px solid rgba(236,30,140,.42);
-  background:linear-gradient(120deg, rgba(236,30,140,.16), rgba(41,171,226,.08) 55%, rgba(236,30,140,.12));
-  box-shadow:0 6px 26px rgba(236,30,140,.20), inset 0 1px 0 rgba(255,255,255,.28), inset 0 -2px 8px rgba(236,30,140,.16);
+  font-size:13px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:#ffa6d7;
+  padding:9px 19px; border-radius:999px; border:1px solid rgba(255,130,195,.55);
+  background:linear-gradient(120deg, rgba(8,22,42,.62), rgba(236,30,140,.18) 62%, rgba(41,171,226,.10));
+  box-shadow:0 6px 26px rgba(236,30,140,.22), inset 0 1px 0 rgba(255,255,255,.32), inset 0 -2px 8px rgba(236,30,140,.14);
   backdrop-filter:blur(9px) saturate(150%); -webkit-backdrop-filter:blur(9px) saturate(150%);
-  text-shadow:0 0 14px rgba(236,30,140,.45); }
+  text-shadow:0 1px 3px rgba(0,0,0,.6); }
 /* moving glossy sheen sweeping across the badge */
 .eyebrow::after{ content:""; position:absolute; top:0; bottom:0; left:-75%; width:55%; pointer-events:none;
   background:linear-gradient(100deg, transparent, rgba(255,255,255,.6), transparent);
