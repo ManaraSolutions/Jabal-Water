@@ -1307,7 +1307,7 @@ const Bottle3D = (function(){
     const showFallback=()=>{ if(group) group.visible=true; done(); };
     if(window.__noGLTF || typeof THREE.GLTFLoader!=="function"){ showFallback(); return; }
     group.visible=false;                         // hide the placeholder while the real model loads
-    const _to=setTimeout(showFallback, 12000);   // safety net if the load stalls
+    const _to=setTimeout(showFallback, 30000);   // generous safety net so slow mobile connections still get the real model
     const loader=new THREE.GLTFLoader();
     loader.load("assets/model.glb", (gltf)=>{
       clearTimeout(_to);
