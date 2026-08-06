@@ -24,7 +24,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>JABAL · High Quality Water — Pure Hydration for a Vibrant Life</title>
 <meta name="description" content="JABAL High Quality Water — premium purified drinking water. Reverse Osmosis + ozone disinfection, freshly filled on order and delivered in 100% recyclable bottles. pH 7.2 · TDS 100 mg/L. Gallons, utility packs & offers across Egypt." />
-<meta name="keywords" content="JABAL water, Jabal High Quality Water, purified water Egypt, reverse osmosis water, ozone disinfection, 18.5L gallon, 11L water gallon, drinking water delivery, low sodium water, مياه جبل, مياه شرب نقية" />
+<meta name="keywords" content="JABAL water, Jabal High Quality Water, purified water Egypt, reverse osmosis water, ozone disinfection, 18.9L gallon, 11L water gallon, drinking water delivery, low sodium water, مياه جبل, مياه شرب نقية" />
 <meta name="author" content="JABAL High Quality Water" />
 <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1" />
 <meta name="theme-color" content="#0b2138" />
@@ -60,9 +60,9 @@
 <script type="application/ld+json">
 {
   "@context":"https://schema.org","@graph":[
-  {"@type":"Organization","@id":"https://jabalwater.com/#org","name":"JABAL High Quality Water","url":"https://jabalwater.com/","logo":"https://jabalwater.com/assets/favicon/icon-512.png","description":"Premium purified drinking water using Reverse Osmosis with ozone disinfection, freshly filled on order.","email":"info@jabalwater.com","telephone":"+201119559955","contactPoint":{"@type":"ContactPoint","telephone":"+201119559955","contactType":"customer service","areaServed":"EG","availableLanguage":["en","ar"]}},
+  {"@type":"Organization","@id":"https://jabalwater.com/#org","name":"JABAL High Quality Water","url":"https://jabalwater.com/","logo":"https://jabalwater.com/assets/favicon/icon-512.png","description":"Premium purified drinking water using Reverse Osmosis with ozone disinfection, freshly filled on order.","email":"info@jabalwater.com","telephone":"+201119559955","sameAs":["https://www.instagram.com/jabal.water/","https://www.facebook.com/profile.php?id=61581258970485"],"contactPoint":{"@type":"ContactPoint","telephone":"+201119559955","contactType":"customer service","areaServed":"EG","availableLanguage":["en","ar"]}},
   {"@type":"WebSite","@id":"https://jabalwater.com/#website","url":"https://jabalwater.com/","name":"JABAL High Quality Water","publisher":{"@id":"https://jabalwater.com/#org"},"inLanguage":["en","ar"]},
-  {"@type":"Product","name":"JABAL 18.5L Water Gallon","image":"https://jabalwater.com/assets/promo/promo-trio-en.jpg","description":"18.5L purified water gallon — Reverse Osmosis + ozone, pH 7.2, TDS 100 mg/L.","brand":{"@id":"https://jabalwater.com/#org"},"offers":{"@type":"Offer","price":"157.02","priceCurrency":"EGP","availability":"https://schema.org/InStock"}},
+  {"@type":"Product","name":"JABAL 18.9L Water Gallon","image":"https://jabalwater.com/assets/promo/promo-trio-en.jpg","description":"18.9L purified water gallon — Reverse Osmosis + ozone, pH 7.2, TDS 100 mg/L.","brand":{"@id":"https://jabalwater.com/#org"},"offers":{"@type":"Offer","price":"157.02","priceCurrency":"EGP","availability":"https://schema.org/InStock"}},
   {"@type":"Product","name":"JABAL 11L Water Gallon","image":"https://jabalwater.com/assets/og-image.jpg","description":"11L purified water gallon, freshly filled on order.","brand":{"@id":"https://jabalwater.com/#org"},"offers":{"@type":"Offer","price":"39.47","priceCurrency":"EGP","availability":"https://schema.org/InStock"}},
   {"@type":"Product","name":"JABAL 7L Water Gallon","image":"https://jabalwater.com/assets/og-image.jpg","description":"7L purified water gallon, freshly filled on order.","brand":{"@id":"https://jabalwater.com/#org"},"offers":{"@type":"Offer","price":"26.32","priceCurrency":"EGP","availability":"https://schema.org/InStock"}}
   ]
@@ -108,7 +108,7 @@
 html[dir="rtl"]{ --font-disp:'Cairo','Tajawal',system-ui,sans-serif; --font-body:'Tajawal',system-ui,sans-serif; }
 
 *{ box-sizing:border-box; margin:0; padding:0; }
-html,body{ height:100%; }
+html{ overflow-x:hidden; }   /* clip horizontal at the root; page scrolls normally (no fixed-height body scroller) */
 body{
   background:linear-gradient(180deg,#0b2a5c 0%, #0b3a66 40%, #06213f 100%);
   color:var(--ink);
@@ -198,11 +198,20 @@ nav.links a.active::after{ content:""; position:absolute; left:16px; right:16px;
    ============================================================ */
 .wrap{ max-width:var(--maxw); margin:0 auto; }
 section{ padding:clamp(64px,9vw,120px) clamp(16px,4vw,40px); position:relative; }
-.eyebrow{ display:inline-flex; align-items:center; gap:9px; font-size:12.5px; font-weight:700;
-  letter-spacing:.18em; text-transform:uppercase; color:var(--pink);
-  padding:7px 15px; border:1.5px solid rgba(236,30,140,.22); border-radius:999px; background:rgba(236,30,140,.05); }
+.eyebrow{ position:relative; overflow:hidden; display:inline-flex; align-items:center; gap:9px;
+  font-size:13px; font-weight:800; letter-spacing:.16em; text-transform:uppercase; color:#ffa6d7;
+  padding:9px 19px; border-radius:999px; border:1px solid rgba(255,130,195,.55);
+  background:linear-gradient(120deg, rgba(8,22,42,.62), rgba(236,30,140,.18) 62%, rgba(41,171,226,.10));
+  box-shadow:0 6px 26px rgba(236,30,140,.22), inset 0 1px 0 rgba(255,255,255,.32), inset 0 -2px 8px rgba(236,30,140,.14);
+  backdrop-filter:blur(9px) saturate(150%); -webkit-backdrop-filter:blur(9px) saturate(150%);
+  text-shadow:0 1px 3px rgba(0,0,0,.6); }
+/* moving glossy sheen sweeping across the badge */
+.eyebrow::after{ content:""; position:absolute; top:0; bottom:0; left:-75%; width:55%; pointer-events:none;
+  background:linear-gradient(100deg, transparent, rgba(255,255,255,.6), transparent);
+  transform:skewX(-20deg); animation:eyebrowSheen 4.8s ease-in-out infinite; }
+@keyframes eyebrowSheen{ 0%{ left:-75%; } 55%{ left:135%; } 100%{ left:135%; } }
 html[dir="rtl"] .eyebrow{ letter-spacing:.04em; }
-.eyebrow .dot{ width:7px; height:7px; border-radius:50%; background:var(--pink); box-shadow:0 0 8px var(--pink); animation:pulse 2s infinite; }
+.eyebrow .dot{ width:7px; height:7px; border-radius:50%; background:var(--pink); box-shadow:0 0 10px var(--pink), 0 0 4px #fff; animation:pulse 2s infinite; position:relative; z-index:1; }
 @keyframes pulse{ 0%,100%{opacity:1} 50%{opacity:.3} }
 .sec-head{ max-width:620px; margin-bottom:48px; }
 .sec-head.center{ margin-inline:auto; text-align:center; }
@@ -229,7 +238,7 @@ html[dir="rtl"] .eyebrow{ letter-spacing:.04em; }
 
 /* animated brand blob holding the real bottles image */
 .hero-visual{ position:relative; display:grid; place-items:center; min-height:520px; }
-#bottle3d{ width:min(100%,520px); height:520px; display:block; cursor:grab; touch-action:none; filter:drop-shadow(0 30px 50px rgba(21,37,95,.22)); }
+#bottle3d{ width:min(100%,520px); height:520px; display:block; cursor:grab; touch-action:pan-y; filter:drop-shadow(0 30px 50px rgba(21,37,95,.22)); }
 /* loading pulse while the real 3D model streams in (hides the placeholder) */
 .bottle-loading{ position:absolute; inset:0; display:flex; flex-direction:column; align-items:center; justify-content:center; gap:14px; pointer-events:none; transition:opacity .6s ease; }
 .bottle-loading.hide{ opacity:0; }
@@ -329,6 +338,14 @@ header.scrolled .brand img{ filter:drop-shadow(0 1px 3px rgba(0,0,0,.18)); }
 .chip:hover{ color:var(--navy); border-color:var(--blue); }
 .chip.on{ color:#fff; background:var(--grad); border-color:transparent; }
 .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.shop-empty{ grid-column:1/-1; text-align:center; padding:56px 20px; color:#9fc0dd; font-family:var(--font-disp); font-size:20px; letter-spacing:.01em; }
+.shop-store-cta{ text-align:center; margin-top:40px; }
+.shop-vat{ text-align:center; margin-top:14px; font-size:13px; color:#8fb0cf; }
+/* loyalty section */
+.loyalty-grid{ display:grid; grid-template-columns:.9fr 1.15fr; gap:48px; align-items:center; }
+.loyalty-copy p{ color:#9fbdd8; font-size:16.5px; margin-bottom:24px; }
+.loyalty-card{ width:100%; aspect-ratio:856/540; border:0; border-radius:26px; display:block; box-shadow:0 40px 90px rgba(3,10,24,.6); }
+@media (max-width:940px){ .loyalty-grid{ grid-template-columns:1fr; } }
 .product{ border-radius:var(--radius); overflow:hidden; background:#fff; border:1px solid #e7f1fb; box-shadow:var(--shadow-sm);
   transition:.4s; display:flex; flex-direction:column; position:relative; }
 .product:hover{ transform:translateY(-8px); box-shadow:var(--shadow); }
@@ -340,6 +357,15 @@ header.scrolled .brand img{ filter:drop-shadow(0 1px 3px rgba(0,0,0,.18)); }
 .product .art.contain{ background-size:contain; background-repeat:no-repeat; }
 /* single gallon: framed from the real cover photo */
 .product .art.gallon{ background-image:url('assets/cover-bg.jpg'); background-size:280%; background-position:50% 26%; }
+/* JABAL logo centred on the gallon (like a label) */
+.product .art.gallon::after{ content:""; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
+  width:60%; height:30%; background:url('assets/logo.png') center/contain no-repeat;
+  filter:drop-shadow(0 2px 7px rgba(0,0,0,.4)); }
+/* accessory placeholder (until the real photo is dropped in assets/accessories/) */
+.product[data-imgs] .art{ transition:opacity .5s ease; }
+.product .art.accessory{ background:linear-gradient(160deg,#123556,#0a1f38); display:grid; place-items:center; }
+.product .art.accessory::after{ content:""; width:44%; height:44%; opacity:.85;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237fd8ff' stroke-width='1.3'%3E%3Cpath d='M7 10V7a5 5 0 0 1 10 0v3'/%3E%3Crect x='4' y='10' width='16' height='10' rx='2'/%3E%3C/svg%3E") center/contain no-repeat; }
 .product:hover .art{ filter:saturate(1.05); }
 .product .body{ padding:20px; display:flex; flex-direction:column; gap:10px; flex:1; }
 .product .vol{ font-size:12px; color:var(--blue-deep); font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
@@ -370,6 +396,9 @@ html[dir="rtl"] .product .vol{ letter-spacing:0; text-transform:none; }
    ============================================================ */
 .contact-grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:40px; }
 .contact-info .line{ display:flex; gap:16px; align-items:flex-start; padding:20px 0; border-bottom:1px solid #e7f1fb; }
+a.line{ transition:transform .2s ease; }
+a.line:hover .ico{ filter:brightness(1.12); transform:scale(1.06); transition:.2s; }
+a.line:hover .v{ color:#7fd8ff; }
 .contact-info .line .ico{ width:46px; height:46px; border-radius:13px; flex:0 0 auto; display:grid; place-items:center; color:#fff; background:var(--grad); }
 .contact-info .line:nth-child(even) .ico{ background:var(--grad-pink); }
 .contact-info .line .l{ font-size:12px; color:var(--ink-faint); letter-spacing:.08em; text-transform:uppercase; margin-bottom:2px; font-weight:600; }
@@ -389,10 +418,12 @@ html[dir="rtl"] .contact-info .line .l{ letter-spacing:0; text-transform:none; }
 /* ============================================================
    FOOTER
    ============================================================ */
-footer{ background:var(--navy); color:#c9d6f0; padding:60px clamp(16px,4vw,40px) 28px; position:relative; z-index:2; }
-.foot-grid{ display:grid; grid-template-columns:1.5fr 1fr 1fr 1fr; gap:40px; margin-bottom:40px; }
-.foot-brand img{ height:56px; background:#fff; padding:8px 12px; border-radius:12px; }
+footer{ background:linear-gradient(180deg,#06152a,#040e1a); color:#9fb4d0; padding:64px clamp(16px,4vw,40px) 30px; position:relative; z-index:2; border-top:1px solid rgba(127,216,255,.12); }
+.foot-grid{ display:grid; grid-template-columns:1.7fr 1fr 1fr 1.1fr; gap:48px; margin-bottom:44px; align-items:start; }
+.foot-brand img{ height:40px; width:auto; filter:drop-shadow(0 2px 9px rgba(0,0,0,.5)); }
 .foot-brand p{ font-size:14px; margin:16px 0 20px; max-width:36ch; color:#a9baDb; }
+.foot-loc{ display:flex; align-items:flex-start; gap:7px; line-height:1.45; max-width:30ch; }
+.foot-loc svg{ margin-top:3px; flex:0 0 auto; color:var(--pink-soft); }
 .foot-grid h4{ color:#fff; font-size:13px; letter-spacing:.12em; text-transform:uppercase; margin-bottom:16px; }
 html[dir="rtl"] .foot-grid h4{ letter-spacing:0; text-transform:none; }
 .foot-grid a{ display:block; color:#b6c5e6; font-size:14px; padding:6px 0; cursor:pointer; transition:.2s; }
@@ -623,7 +654,7 @@ html[dir="rtl"] .rail-item .label{ transform:translateX(-8px); }
       <span class="sep">/</span>
       <span role="button" data-lang="ar" onclick="setLang('ar')">ع</span>
     </div>
-    <button class="btn ghost mobile-hide" data-i18n="nav_login">Login</button>
+    <button class="btn ghost mobile-hide" onclick="odooGo('/web/login')" data-i18n="nav_login">Login</button>
     <button class="btn cart-btn pink" onclick="openCart()" aria-label="Cart" style="color:#fff">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M6 6 5 3H2"/></svg>
       <span class="cart-count" id="cartCount">0</span>
@@ -640,7 +671,7 @@ html[dir="rtl"] .rail-item .label{ transform:translateX(-8px); }
   <a onclick="scrollToId('tech');toggleMenu()" data-i18n="nav_tech">Process</a>
   <a onclick="scrollToId('shop');toggleMenu()" data-i18n="nav_shop">Shop</a>
   <a onclick="scrollToId('contact');toggleMenu()" data-i18n="nav_contact">Contact Us</a>
-  <button class="btn primary" data-i18n="nav_login">Login</button>
+  <button class="btn primary" onclick="odooGo('/web/login')" data-i18n="nav_login">Login</button>
 </div>
 
 <!-- ══════════════════ HERO / COVER ══════════════════ -->
@@ -771,6 +802,10 @@ html[dir="rtl"] .rail-item .label{ transform:translateX(-8px); }
       <div class="chips" id="chips"></div>
     </div>
     <div class="grid" id="productGrid"></div>
+    <div class="shop-store-cta">
+      <button class="btn primary" onclick="odooGo('/shop')" data-i18n="view_store">Visit our full store</button>
+      <div class="shop-vat" data-i18n="vat_note">Prices include 14% VAT</div>
+    </div>
   </div>
 </section>
 
@@ -780,7 +815,24 @@ html[dir="rtl"] .rail-item .label{ transform:translateX(-8px); }
     <div class="cta-band reveal">
       <h2 data-i18n="cta_h">Pure hydration for a vibrant life</h2>
       <p data-i18n="cta_p">Freshly filled, delivered fast, and kind to the planet. Find the perfect plan for you and your family.</p>
-      <button class="btn" onclick="scrollToId('shop')" data-i18n="cta_btn">Shop Now</button>
+      <button class="btn" onclick="odooGo('/shop')" data-i18n="cta_btn">Shop Now</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════ LOYALTY ══════════════════ -->
+<section id="loyalty" class="deep" style="padding-top:0">
+  <div class="wrap">
+    <div class="loyalty-grid">
+      <div class="loyalty-copy reveal">
+        <span class="eyebrow"><span class="dot"></span><span data-i18n="loy_eyebrow">Loyalty Rewards</span></span>
+        <h2 style="margin:16px 0 16px" data-i18n="loy_h2">Every 6th gallon is on us</h2>
+        <p data-i18n="loy_p">Collect a stamp with every 18.9 L gallon you order. Buy 5 — the 6th is completely free. Ask for your JABAL loyalty card with your next delivery.</p>
+        <button class="btn primary" onclick="odooGo('/web/login')" data-i18n="loy_cta">Get your card</button>
+      </div>
+      <div class="loyalty-card-wrap reveal">
+        <iframe class="loyalty-card" src="loyalty-card.html" title="JABAL Loyalty Card" loading="lazy" scrolling="no"></iframe>
+      </div>
     </div>
   </div>
 </section>
@@ -795,8 +847,8 @@ html[dir="rtl"] .rail-item .label{ transform:translateX(-8px); }
     </div>
     <div class="contact-grid">
       <div class="contact-info reveal">
-        <div class="line"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5c0 9 6 15 15 15l1-4-5-2-2 2a12 12 0 0 1-5-5l2-2-2-5z"/></svg></div><div><div class="l" data-i18n="c_phone">Phone</div><div class="v" dir="ltr">011 1955 9955</div></div></div>
-        <div class="line"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div><div><div class="l" data-i18n="c_email">Email</div><div class="v">info@jabalwater.com</div></div></div>
+        <a class="line" href="https://wa.me/201119559955" target="_blank" rel="noopener"><div class="ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4 0 .5l-.4.5c-.1.2-.3.3-.1.6.1.3.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4.1.6-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.4.2.5.3.1.3.1.7-.1 1.3z"/></svg></div><div><div class="l" data-i18n="c_phone">WhatsApp / Call</div><div class="v" dir="ltr">011 1955 9955</div></div></a>
+        <a class="line" href="mailto:info@jabalwater.com"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div><div><div class="l" data-i18n="c_email">Email</div><div class="v">info@jabalwater.com</div></div></a>
         <div class="line"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8z"/></svg></div><div><div class="l" data-i18n="c_deliv">Delivery</div><div class="v" data-i18n="c_deliv_v">Fresh, on-demand — 7 days a week</div></div></div>
       </div>
       <form class="form reveal" onsubmit="return submitForm(event)">
@@ -820,9 +872,8 @@ html[dir="rtl"] .rail-item .label{ transform:translateX(-8px); }
         <img src="assets/logo.png" alt="JABAL High Quality Water" width="1024" height="167" decoding="async" loading="lazy" />
         <p data-i18n="foot_tag">At Jabal, we're dedicated to providing pure, high-quality water — freshly filled on order. Our commitment to quality and sustainability, in every drop.</p>
         <div class="socials">
-          <a href="#" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l.5-3H13V9c0-1 .3-1.6 1.7-1.6H17V4.8C16.5 4.7 15.4 4.6 14.2 4.6 11.7 4.6 10 6.1 10 8.7V11H7v3h3v8z"/></svg></a>
-          <a href="#" aria-label="Twitter"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M18.9 3H22l-7 8 8.2 10H17l-5-6.4L6.2 21H3l7.5-8.6L2.5 3H10l4.5 6zM17 19h1.7L7.1 4.8H5.3z"/></svg></a>
-          <a href="#" aria-label="LinkedIn"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M6.5 8.5v9h-3v-9zM5 4a1.8 1.8 0 1 1 0 3.6A1.8 1.8 0 0 1 5 4zM20.5 17.5h-3v-4.7c0-1.2-.5-1.9-1.5-1.9s-1.6.7-1.6 1.9v4.7h-3v-9h2.9v1.2c.5-.8 1.4-1.4 2.6-1.4 2 0 3.6 1.3 3.6 4z"/></svg></a>
+          <a href="https://www.instagram.com/jabal.water/" target="_blank" rel="noopener" aria-label="JABAL on Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="3" y="3" width="18" height="18" rx="5.5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.1" fill="currentColor" stroke="none"/></svg></a>
+          <a href="https://www.facebook.com/profile.php?id=61581258970485" target="_blank" rel="noopener" aria-label="JABAL on Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M13 22v-8h3l.5-3H13V9c0-1 .3-1.6 1.7-1.6H17V4.8C16.5 4.7 15.4 4.6 14.2 4.6 11.7 4.6 10 6.1 10 8.7V11H7v3h3v8z"/></svg></a>
         </div>
       </div>
       <div><h4 data-i18n="nav_home">Home</h4>
@@ -838,6 +889,7 @@ html[dir="rtl"] .rail-item .label{ transform:translateX(-8px); }
       <div><h4 data-i18n="nav_contact">Contact Us</h4>
         <a href="tel:01119559955" dir="ltr">011 1955 9955</a>
         <a href="mailto:info@jabalwater.com">info@jabalwater.com</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=All%20Seasons%20Park%20Mall%20Madinaty" target="_blank" rel="noopener" class="foot-loc" aria-label="Open JABAL store location in Google Maps"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8z"/></svg><span data-i18n="foot_location">Store No. G043, All Seasons Park Mall, Madinaty</span></a>
       </div>
     </div>
     <div class="foot-bot">
@@ -899,17 +951,20 @@ const I18N = {
     cta_h:"Pure hydration for a vibrant life",
     cta_p:"Freshly filled, delivered fast, and kind to the planet. Find the perfect plan for you and your family.",
     cta_btn:"Shop Now",
+    loy_eyebrow:"Loyalty Rewards", loy_h2:"Every 6th gallon is on us",
+    loy_p:"Collect a stamp with every 18.9 L gallon you order. Buy 5 — the 6th is completely free. Ask for your JABAL loyalty card with your next delivery.",
+    loy_cta:"Get your card",
     c_eyebrow:"Contact Us", c_h2:"Let's get you flowing",
     c_p:"Questions, bulk orders, or partnerships — reach out and we'll respond fast.",
-    c_phone:"Phone", c_email:"Email", c_deliv:"Delivery", c_deliv_v:"Fresh, on-demand — 7 days a week",
+    c_phone:"WhatsApp / Call", c_email:"Email", c_deliv:"Delivery", c_deliv_v:"Fresh, on-demand — 7 days a week",
     f_name:"Name", f_name_ph:"Your name", f_email:"Email", f_email_ph:"you@email.com",
     f_msg:"Message", f_msg_ph:"How can we help?", f_send:"Send message", f_ok:"Thank you — we'll be in touch shortly. 💧",
     foot_tag:"At Jabal, we're dedicated to providing pure, high-quality water — freshly filled on order. Our commitment to quality and sustainability, in every drop.",
-    foot_gallons:"Gallons", foot_packs:"Utility Packs", foot_offers:"Offers",
+    foot_gallons:"Gallons", foot_packs:"Utility Packs", foot_offers:"Offers", foot_location:"Store No. G043, All Seasons Park Mall, Madinaty",
     foot_rights:"All rights reserved.", foot_made:"Pure & Simple 💧",
     cart_title:"Your Cart", cart_total:"Total", cart_checkout:"Checkout", cart_empty:"Your cart is empty",
-    add_to_cart:"Add to cart", sold_out:"Sold out", offer:"OFFER", new:"NEW", best:"BEST VALUE",
-    all:"All", gallons:"Gallons", packs:"Packs", offers:"Offers",
+    add_to_cart:"Add to cart", order_now:"Order on our store", view_store:"Visit our full store", vat_note:"Prices include 14% VAT", sold_out:"Sold out", offer:"OFFER", new:"NEW", best:"BEST VALUE",
+    all:"All", gallons:"Gallons", packs:"Packs", offers:"Offers", accessories:"Accessories",
     checkout_msg:"This is a demo checkout — in production it connects to secure payment. 💧"
   },
   ar:{
@@ -940,17 +995,20 @@ const I18N = {
     cta_h:"ترطيب نقي من أجل حياة نابضة",
     cta_p:"تُعبأ طازجة، وتُسلَّم بسرعة، وصديقة للبيئة. اعثر على الخطة المثالية لك ولعائلتك.",
     cta_btn:"تسوّق الآن",
+    loy_eyebrow:"مكافآت الولاء", loy_h2:"الجالون السادس علينا",
+    loy_p:"اجمع ختمًا مع كل جالون 18.9 لتر تطلبه. اشترِ 5 — والسادس مجانًا تمامًا. اطلب كارت الولاء من جبل مع توصيلتك القادمة.",
+    loy_cta:"احصل على كارتك",
     c_eyebrow:"تواصل معنا", c_h2:"لنجعل مياهك تتدفق",
     c_p:"أسئلة أو طلبات بالجملة أو شراكات — تواصل معنا وسنرد بسرعة.",
-    c_phone:"الهاتف", c_email:"البريد", c_deliv:"التوصيل", c_deliv_v:"طازجة وعند الطلب — طوال الأسبوع",
+    c_phone:"واتساب / اتصال", c_email:"البريد", c_deliv:"التوصيل", c_deliv_v:"طازجة وعند الطلب — طوال الأسبوع",
     f_name:"الاسم", f_name_ph:"اسمك", f_email:"البريد الإلكتروني", f_email_ph:"you@email.com",
     f_msg:"رسالتك", f_msg_ph:"كيف يمكننا مساعدتك؟", f_send:"إرسال الرسالة", f_ok:"شكرًا لك — سنتواصل معك قريبًا. 💧",
     foot_tag:"في جبل، نلتزم بتقديم مياه نقية عالية الجودة — تُعبأ طازجة عند الطلب. التزامنا بالجودة والاستدامة، في كل قطرة.",
-    foot_gallons:"الجالونات", foot_packs:"عبوات الاستخدام", foot_offers:"العروض",
+    foot_gallons:"الجالونات", foot_packs:"عبوات الاستخدام", foot_offers:"العروض", foot_location:"محل G043، أول سيزون بارك مول، مدينتي",
     foot_rights:"جميع الحقوق محفوظة.", foot_made:"نقي وبسيط 💧",
     cart_title:"سلتك", cart_total:"الإجمالي", cart_checkout:"إتمام الشراء", cart_empty:"سلتك فارغة",
-    add_to_cart:"أضف إلى السلة", sold_out:"غير متوفر", offer:"عرض", new:"جديد", best:"أفضل قيمة",
-    all:"الكل", gallons:"الجالونات", packs:"العبوات", offers:"العروض",
+    add_to_cart:"أضف إلى السلة", order_now:"اطلب من متجرنا", view_store:"زيارة المتجر الكامل", vat_note:"الأسعار شاملة ضريبة القيمة المضافة 14%", sold_out:"غير متوفر", offer:"عرض", new:"جديد", best:"أفضل قيمة",
+    all:"الكل", gallons:"الجالونات", packs:"العبوات", offers:"العروض", accessories:"إكسسوارات",
     checkout_msg:"هذا إتمام تجريبي — في الإصدار الفعلي يتصل بنظام دفع آمن. 💧"
   }
 };
@@ -1297,7 +1355,7 @@ const Bottle3D = (function(){
     const showFallback=()=>{ if(group) group.visible=true; done(); };
     if(window.__noGLTF || typeof THREE.GLTFLoader!=="function"){ showFallback(); return; }
     group.visible=false;                         // hide the placeholder while the real model loads
-    const _to=setTimeout(showFallback, 12000);   // safety net if the load stalls
+    const _to=setTimeout(showFallback, 30000);   // generous safety net so slow mobile connections still get the real model
     const loader=new THREE.GLTFLoader();
     loader.load("assets/model.glb", (gltf)=>{
       clearTimeout(_to);
@@ -1473,7 +1531,8 @@ const Bottle3D = (function(){
 
     // drag to spin
     // drag-to-trace: spin the bottle any direction with the pointer
-    canvas.addEventListener("pointerdown",(e)=>{ dragging=true; autoSpin=false; lastX=e.clientX; lastY=e.clientY;
+    canvas.addEventListener("pointerdown",(e)=>{ if(e.pointerType==="touch") return;   // let touch scroll the page, not drag the bottle
+      dragging=true; autoSpin=false; lastX=e.clientX; lastY=e.clientY;
       clearTimeout(resumeT); if(canvas.setPointerCapture){ try{canvas.setPointerCapture(e.pointerId);}catch(_){} } });
     window.addEventListener("pointerup",()=>{ if(!dragging) return; dragging=false;
       resumeT=setTimeout(()=>autoSpin=true, 2500); });   // resume the slow auto-spin shortly after release
@@ -1558,6 +1617,21 @@ const Stage = (function(){
 /* ============================================================================
    MODULE 5 · UI
    ========================================================================== */
+
+/* ── Option C: connected to the live Odoo store — login, cart & checkout run on Odoo ── */
+const ODOO = "https://jabalwater.com";
+const ODOO_URL = {
+  g7:   "/shop/jw-007-jabal-water-7l-gallon-61",
+  g11:  "/shop/jw-011-jabal-water-11l-gallon-62",
+  g185: "/shop/18-5l-jabal-water-gallon-new-86",
+  p7:   "/shop/jw-27001-jabal-utillity-2x7l-pure-water-packs-perfect-for-cooking-and-travel-63",
+  p11:  "/shop/jw-21101-jabal-utility-2x11l-pure-water-packs-perfect-for-cooking-and-travel-58",
+  mega: "/shop/jw-18555-jabal-mega-saver-buy-5-and-get-5-refills-for-free-59",
+  free: "/shop"
+};
+function odooGo(path){ window.location.href = ODOO + path; }        // hand off to the Odoo store
+function odooProduct(id){ odooGo(ODOO_URL[id] || "/shop"); }
+
 const PRODUCTS = [
   { id:"g7", cat:"gallons", price:26.32, vol:"7L", art:"gallon",
     name:{en:"JABAL 7L Gallon", ar:"جالون جبل 7 لتر"},
@@ -1565,8 +1639,8 @@ const PRODUCTS = [
   { id:"g11", cat:"gallons", price:39.47, vol:"11L", art:"gallon",
     name:{en:"JABAL 11L Gallon", ar:"جالون جبل 11 لتر"},
     desc:{en:"The household favourite — more water, same purity.", ar:"المفضل للمنازل — مياه أكثر بنفس النقاء."} },
-  { id:"g185", cat:"gallons", price:157.02, vol:"18.5L", art:"gallon", badge:"new",
-    name:{en:"JABAL 18.5L Gallon", ar:"جالون جبل 18.5 لتر"},
+  { id:"g185", cat:"gallons", price:157.02, vol:"18.9L", art:"gallon", badge:"new",
+    name:{en:"JABAL 18.9L Gallon", ar:"جالون جبل 18.9 لتر"},
     desc:{en:"Our largest gallon — perfect for offices and big families.", ar:"أكبر جالون لدينا — مثالي للمكاتب والعائلات الكبيرة."} },
   { id:"p7", cat:"packs", price:52.63, vol:"2 × 7L", img:"assets/p-2x7l.png",
     name:{en:"Utility Pack · 2×7L", ar:"عبوة استخدام · 2×7 لتر"},
@@ -1577,15 +1651,20 @@ const PRODUCTS = [
   { id:"mega", cat:"offers", price:346.49, vol:"Buy 5 · Get 5", img:"assets/p-megasaver.png", badge:"best",
     name:{en:"Mega Saver — Buy 5, Get 5 Refills Free", ar:"عرض ميجا — اشترِ 5 واحصل على 5 إعادة تعبئة مجانًا"},
     desc:{en:"Our best value: five bottles plus five free refills. Save 1058 EGP.", ar:"أفضل قيمة: خمس عبوات مع خمس إعادات تعبئة مجانية. وفّر 1058 جنيه."} },
-  { id:"free", cat:"offers", price:0, vol:"18.5L", art:"gallon", badge:"soldout", sold:true,
-    name:{en:"5 Free Refills · 18.5L", ar:"5 إعادات تعبئة مجانية · 18.5 لتر"},
+  { id:"free", cat:"offers", price:0, vol:"18.9L", art:"gallon", badge:"soldout", sold:true,
+    name:{en:"5 Free Refills · 18.9L", ar:"5 إعادات تعبئة مجانية · 18.9 لتر"},
     desc:{en:"Loyalty refill reward — currently unavailable.", ar:"مكافأة إعادة تعبئة للولاء — غير متوفرة حاليًا."} },
+  { id:"handle", cat:"accessories", price:85, vol:"Accessory", img:"assets/accessories/handle-1.jpg",
+    imgs:["assets/accessories/handle-1.jpg","assets/accessories/handle-2.jpg","assets/accessories/handle-3.jpg"],
+    name:{en:"Gallon Carrier Handle", ar:"يد حمل الجالون"},
+    desc:{en:"Easy-grip handle — lift and carry your gallon with one hand.", ar:"يد مريحة لرفع وحمل الجالون بيد واحدة بسهولة."} },
 ];
-const CATS=[{id:"all",k:"all"},{id:"gallons",k:"gallons"},{id:"packs",k:"packs"},{id:"offers",k:"offers"}];
+const CATS=[{id:"all",k:"all"},{id:"gallons",k:"gallons"},{id:"packs",k:"packs"},{id:"offers",k:"offers"},{id:"accessories",k:"accessories"}];
 let activeCat="all";
 
 function artStyle(p){
   if(p.img) return `class="art contain" style="background-image:url('${p.img}')"`;
+  if(p.art==="accessory") return `class="art accessory"`;
   return `class="art gallon"`;
 }
 function thumbStyle(p){
@@ -1601,7 +1680,9 @@ function renderChips(){
 }
 function renderProducts(){
   const grid=document.getElementById("productGrid"); grid.innerHTML="";
-  PRODUCTS.filter(p=>activeCat==="all"||p.cat===activeCat).forEach(p=>{
+  const list=PRODUCTS.filter(p=>activeCat==="all"||p.cat===activeCat);
+  if(!list.length){ grid.innerHTML='<div class="shop-empty">💧 '+(LANG==="ar"?"قريبًا — منتجات جديدة":"New items coming soon")+'</div>'; return; }
+  list.forEach(p=>{
     const el=document.createElement("article"); el.className="product reveal in";
     let badge="";
     if(p.badge==="best") badge=`<span class="badge">${t("best")}</span>`;
@@ -1614,17 +1695,25 @@ function renderProducts(){
         <h3>${p.name[LANG]}</h3>
         <p class="desc">${p.desc[LANG]}</p>
         <div class="foot">${price}
-          <button class="add" ${p.sold?"disabled":""} aria-label="${t("add_to_cart")}" onclick="addToCart('${p.id}')">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+          <button class="add" ${p.sold?"disabled":""} aria-label="${t("order_now")}" title="${t("order_now")}" onclick="event.stopPropagation();addToCart('${p.id}')">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M6 6 5 3H2"/></svg>
           </button>
         </div>
       </div>`;
+    if(p.imgs && p.imgs.length>1) el.dataset.imgs=p.imgs.join("|");   // one product, multiple photos to rotate
+    if(!p.sold){ el.style.cursor="pointer"; el.addEventListener("click",()=>addToCart(p.id)); }
     grid.appendChild(el);
   });
 }
 
 const cart={};
-function addToCart(id){ const p=PRODUCTS.find(x=>x.id===id); if(!p||p.sold) return; cart[id]=(cart[id]||0)+1; renderCart(); bumpCount(); openCart(); }
+function addToCart(id){ const p=PRODUCTS.find(x=>x.id===id); if(!p||p.sold) return;
+  if(p.cat==="accessories"){   // not in Odoo yet — order via WhatsApp with a prefilled message
+    const msg=encodeURIComponent((LANG==="ar"?"مرحبًا، أريد طلب: ":"Hi, I'd like to order: ")+p.name[LANG]+" — "+p.price+" EGP");
+    window.open("https://wa.me/201119559955?text="+msg,"_blank"); return;
+  }
+  odooProduct(id);   // opens the product on the Odoo store to add to the real cart
+}
 function changeQty(id,dl){ if(!cart[id]) return; cart[id]+=dl; if(cart[id]<=0) delete cart[id]; renderCart(); bumpCount(); }
 const cartCount=()=>Object.values(cart).reduce((a,b)=>a+b,0);
 const cartTotal=()=>Object.entries(cart).reduce((s,[id,q])=>{ const p=PRODUCTS.find(x=>x.id===id); return s+(p?p.price*q:0); },0);
@@ -1640,7 +1729,7 @@ function renderCart(){
   }).join("");
   document.getElementById("cartTotal").innerHTML=`${cartTotal().toFixed(2)} <small>EGP</small>`;
 }
-function openCart(){ document.getElementById("drawer").classList.add("open"); document.getElementById("overlay").classList.add("open"); }
+function openCart(){ odooGo("/shop/cart"); }   // go straight to the real Odoo cart
 function closeCart(){ document.getElementById("drawer").classList.remove("open"); document.getElementById("overlay").classList.remove("open"); }
 function checkout(){ if(cartCount()===0) return; alert(t("checkout_msg")); }
 
@@ -1739,6 +1828,16 @@ function initBubbles(){
   });
 }
 
+// rotate through a product's multiple photos (e.g. the accessory's 3 shots)
+function initProductPhotoRotator(){
+  setInterval(()=>{ document.querySelectorAll(".product[data-imgs]").forEach(card=>{
+    const imgs=(card.dataset.imgs||"").split("|"); if(imgs.length<2) return;
+    const art=card.querySelector(".art"); if(!art) return;
+    card._pi=((card._pi||0)+1)%imgs.length; art.style.opacity="0";
+    setTimeout(()=>{ art.style.backgroundImage="url('"+imgs[card._pi]+"')"; art.style.opacity="1"; },260);
+  }); }, 3800);
+}
+
 // ── Descent progress rail (00 → 06) ──
 const RAIL_SECTIONS=[
   {id:"home",en:"Surface",ar:"السطح"}, {id:"mission",en:"Mission",ar:"المهمة"},
@@ -1804,11 +1903,12 @@ window.addEventListener("DOMContentLoaded", ()=>{
     try{ Bottle3D.splash(big?1.2:1.0); }catch(_){}   // 3D droplet burst from the gallon
   });
   let lastMove=0;
-  window.addEventListener("pointermove",(e)=>{ const now=performance.now(); if(now-lastMove<90) return; lastMove=now;
-    if(window.Splash&&Splash.burst) Splash.burst(e.clientX, e.clientY, 0.25); });   // light trailing spray
+  window.addEventListener("pointermove",(e)=>{ if(e.pointerType==="touch") return;   // no trail-spray during touch scroll
+    const now=performance.now(); if(now-lastMove<90) return; lastMove=now;
+    if(window.Splash&&Splash.burst) Splash.burst(e.clientX, e.clientY, 0.25); });   // light trailing spray (mouse only)
   buildMarquee(); renderChips(); renderProducts(); renderCart(); initReveal();
   carousel.build(); carousel.initSwipe(); carousel.restart();
-  initWaterInteractions(); initCounters(); initBubbles(); buildRail(); initDepthFX();
+  initWaterInteractions(); initCounters(); initBubbles(); buildRail(); initDepthFX(); initProductPhotoRotator();
   window.addEventListener("scroll",onScroll,{passive:true}); onScroll(); updateRail();
   window.addEventListener("resize",()=>{ updateRail(); depthScroll(); if(carousel&&carousel.sync) carousel.sync(); });
   setLang("en");
