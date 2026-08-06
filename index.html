@@ -362,6 +362,7 @@ header.scrolled .brand img{ filter:drop-shadow(0 1px 3px rgba(0,0,0,.18)); }
   width:60%; height:30%; background:url('assets/logo.png') center/contain no-repeat;
   filter:drop-shadow(0 2px 7px rgba(0,0,0,.4)); }
 /* accessory placeholder (until the real photo is dropped in assets/accessories/) */
+.product[data-imgs] .art{ transition:opacity .5s ease; }
 .product .art.accessory{ background:linear-gradient(160deg,#123556,#0a1f38); display:grid; place-items:center; }
 .product .art.accessory::after{ content:""; width:44%; height:44%; opacity:.85;
   background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237fd8ff' stroke-width='1.3'%3E%3Cpath d='M7 10V7a5 5 0 0 1 10 0v3'/%3E%3Crect x='4' y='10' width='16' height='10' rx='2'/%3E%3C/svg%3E") center/contain no-repeat; }
@@ -1654,6 +1655,7 @@ const PRODUCTS = [
     name:{en:"5 Free Refills · 18.9L", ar:"5 إعادات تعبئة مجانية · 18.9 لتر"},
     desc:{en:"Loyalty refill reward — currently unavailable.", ar:"مكافأة إعادة تعبئة للولاء — غير متوفرة حاليًا."} },
   { id:"handle", cat:"accessories", price:85, vol:"Accessory", img:"assets/accessories/handle-1.jpg",
+    imgs:["assets/accessories/handle-1.jpg","assets/accessories/handle-2.jpg","assets/accessories/handle-3.jpg"],
     name:{en:"Gallon Carrier Handle", ar:"يد حمل الجالون"},
     desc:{en:"Easy-grip handle — lift and carry your gallon with one hand.", ar:"يد مريحة لرفع وحمل الجالون بيد واحدة بسهولة."} },
 ];
@@ -1698,6 +1700,7 @@ function renderProducts(){
           </button>
         </div>
       </div>`;
+    if(p.imgs && p.imgs.length>1) el.dataset.imgs=p.imgs.join("|");   // one product, multiple photos to rotate
     if(!p.sold){ el.style.cursor="pointer"; el.addEventListener("click",()=>addToCart(p.id)); }
     grid.appendChild(el);
   });
@@ -1825,6 +1828,16 @@ function initBubbles(){
   });
 }
 
+// rotate through a product's multiple photos (e.g. the accessory's 3 shots)
+function initProductPhotoRotator(){
+  setInterval(()=>{ document.querySelectorAll(".product[data-imgs]").forEach(card=>{
+    const imgs=(card.dataset.imgs||"").split("|"); if(imgs.length<2) return;
+    const art=card.querySelector(".art"); if(!art) return;
+    card._pi=((card._pi||0)+1)%imgs.length; art.style.opacity="0";
+    setTimeout(()=>{ art.style.backgroundImage="url('"+imgs[card._pi]+"')"; art.style.opacity="1"; },260);
+  }); }, 3800);
+}
+
 // ── Descent progress rail (00 → 06) ──
 const RAIL_SECTIONS=[
   {id:"home",en:"Surface",ar:"السطح"}, {id:"mission",en:"Mission",ar:"المهمة"},
@@ -1895,7 +1908,7 @@ window.addEventListener("DOMContentLoaded", ()=>{
     if(window.Splash&&Splash.burst) Splash.burst(e.clientX, e.clientY, 0.25); });   // light trailing spray (mouse only)
   buildMarquee(); renderChips(); renderProducts(); renderCart(); initReveal();
   carousel.build(); carousel.initSwipe(); carousel.restart();
-  initWaterInteractions(); initCounters(); initBubbles(); buildRail(); initDepthFX();
+  initWaterInteractions(); initCounters(); initBubbles(); buildRail(); initDepthFX(); initProductPhotoRotator();
   window.addEventListener("scroll",onScroll,{passive:true}); onScroll(); updateRail();
   window.addEventListener("resize",()=>{ updateRail(); depthScroll(); if(carousel&&carousel.sync) carousel.sync(); });
   setLang("en");
