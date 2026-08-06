@@ -338,6 +338,9 @@ header.scrolled .brand img{ filter:drop-shadow(0 1px 3px rgba(0,0,0,.18)); }
 .chip:hover{ color:var(--navy); border-color:var(--blue); }
 .chip.on{ color:#fff; background:var(--grad); border-color:transparent; }
 .grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+.shop-empty{ grid-column:1/-1; text-align:center; padding:56px 20px; color:#9fc0dd; font-family:var(--font-disp); font-size:20px; letter-spacing:.01em; }
+.shop-store-cta{ text-align:center; margin-top:40px; }
+.shop-vat{ text-align:center; margin-top:14px; font-size:13px; color:#8fb0cf; }
 .product{ border-radius:var(--radius); overflow:hidden; background:#fff; border:1px solid #e7f1fb; box-shadow:var(--shadow-sm);
   transition:.4s; display:flex; flex-direction:column; position:relative; }
 .product:hover{ transform:translateY(-8px); box-shadow:var(--shadow); }
@@ -634,7 +637,7 @@ html[dir="rtl"] .rail-item .label{ transform:translateX(-8px); }
       <span class="sep">/</span>
       <span role="button" data-lang="ar" onclick="setLang('ar')">ع</span>
     </div>
-    <button class="btn ghost mobile-hide" data-i18n="nav_login">Login</button>
+    <button class="btn ghost mobile-hide" onclick="odooGo('/web/login')" data-i18n="nav_login">Login</button>
     <button class="btn cart-btn pink" onclick="openCart()" aria-label="Cart" style="color:#fff">
       <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M6 6 5 3H2"/></svg>
       <span class="cart-count" id="cartCount">0</span>
@@ -651,7 +654,7 @@ html[dir="rtl"] .rail-item .label{ transform:translateX(-8px); }
   <a onclick="scrollToId('tech');toggleMenu()" data-i18n="nav_tech">Process</a>
   <a onclick="scrollToId('shop');toggleMenu()" data-i18n="nav_shop">Shop</a>
   <a onclick="scrollToId('contact');toggleMenu()" data-i18n="nav_contact">Contact Us</a>
-  <button class="btn primary" data-i18n="nav_login">Login</button>
+  <button class="btn primary" onclick="odooGo('/web/login')" data-i18n="nav_login">Login</button>
 </div>
 
 <!-- ══════════════════ HERO / COVER ══════════════════ -->
@@ -782,6 +785,10 @@ html[dir="rtl"] .rail-item .label{ transform:translateX(-8px); }
       <div class="chips" id="chips"></div>
     </div>
     <div class="grid" id="productGrid"></div>
+    <div class="shop-store-cta">
+      <button class="btn primary" onclick="odooGo('/shop')" data-i18n="view_store">Visit our full store</button>
+      <div class="shop-vat" data-i18n="vat_note">Prices include 14% VAT</div>
+    </div>
   </div>
 </section>
 
@@ -791,7 +798,7 @@ html[dir="rtl"] .rail-item .label{ transform:translateX(-8px); }
     <div class="cta-band reveal">
       <h2 data-i18n="cta_h">Pure hydration for a vibrant life</h2>
       <p data-i18n="cta_p">Freshly filled, delivered fast, and kind to the planet. Find the perfect plan for you and your family.</p>
-      <button class="btn" onclick="scrollToId('shop')" data-i18n="cta_btn">Shop Now</button>
+      <button class="btn" onclick="odooGo('/shop')" data-i18n="cta_btn">Shop Now</button>
     </div>
   </div>
 </section>
@@ -918,8 +925,8 @@ const I18N = {
     foot_gallons:"Gallons", foot_packs:"Utility Packs", foot_offers:"Offers", foot_location:"Store No. G043, All Seasons Park Mall, Madinaty",
     foot_rights:"All rights reserved.", foot_made:"Pure & Simple 💧",
     cart_title:"Your Cart", cart_total:"Total", cart_checkout:"Checkout", cart_empty:"Your cart is empty",
-    add_to_cart:"Add to cart", sold_out:"Sold out", offer:"OFFER", new:"NEW", best:"BEST VALUE",
-    all:"All", gallons:"Gallons", packs:"Packs", offers:"Offers",
+    add_to_cart:"Add to cart", order_now:"Order on our store", view_store:"Visit our full store", vat_note:"Prices include 14% VAT", sold_out:"Sold out", offer:"OFFER", new:"NEW", best:"BEST VALUE",
+    all:"All", gallons:"Gallons", packs:"Packs", offers:"Offers", accessories:"Accessories",
     checkout_msg:"This is a demo checkout — in production it connects to secure payment. 💧"
   },
   ar:{
@@ -959,8 +966,8 @@ const I18N = {
     foot_gallons:"الجالونات", foot_packs:"عبوات الاستخدام", foot_offers:"العروض", foot_location:"محل G043، أول سيزون بارك مول، مدينتي",
     foot_rights:"جميع الحقوق محفوظة.", foot_made:"نقي وبسيط 💧",
     cart_title:"سلتك", cart_total:"الإجمالي", cart_checkout:"إتمام الشراء", cart_empty:"سلتك فارغة",
-    add_to_cart:"أضف إلى السلة", sold_out:"غير متوفر", offer:"عرض", new:"جديد", best:"أفضل قيمة",
-    all:"الكل", gallons:"الجالونات", packs:"العبوات", offers:"العروض",
+    add_to_cart:"أضف إلى السلة", order_now:"اطلب من متجرنا", view_store:"زيارة المتجر الكامل", vat_note:"الأسعار شاملة ضريبة القيمة المضافة 14%", sold_out:"غير متوفر", offer:"عرض", new:"جديد", best:"أفضل قيمة",
+    all:"الكل", gallons:"الجالونات", packs:"العبوات", offers:"العروض", accessories:"إكسسوارات",
     checkout_msg:"هذا إتمام تجريبي — في الإصدار الفعلي يتصل بنظام دفع آمن. 💧"
   }
 };
@@ -1569,6 +1576,21 @@ const Stage = (function(){
 /* ============================================================================
    MODULE 5 · UI
    ========================================================================== */
+
+/* ── Option C: connected to the live Odoo store — login, cart & checkout run on Odoo ── */
+const ODOO = "https://jabalwater.com";
+const ODOO_URL = {
+  g7:   "/shop/jw-007-jabal-water-7l-gallon-61",
+  g11:  "/shop/jw-011-jabal-water-11l-gallon-62",
+  g185: "/shop/18-5l-jabal-water-gallon-new-86",
+  p7:   "/shop/jw-27001-jabal-utillity-2x7l-pure-water-packs-perfect-for-cooking-and-travel-63",
+  p11:  "/shop/jw-21101-jabal-utility-2x11l-pure-water-packs-perfect-for-cooking-and-travel-58",
+  mega: "/shop/jw-18555-jabal-mega-saver-buy-5-and-get-5-refills-for-free-59",
+  free: "/shop"
+};
+function odooGo(path){ window.location.href = ODOO + path; }        // hand off to the Odoo store
+function odooProduct(id){ odooGo(ODOO_URL[id] || "/shop"); }
+
 const PRODUCTS = [
   { id:"g7", cat:"gallons", price:26.32, vol:"7L", art:"gallon",
     name:{en:"JABAL 7L Gallon", ar:"جالون جبل 7 لتر"},
@@ -1592,7 +1614,7 @@ const PRODUCTS = [
     name:{en:"5 Free Refills · 18.5L", ar:"5 إعادات تعبئة مجانية · 18.5 لتر"},
     desc:{en:"Loyalty refill reward — currently unavailable.", ar:"مكافأة إعادة تعبئة للولاء — غير متوفرة حاليًا."} },
 ];
-const CATS=[{id:"all",k:"all"},{id:"gallons",k:"gallons"},{id:"packs",k:"packs"},{id:"offers",k:"offers"}];
+const CATS=[{id:"all",k:"all"},{id:"gallons",k:"gallons"},{id:"packs",k:"packs"},{id:"offers",k:"offers"},{id:"accessories",k:"accessories"}];
 let activeCat="all";
 
 function artStyle(p){
@@ -1612,7 +1634,9 @@ function renderChips(){
 }
 function renderProducts(){
   const grid=document.getElementById("productGrid"); grid.innerHTML="";
-  PRODUCTS.filter(p=>activeCat==="all"||p.cat===activeCat).forEach(p=>{
+  const list=PRODUCTS.filter(p=>activeCat==="all"||p.cat===activeCat);
+  if(!list.length){ grid.innerHTML='<div class="shop-empty">💧 '+(LANG==="ar"?"قريبًا — منتجات جديدة":"New items coming soon")+'</div>'; return; }
+  list.forEach(p=>{
     const el=document.createElement("article"); el.className="product reveal in";
     let badge="";
     if(p.badge==="best") badge=`<span class="badge">${t("best")}</span>`;
@@ -1625,17 +1649,18 @@ function renderProducts(){
         <h3>${p.name[LANG]}</h3>
         <p class="desc">${p.desc[LANG]}</p>
         <div class="foot">${price}
-          <button class="add" ${p.sold?"disabled":""} aria-label="${t("add_to_cart")}" onclick="addToCart('${p.id}')">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+          <button class="add" ${p.sold?"disabled":""} aria-label="${t("order_now")}" title="${t("order_now")}" onclick="event.stopPropagation();addToCart('${p.id}')">
+            <svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9"><path d="M6 6h15l-1.5 9h-12z"/><circle cx="9" cy="20" r="1.3"/><circle cx="18" cy="20" r="1.3"/><path d="M6 6 5 3H2"/></svg>
           </button>
         </div>
       </div>`;
+    if(!p.sold){ el.style.cursor="pointer"; el.addEventListener("click",()=>odooProduct(p.id)); }
     grid.appendChild(el);
   });
 }
 
 const cart={};
-function addToCart(id){ const p=PRODUCTS.find(x=>x.id===id); if(!p||p.sold) return; cart[id]=(cart[id]||0)+1; renderCart(); bumpCount(); openCart(); }
+function addToCart(id){ const p=PRODUCTS.find(x=>x.id===id); if(!p||p.sold) return; odooProduct(id); }   // opens the product on the Odoo store to add to the real cart
 function changeQty(id,dl){ if(!cart[id]) return; cart[id]+=dl; if(cart[id]<=0) delete cart[id]; renderCart(); bumpCount(); }
 const cartCount=()=>Object.values(cart).reduce((a,b)=>a+b,0);
 const cartTotal=()=>Object.entries(cart).reduce((s,[id,q])=>{ const p=PRODUCTS.find(x=>x.id===id); return s+(p?p.price*q:0); },0);
@@ -1651,7 +1676,7 @@ function renderCart(){
   }).join("");
   document.getElementById("cartTotal").innerHTML=`${cartTotal().toFixed(2)} <small>EGP</small>`;
 }
-function openCart(){ document.getElementById("drawer").classList.add("open"); document.getElementById("overlay").classList.add("open"); }
+function openCart(){ odooGo("/shop/cart"); }   // go straight to the real Odoo cart
 function closeCart(){ document.getElementById("drawer").classList.remove("open"); document.getElementById("overlay").classList.remove("open"); }
 function checkout(){ if(cartCount()===0) return; alert(t("checkout_msg")); }
 
