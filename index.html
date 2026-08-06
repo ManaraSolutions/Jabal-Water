@@ -361,6 +361,10 @@ header.scrolled .brand img{ filter:drop-shadow(0 1px 3px rgba(0,0,0,.18)); }
 .product .art.gallon::after{ content:""; position:absolute; left:50%; top:50%; transform:translate(-50%,-50%);
   width:60%; height:30%; background:url('assets/logo.png') center/contain no-repeat;
   filter:drop-shadow(0 2px 7px rgba(0,0,0,.4)); }
+/* accessory placeholder (until the real photo is dropped in assets/accessories/) */
+.product .art.accessory{ background:linear-gradient(160deg,#123556,#0a1f38); display:grid; place-items:center; }
+.product .art.accessory::after{ content:""; width:44%; height:44%; opacity:.85;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%237fd8ff' stroke-width='1.3'%3E%3Cpath d='M7 10V7a5 5 0 0 1 10 0v3'/%3E%3Crect x='4' y='10' width='16' height='10' rx='2'/%3E%3C/svg%3E") center/contain no-repeat; }
 .product:hover .art{ filter:saturate(1.05); }
 .product .body{ padding:20px; display:flex; flex-direction:column; gap:10px; flex:1; }
 .product .vol{ font-size:12px; color:var(--blue-deep); font-weight:800; letter-spacing:.08em; text-transform:uppercase; }
@@ -391,6 +395,9 @@ html[dir="rtl"] .product .vol{ letter-spacing:0; text-transform:none; }
    ============================================================ */
 .contact-grid{ display:grid; grid-template-columns:.9fr 1.1fr; gap:40px; }
 .contact-info .line{ display:flex; gap:16px; align-items:flex-start; padding:20px 0; border-bottom:1px solid #e7f1fb; }
+a.line{ transition:transform .2s ease; }
+a.line:hover .ico{ filter:brightness(1.12); transform:scale(1.06); transition:.2s; }
+a.line:hover .v{ color:#7fd8ff; }
 .contact-info .line .ico{ width:46px; height:46px; border-radius:13px; flex:0 0 auto; display:grid; place-items:center; color:#fff; background:var(--grad); }
 .contact-info .line:nth-child(even) .ico{ background:var(--grad-pink); }
 .contact-info .line .l{ font-size:12px; color:var(--ink-faint); letter-spacing:.08em; text-transform:uppercase; margin-bottom:2px; font-weight:600; }
@@ -839,8 +846,8 @@ html[dir="rtl"] .rail-item .label{ transform:translateX(-8px); }
     </div>
     <div class="contact-grid">
       <div class="contact-info reveal">
-        <div class="line"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 5c0 9 6 15 15 15l1-4-5-2-2 2a12 12 0 0 1-5-5l2-2-2-5z"/></svg></div><div><div class="l" data-i18n="c_phone">Phone</div><div class="v" dir="ltr">011 1955 9955</div></div></div>
-        <div class="line"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div><div><div class="l" data-i18n="c_email">Email</div><div class="v">info@jabalwater.com</div></div></div>
+        <a class="line" href="https://wa.me/201119559955" target="_blank" rel="noopener"><div class="ico"><svg width="21" height="21" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15L2 22l5.2-1.4A10 10 0 1 0 12 2zm5.8 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.1.1-1.8-.1-.4-.1-1-.3-1.7-.6-3-1.3-4.9-4.3-5.1-4.5-.1-.2-1.2-1.6-1.2-3s.8-2.1 1-2.4c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 1.9c.1.2 0 .4 0 .5l-.4.5c-.1.2-.3.3-.1.6.1.3.6 1 1.3 1.6.9.8 1.6 1 1.9 1.2.2.1.4.1.6-.1l.6-.7c.2-.2.4-.2.6-.1l1.8.9c.3.1.4.2.5.3.1.3.1.7-.1 1.3z"/></svg></div><div><div class="l" data-i18n="c_phone">WhatsApp / Call</div><div class="v" dir="ltr">011 1955 9955</div></div></a>
+        <a class="line" href="mailto:info@jabalwater.com"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></div><div><div class="l" data-i18n="c_email">Email</div><div class="v">info@jabalwater.com</div></div></a>
         <div class="line"><div class="ico"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 0 0-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 0 0-8-8z"/></svg></div><div><div class="l" data-i18n="c_deliv">Delivery</div><div class="v" data-i18n="c_deliv_v">Fresh, on-demand — 7 days a week</div></div></div>
       </div>
       <form class="form reveal" onsubmit="return submitForm(event)">
@@ -948,7 +955,7 @@ const I18N = {
     loy_cta:"Get your card",
     c_eyebrow:"Contact Us", c_h2:"Let's get you flowing",
     c_p:"Questions, bulk orders, or partnerships — reach out and we'll respond fast.",
-    c_phone:"Phone", c_email:"Email", c_deliv:"Delivery", c_deliv_v:"Fresh, on-demand — 7 days a week",
+    c_phone:"WhatsApp / Call", c_email:"Email", c_deliv:"Delivery", c_deliv_v:"Fresh, on-demand — 7 days a week",
     f_name:"Name", f_name_ph:"Your name", f_email:"Email", f_email_ph:"you@email.com",
     f_msg:"Message", f_msg_ph:"How can we help?", f_send:"Send message", f_ok:"Thank you — we'll be in touch shortly. 💧",
     foot_tag:"At Jabal, we're dedicated to providing pure, high-quality water — freshly filled on order. Our commitment to quality and sustainability, in every drop.",
@@ -992,7 +999,7 @@ const I18N = {
     loy_cta:"احصل على كارتك",
     c_eyebrow:"تواصل معنا", c_h2:"لنجعل مياهك تتدفق",
     c_p:"أسئلة أو طلبات بالجملة أو شراكات — تواصل معنا وسنرد بسرعة.",
-    c_phone:"الهاتف", c_email:"البريد", c_deliv:"التوصيل", c_deliv_v:"طازجة وعند الطلب — طوال الأسبوع",
+    c_phone:"واتساب / اتصال", c_email:"البريد", c_deliv:"التوصيل", c_deliv_v:"طازجة وعند الطلب — طوال الأسبوع",
     f_name:"الاسم", f_name_ph:"اسمك", f_email:"البريد الإلكتروني", f_email_ph:"you@email.com",
     f_msg:"رسالتك", f_msg_ph:"كيف يمكننا مساعدتك؟", f_send:"إرسال الرسالة", f_ok:"شكرًا لك — سنتواصل معك قريبًا. 💧",
     foot_tag:"في جبل، نلتزم بتقديم مياه نقية عالية الجودة — تُعبأ طازجة عند الطلب. التزامنا بالجودة والاستدامة، في كل قطرة.",
@@ -1646,12 +1653,16 @@ const PRODUCTS = [
   { id:"free", cat:"offers", price:0, vol:"18.9L", art:"gallon", badge:"soldout", sold:true,
     name:{en:"5 Free Refills · 18.9L", ar:"5 إعادات تعبئة مجانية · 18.9 لتر"},
     desc:{en:"Loyalty refill reward — currently unavailable.", ar:"مكافأة إعادة تعبئة للولاء — غير متوفرة حاليًا."} },
+  { id:"handle", cat:"accessories", price:85, vol:"Accessory", img:"assets/accessories/handle-1.jpg",
+    name:{en:"Gallon Carrier Handle", ar:"يد حمل الجالون"},
+    desc:{en:"Easy-grip handle — lift and carry your gallon with one hand.", ar:"يد مريحة لرفع وحمل الجالون بيد واحدة بسهولة."} },
 ];
 const CATS=[{id:"all",k:"all"},{id:"gallons",k:"gallons"},{id:"packs",k:"packs"},{id:"offers",k:"offers"},{id:"accessories",k:"accessories"}];
 let activeCat="all";
 
 function artStyle(p){
   if(p.img) return `class="art contain" style="background-image:url('${p.img}')"`;
+  if(p.art==="accessory") return `class="art accessory"`;
   return `class="art gallon"`;
 }
 function thumbStyle(p){
@@ -1687,13 +1698,19 @@ function renderProducts(){
           </button>
         </div>
       </div>`;
-    if(!p.sold){ el.style.cursor="pointer"; el.addEventListener("click",()=>odooProduct(p.id)); }
+    if(!p.sold){ el.style.cursor="pointer"; el.addEventListener("click",()=>addToCart(p.id)); }
     grid.appendChild(el);
   });
 }
 
 const cart={};
-function addToCart(id){ const p=PRODUCTS.find(x=>x.id===id); if(!p||p.sold) return; odooProduct(id); }   // opens the product on the Odoo store to add to the real cart
+function addToCart(id){ const p=PRODUCTS.find(x=>x.id===id); if(!p||p.sold) return;
+  if(p.cat==="accessories"){   // not in Odoo yet — order via WhatsApp with a prefilled message
+    const msg=encodeURIComponent((LANG==="ar"?"مرحبًا، أريد طلب: ":"Hi, I'd like to order: ")+p.name[LANG]+" — "+p.price+" EGP");
+    window.open("https://wa.me/201119559955?text="+msg,"_blank"); return;
+  }
+  odooProduct(id);   // opens the product on the Odoo store to add to the real cart
+}
 function changeQty(id,dl){ if(!cart[id]) return; cart[id]+=dl; if(cart[id]<=0) delete cart[id]; renderCart(); bumpCount(); }
 const cartCount=()=>Object.values(cart).reduce((a,b)=>a+b,0);
 const cartTotal=()=>Object.entries(cart).reduce((s,[id,q])=>{ const p=PRODUCTS.find(x=>x.id===id); return s+(p?p.price*q:0); },0);
