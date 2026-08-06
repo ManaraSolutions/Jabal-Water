@@ -346,6 +346,10 @@ header.scrolled .brand img{ filter:drop-shadow(0 1px 3px rgba(0,0,0,.18)); }
 .loyalty-grid{ display:grid; grid-template-columns:.9fr 1.15fr; gap:48px; align-items:center; }
 .loyalty-copy p{ color:#9fbdd8; font-size:16.5px; margin-bottom:24px; }
 .loyalty-card{ width:100%; aspect-ratio:856/540; border:0; border-radius:26px; display:block; box-shadow:0 40px 90px rgba(3,10,24,.6); }
+.loyalty-rotator{ position:relative; width:100%; aspect-ratio:1300/853; border-radius:22px; overflow:hidden; box-shadow:0 40px 90px rgba(3,10,24,.6); }
+.loyalty-rotator img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:0; transition:opacity 1s ease; }
+.loyalty-rotator img.on{ opacity:1; }
+.loyalty-rotator::after{ content:""; position:absolute; inset:0; border-radius:22px; box-shadow:inset 0 0 0 1px rgba(143,208,255,.18); pointer-events:none; }
 @media (max-width:940px){ .loyalty-grid{ grid-template-columns:1fr; } }
 .product{ border-radius:var(--radius); overflow:hidden; background:#fff; border:1px solid #e7f1fb; box-shadow:var(--shadow-sm);
   transition:.4s; display:flex; flex-direction:column; position:relative; }
@@ -832,7 +836,10 @@ html[dir="rtl"] .rail-item .label{ transform:translateX(-8px); }
         <button class="btn primary" onclick="odooGo('/web/login')" data-i18n="loy_cta">Get your card</button>
       </div>
       <div class="loyalty-card-wrap reveal">
-        <iframe class="loyalty-card" src="loyalty-card.html" title="JABAL Loyalty Card" loading="lazy" scrolling="no"></iframe>
+        <div class="loyalty-rotator" id="loyaltyRotator" aria-label="JABAL Loyalty Card">
+          <img src="assets/loyalty-front.jpg" alt="JABAL Loyalty Card — front" class="on" loading="lazy" />
+          <img src="assets/loyalty-back.jpg" alt="JABAL Loyalty Card — back" loading="lazy" />
+        </div>
       </div>
     </div>
   </div>
@@ -1634,13 +1641,13 @@ function odooGo(path){ window.location.href = ODOO + path; }        // hand off 
 function odooProduct(id){ odooGo(ODOO_URL[id] || "/shop"); }
 
 const PRODUCTS = [
-  { id:"g7", cat:"gallons", price:26.32, vol:"7L", art:"gallon",
+  { id:"g7", cat:"gallons", price:26.32, vol:"7L", img:"assets/gallons/jabal-7l.png",
     name:{en:"JABAL 7L Gallon", ar:"جالون جبل 7 لتر"},
     desc:{en:"Everyday pure hydration in a light, easy-carry gallon.", ar:"ترطيب نقي يومي في جالون خفيف وسهل الحمل."} },
-  { id:"g11", cat:"gallons", price:39.47, vol:"11L", art:"gallon",
+  { id:"g11", cat:"gallons", price:39.47, vol:"11L", img:"assets/gallons/jabal-11l.png",
     name:{en:"JABAL 11L Gallon", ar:"جالون جبل 11 لتر"},
     desc:{en:"The household favourite — more water, same purity.", ar:"المفضل للمنازل — مياه أكثر بنفس النقاء."} },
-  { id:"g185", cat:"gallons", price:157.02, vol:"18.9L", art:"gallon", badge:"new",
+  { id:"g185", cat:"gallons", price:157.02, vol:"18.9L", img:"assets/gallons/jabal-18l.png", badge:"new",
     name:{en:"JABAL 18.9L Gallon", ar:"جالون جبل 18.9 لتر"},
     desc:{en:"Our largest gallon — perfect for offices and big families.", ar:"أكبر جالون لدينا — مثالي للمكاتب والعائلات الكبيرة."} },
   { id:"p7", cat:"packs", price:52.63, vol:"2 × 7L", img:"assets/p-2x7l.png",
@@ -1652,7 +1659,7 @@ const PRODUCTS = [
   { id:"mega", cat:"offers", price:346.49, vol:"Buy 5 · Get 5", img:"assets/p-megasaver.png", badge:"best",
     name:{en:"Mega Saver — Buy 5, Get 5 Refills Free", ar:"عرض ميجا — اشترِ 5 واحصل على 5 إعادة تعبئة مجانًا"},
     desc:{en:"Our best value: five bottles plus five free refills. Save 1058 EGP.", ar:"أفضل قيمة: خمس عبوات مع خمس إعادات تعبئة مجانية. وفّر 1058 جنيه."} },
-  { id:"free", cat:"offers", price:0, vol:"18.9L", art:"gallon", badge:"soldout", sold:true,
+  { id:"free", cat:"offers", price:0, vol:"18.9L", img:"assets/gallons/jabal-18l.png", badge:"soldout", sold:true,
     name:{en:"5 Free Refills · 18.9L", ar:"5 إعادات تعبئة مجانية · 18.9 لتر"},
     desc:{en:"Loyalty refill reward — currently unavailable.", ar:"مكافأة إعادة تعبئة للولاء — غير متوفرة حاليًا."} },
   { id:"handle", cat:"accessories", price:85, vol:"Accessory", img:"assets/accessories/handle-1.jpg",
@@ -1839,6 +1846,14 @@ function initProductPhotoRotator(){
   }); }, 3800);
 }
 
+// ── Loyalty card: cross-fade between front & back faces ──
+function initLoyaltyRotator(){
+  const r=document.getElementById("loyaltyRotator"); if(!r) return;
+  const imgs=[...r.querySelectorAll("img")]; if(imgs.length<2) return;
+  let i=0;
+  setInterval(()=>{ imgs[i].classList.remove("on"); i=(i+1)%imgs.length; imgs[i].classList.add("on"); }, 4200);
+}
+
 // ── Descent progress rail (00 → 06) ──
 const RAIL_SECTIONS=[
   {id:"home",en:"Surface",ar:"السطح"}, {id:"mission",en:"Mission",ar:"المهمة"},
@@ -1909,7 +1924,7 @@ window.addEventListener("DOMContentLoaded", ()=>{
     if(window.Splash&&Splash.burst) Splash.burst(e.clientX, e.clientY, 0.25); });   // light trailing spray (mouse only)
   buildMarquee(); renderChips(); renderProducts(); renderCart(); initReveal();
   carousel.build(); carousel.initSwipe(); carousel.restart();
-  initWaterInteractions(); initCounters(); initBubbles(); buildRail(); initDepthFX(); initProductPhotoRotator();
+  initWaterInteractions(); initCounters(); initBubbles(); buildRail(); initDepthFX(); initProductPhotoRotator(); initLoyaltyRotator();
   window.addEventListener("scroll",onScroll,{passive:true}); onScroll(); updateRail();
   window.addEventListener("resize",()=>{ updateRail(); depthScroll(); if(carousel&&carousel.sync) carousel.sync(); });
   setLang("en");
