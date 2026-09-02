@@ -347,8 +347,18 @@ header.scrolled .brand img{ filter:drop-shadow(0 1px 3px rgba(0,0,0,.18)); }
 .shop-empty{ grid-column:1/-1; text-align:center; padding:56px 20px; color:#9fc0dd; font-family:var(--font-disp); font-size:20px; letter-spacing:.01em; }
 .shop-store-cta{ text-align:center; margin-top:40px; }
 .shop-vat{ text-align:center; margin-top:14px; font-size:13px; color:#8fb0cf; }
+/* floating WhatsApp contact button */
+.wa-float{ position:fixed; left:22px; bottom:22px; z-index:300; width:58px; height:58px; border-radius:50%;
+  background:#25D366; display:grid; place-items:center; box-shadow:0 10px 30px rgba(37,211,102,.5); }
+.wa-float svg{ width:32px; height:32px; fill:#fff; position:relative; z-index:1; }
+.wa-float:hover{ transform:scale(1.08); box-shadow:0 14px 40px rgba(37,211,102,.66); }
+.wa-float, .wa-float:hover{ transition:transform .25s ease, box-shadow .25s ease; }
+.wa-float::after{ content:""; position:absolute; inset:0; border-radius:50%; animation:waPulse 2.4s ease-out infinite; }
+@keyframes waPulse{ 0%{ box-shadow:0 0 0 0 rgba(37,211,102,.5); } 70%{ box-shadow:0 0 0 16px rgba(37,211,102,0); } 100%{ box-shadow:0 0 0 0 rgba(37,211,102,0); } }
+@media (max-width:640px){ .wa-float{ width:52px; height:52px; left:16px; bottom:16px; } }
+
 /* offer posters inside the shop ("Choose your plan") */
-.offer-posters{ display:grid; grid-template-columns:repeat(4,1fr); gap:18px; margin:6px 0 34px; }
+.offer-posters{ display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin:6px 0 34px; }
 .offer-posters img{ width:100%; height:auto; display:block; border-radius:18px;
   border:1px solid rgba(160,220,255,.18); box-shadow:0 24px 60px rgba(3,10,28,.5);
   transition:transform .3s ease, box-shadow .3s ease; }
@@ -480,6 +490,22 @@ html[dir="rtl"] .drawer{ transform:translateX(-100%); }
 /* ============================================================
    PROMO CAROUSEL — reflective, water-like
    ============================================================ */
+/* cinematic offer-video showcase (replaces the carousel) */
+.video-showcase{ max-width:940px; margin:0 auto; }
+.vs-stage{ position:relative; aspect-ratio:16/9; border-radius:24px; overflow:hidden; isolation:isolate;
+  background:#06162e; box-shadow:0 40px 90px rgba(3,10,28,.6), inset 0 0 0 1px rgba(143,208,255,.18); }
+.vs-stage::before{ content:""; position:absolute; inset:-2px; z-index:-1; border-radius:27px;
+  background:linear-gradient(130deg,#1FA0FF,#FE66B8,#0E7DDD,#1FA0FF); background-size:220% 220%;
+  filter:blur(15px); opacity:.5; animation:vsGlow 9s ease-in-out infinite; }
+@keyframes vsGlow{ 0%,100%{ opacity:.38; background-position:0% 50% } 50%{ opacity:.72; background-position:100% 50% } }
+.vs-stage video{ width:100%; height:100%; object-fit:cover; display:block; opacity:0;
+  transform:scale(1.05); transition:opacity .7s ease, transform .9s ease; }
+.vs-stage video.show{ opacity:1; transform:scale(1); }
+.vs-dots{ display:flex; gap:10px; justify-content:center; margin-top:22px; }
+.vs-dot{ width:34px; height:5px; border-radius:99px; border:0; background:rgba(143,208,255,.28); cursor:pointer; transition:width .3s, background .3s; }
+.vs-dot.on{ background:linear-gradient(90deg,#1FA0FF,#FE66B8); width:54px; }
+@media (max-width:640px){ .vs-stage{ border-radius:18px; } }
+
 .carousel{ position:relative; padding:10px 60px 0; }
 .car-viewport{ overflow:hidden; }
 .car-track{ display:flex; gap:40px; align-items:center; min-height:500px; transition:transform .85s cubic-bezier(.16,1,.3,1); will-change:transform; padding:24px 0 40px; }
@@ -692,6 +718,11 @@ html[dir="rtl"] .rail-item .label{ transform:translateX(-8px); }
   <button class="btn primary" onclick="odooGo('/web/login')" data-i18n="nav_login">Login</button>
 </div>
 
+<!-- Floating WhatsApp contact button -->
+<a class="wa-float" href="https://wa.me/201119559955?text=Hi%20JABAL!%20I%27d%20like%20to%20order%20water%20%F0%9F%92%A7" target="_blank" rel="noopener" aria-label="Contact JABAL on WhatsApp" title="Chat on WhatsApp">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.2 4.79 1.2h.01c5.46 0 9.91-4.45 9.91-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 1.67c2.2 0 4.27.86 5.83 2.42a8.17 8.17 0 0 1 2.41 5.82c0 4.54-3.7 8.24-8.25 8.24-1.52 0-3-.41-4.29-1.19l-.31-.18-3.12.82.83-3.04-.2-.32a8.2 8.2 0 0 1-1.26-4.33c0-4.54 3.7-8.25 8.25-8.25zm4.52 10.35c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.12-.16.25-.64.81-.79.98-.14.16-.29.18-.54.06-.25-.12-1.05-.39-2-1.23-.74-.66-1.24-1.48-1.38-1.72-.14-.25-.02-.38.11-.51.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.16.04-.31-.02-.43-.06-.12-.56-1.34-.76-1.84-.2-.48-.4-.42-.56-.43-.14-.01-.31-.01-.48-.01-.17 0-.43.06-.66.31-.23.25-.86.85-.86 2.07 0 1.22.89 2.4 1.01 2.56.12.17 1.75 2.67 4.23 3.74.59.26 1.05.41 1.41.52.59.19 1.13.16 1.56.1.48-.07 1.47-.6 1.68-1.18.21-.58.21-1.08.14-1.18-.06-.11-.22-.17-.47-.29z"/></svg>
+</a>
+
 <!-- ══════════════════ HERO / COVER ══════════════════ -->
 <section id="home">
   <div id="underwater" aria-hidden="true"></div><!-- animated underwater photo — banner background only -->
@@ -713,7 +744,7 @@ html[dir="rtl"] .rail-item .label{ transform:translateX(-8px); }
     <div class="hero-visual">
       <div class="ring"></div>
       <!-- Static hero gallon (new product render) -->
-      <img id="heroJug" class="hero-jug" src="assets/hero-jug.png" alt="JABAL 18.9L purified water gallon" decoding="async" fetchpriority="high" />
+      <img id="heroJug" class="hero-jug" src="assets/hero-jug.webp" alt="JABAL 18.9L purified water gallon" decoding="async" fetchpriority="high" />
     </div>
   </div>
   <div class="scroll-hint"><div class="mouse"></div><span data-i18n="scroll">Scroll</span></div>
@@ -799,11 +830,11 @@ html[dir="rtl"] .rail-item .label{ transform:translateX(-8px); }
       <h2 data-i18n="promo_h2">Dive into the deals</h2>
       <p data-i18n="promo_p">Limited-time offers on our premium gallons — tap any poster to shop.</p>
     </div>
-    <div class="carousel reveal" id="carousel">
-      <button class="car-arrow prev" onclick="carousel.go(-1)" aria-label="Previous">‹</button>
-      <div class="car-viewport" data-par="0.18"><div class="car-track" id="carTrack"></div></div>
-      <button class="car-arrow next" onclick="carousel.go(1)" aria-label="Next">›</button>
-      <div class="car-dots" id="carDots"></div>
+    <div class="video-showcase reveal" id="videoShowcase">
+      <div class="vs-stage">
+        <video id="vsVideo" muted playsinline preload="none" poster="assets/videos/offer-7l-poster.jpg"></video>
+      </div>
+      <div class="vs-dots" id="vsDots"></div>
     </div>
   </div>
 </section>
@@ -821,7 +852,6 @@ html[dir="rtl"] .rail-item .label{ transform:translateX(-8px); }
     <div class="offer-posters reveal" aria-label="Current JABAL price offers">
       <img src="assets/promo/offer-7l.jpg"  alt="JABAL 7L prices — 36, 69, 144+1 free" loading="lazy" decoding="async" />
       <img src="assets/promo/offer-11l.jpg" alt="JABAL 11L prices — 52, 99, 208+1 free" loading="lazy" decoding="async" />
-      <img src="assets/promo/offer-19l.jpg" alt="JABAL 19L single-use prices — 90, 175, 340" loading="lazy" decoding="async" />
       <img src="assets/promo/offer-18l.jpg" alt="JABAL 18.9L refill — 179, refill 79 + one free" loading="lazy" decoding="async" />
     </div>
     <div class="grid" id="productGrid"></div>
@@ -973,7 +1003,7 @@ const I18N = {
     t3_h:"Ozone Shield", t3_p:"Ozone disinfection guarantees a pristine, pathogen-free result.",
     t4_h:"Fresh Fill", t4_p:"Bottled the instant you order — delivered, never shelved.",
     s_eyebrow:"The Shop", s_h2:"Choose your plan",
-    promo_eyebrow:"Featured Offers", promo_h2:"Dive into the deals", promo_p:"Limited-time offers on our premium gallons — tap any poster to shop.",
+    promo_eyebrow:"Featured Offers", promo_h2:"Dive into the deals", promo_p:"Our latest offers, in motion — watch and save on every size.",
     cta_h:"Pure hydration for a vibrant life",
     cta_p:"Freshly filled, delivered fast, and kind to the planet. Find the perfect plan for you and your family.",
     cta_btn:"Shop Now",
@@ -1017,7 +1047,7 @@ const I18N = {
     t3_h:"درع الأوزون", t3_p:"تعقيم بالأوزون يضمن نتيجة نقية وخالية من الجراثيم.",
     t4_h:"تعبئة طازجة", t4_p:"تُعبأ لحظة طلبك — تُسلَّم طازجة، دون تخزين.",
     s_eyebrow:"المتجر", s_h2:"اختر خطتك",
-    promo_eyebrow:"عروض مميزة", promo_h2:"انغمس في العروض", promo_p:"عروض لفترة محدودة على جالوناتنا الفاخرة — انقر أي إعلان للتسوق.",
+    promo_eyebrow:"عروض مميزة", promo_h2:"انغمس في العروض", promo_p:"أحدث عروضنا بالفيديو — شاهد ووفّر على كل الأحجام.",
     cta_h:"ترطيب نقي من أجل حياة نابضة",
     cta_p:"تُعبأ طازجة، وتُسلَّم بسرعة، وصديقة للبيئة. اعثر على الخطة المثالية لك ولعائلتك.",
     cta_btn:"تسوّق الآن",
@@ -1049,7 +1079,7 @@ function setLang(lang){
   document.querySelectorAll("[data-i18n-ph]").forEach(el=> el.placeholder = t(el.getAttribute("data-i18n-ph")));
   document.querySelectorAll(".lang [data-lang]").forEach(s=> s.classList.toggle("on", s.dataset.lang===lang));
   buildMarquee(); renderChips(); renderProducts(); renderCart();
-  if(typeof carousel!=="undefined" && carousel.build) carousel.build();   // swap promo posters per language
+  if(typeof videoShow!=="undefined" && videoShow.sync) videoShow.sync();   // refresh offer-video dot labels per language
   if(typeof buildRail==="function"){ buildRail(); updateRail(); }          // swap rail labels per language
 }
 
@@ -1660,39 +1690,39 @@ function odooProduct(id){ odooGo(ODOO_URL[id] || "/shop"); }
 
 const PRODUCTS = [
   // ── Gallons · single bottle ──
-  { id:"g7", cat:"gallons", price:36, vol:"7L", img:"assets/gallons/jabal-7l.png",
+  { id:"g7", cat:"gallons", price:36, vol:"7L", img:"assets/gallons/jabal-7l.webp",
     name:{en:"JABAL 7L Bottle", ar:"عبوة جبل 7 لتر"},
     desc:{en:"Everyday pure hydration in a light, easy-carry bottle.", ar:"ترطيب نقي يومي في عبوة خفيفة سهلة الحمل."} },
-  { id:"g11", cat:"gallons", price:52, vol:"11L", img:"assets/gallons/jabal-11l.png",
+  { id:"g11", cat:"gallons", price:52, vol:"11L", img:"assets/offers/o-11-1.webp",
     name:{en:"JABAL 11L Bottle", ar:"عبوة جبل 11 لتر"},
     desc:{en:"The household favourite — more water, same purity.", ar:"المفضل للمنازل — مياه أكثر بنفس النقاء."} },
-  { id:"g19", cat:"gallons", price:90, vol:"19L", art:"gallon",
-    name:{en:"JABAL 19L · Single-Use", ar:"جبل 19 لتر · استخدام واحد"},
+  { id:"g18u", cat:"gallons", price:90, vol:"18.9L", img:"assets/offers/o-18-1.webp",
+    name:{en:"JABAL 18.9L · Single-Use", ar:"جبل 18.9 لتر · استخدام واحد"},
     desc:{en:"Large single-use bottle — perfect for events and offices.", ar:"عبوة كبيرة للاستخدام مرة واحدة — مثالية للمناسبات والمكاتب."} },
-  { id:"g185", cat:"gallons", price:179, vol:"18.9L", img:"assets/gallons/jabal-18l.png", badge:"new",
+  { id:"g185", cat:"gallons", price:179, vol:"18.9L", img:"assets/gallons/jabal-18l.webp", badge:"new",
     name:{en:"JABAL 18.9L · Refill Gallon", ar:"جالون جبل 18.9 لتر · إعادة تعبئة"},
     desc:{en:"Reusable cooler gallon. Refills 79 EGP — your first refill is free.", ar:"جالون قابل لإعادة الاستخدام للمبردات. إعادة التعبئة بـ 79 ج — والأولى مجانًا."} },
   // ── Packs · two bottles ──
-  { id:"p7", cat:"packs", price:69, vol:"2 × 7L", img:"assets/gallons/jabal-7l.png",
+  { id:"p7", cat:"packs", price:69, vol:"2 × 7L", img:"assets/offers/o-7-2.webp",
     name:{en:"7L Pack · 2 Bottles", ar:"عبوة 7 لتر · زجاجتان"},
     desc:{en:"Two 7L bottles — save when you stock up.", ar:"زجاجتان 7 لتر — وفّر عند التخزين."} },
-  { id:"p11", cat:"packs", price:99, vol:"2 × 11L", img:"assets/gallons/jabal-11l.png",
+  { id:"p11", cat:"packs", price:99, vol:"2 × 11L", img:"assets/offers/o-11-2.webp",
     name:{en:"11L Pack · 2 Bottles", ar:"عبوة 11 لتر · زجاجتان"},
     desc:{en:"Two 11L bottles for busy kitchens.", ar:"زجاجتان 11 لتر للمطابخ المزدحمة."} },
-  { id:"p19", cat:"packs", price:175, vol:"2 × 19L", art:"gallon",
-    name:{en:"19L Pack · 2 Bottles", ar:"عبوة 19 لتر · زجاجتان"},
-    desc:{en:"Two 19L single-use bottles.", ar:"زجاجتان 19 لتر للاستخدام مرة واحدة."} },
+  { id:"p18", cat:"packs", price:175, vol:"2 × 18.9L", img:"assets/offers/o-18-2.webp",
+    name:{en:"18.9L Pack · 2 Bottles", ar:"عبوة 18.9 لتر · زجاجتان"},
+    desc:{en:"Two 18.9L single-use bottles.", ar:"زجاجتان 18.9 لتر للاستخدام مرة واحدة."} },
   // ── Offers · multi-buy deals ──
-  { id:"o7", cat:"offers", price:144, vol:"4 × 7L + 1 Free", img:"assets/gallons/jabal-7l.png", badge:"best",
+  { id:"o7", cat:"offers", price:144, vol:"4 × 7L + 1 Free", img:"assets/offers/o-7-4.webp", badge:"best",
     name:{en:"7L Family Deal — Buy 4, Get 1 Free", ar:"عرض 7 لتر — اشترِ 4 والخامسة مجانًا"},
     desc:{en:"Four 7L bottles plus one completely free.", ar:"أربع عبوات 7 لتر مع عبوة خامسة مجانًا تمامًا."} },
-  { id:"o11", cat:"offers", price:208, vol:"4 × 11L + 1 Free", img:"assets/gallons/jabal-11l.png", badge:"best",
+  { id:"o11", cat:"offers", price:208, vol:"4 × 11L + 1 Free", img:"assets/offers/o-11-4.webp", badge:"best",
     name:{en:"11L Family Deal — Buy 4, Get 1 Free", ar:"عرض 11 لتر — اشترِ 4 والخامسة مجانًا"},
     desc:{en:"Four 11L bottles plus one completely free.", ar:"أربع عبوات 11 لتر مع عبوة خامسة مجانًا تمامًا."} },
-  { id:"o19", cat:"offers", price:340, vol:"4 × 19L", art:"gallon",
-    name:{en:"19L Value Pack · 4 Bottles", ar:"عرض 19 لتر · 4 عبوات"},
-    desc:{en:"Four 19L single-use bottles at the best price.", ar:"أربع عبوات 19 لتر بأفضل سعر."} },
-  { id:"handle", cat:"accessories", price:85, vol:"Accessory", img:"assets/accessories/handle-1.jpg",
+  { id:"o18", cat:"offers", price:340, vol:"4 × 18.9L", img:"assets/offers/o-18-4.webp",
+    name:{en:"18.9L Value Pack · 4 Bottles", ar:"عرض 18.9 لتر · 4 عبوات"},
+    desc:{en:"Four 18.9L single-use bottles at the best price.", ar:"أربع عبوات 18.9 لتر بأفضل سعر."} },
+  { id:"handle", cat:"accessories", price:97, vol:"Accessory", img:"assets/accessories/handle-1.jpg",
     imgs:["assets/accessories/handle-1.jpg","assets/accessories/handle-2.jpg","assets/accessories/handle-3.jpg"],
     name:{en:"Gallon Carrier Handle", ar:"يد حمل الجالون"},
     desc:{en:"Easy-grip handle — lift and carry your gallon with one hand.", ar:"يد مريحة لرفع وحمل الجالون بيد واحدة بسهولة."} },
@@ -1884,6 +1914,29 @@ function initLoyaltyRotator(){
   setInterval(()=>{ imgs[i].classList.remove("on"); i=(i+1)%imgs.length; imgs[i].classList.add("on"); }, 4200);
 }
 
+// ── Cinematic offer-video showcase: plays clips in sequence, lazy + autoplay-on-view ──
+const videoShow = (function(){
+  const vids=[
+    { src:"assets/videos/offer-7l.mp4",  poster:"assets/videos/offer-7l-poster.jpg",  label:{en:"7L offers",ar:"عروض 7 لتر"} },
+    { src:"assets/videos/offer-11l.mp4", poster:"assets/videos/offer-11l-poster.jpg", label:{en:"11L offers",ar:"عروض 11 لتر"} },
+    { src:"assets/videos/offer-18l.mp4", poster:"assets/videos/offer-18l-poster.jpg", label:{en:"18.9L refill",ar:"إعادة تعبئة 18.9 لتر"} },
+  ];
+  let idx=0, started=false;
+  const vid=()=>document.getElementById("vsVideo");
+  function dots(){ const d=document.getElementById("vsDots"); if(!d) return; d.innerHTML="";
+    vids.forEach((vd,i)=>{ const b=document.createElement("button"); b.className="vs-dot"+(i===idx?" on":"");
+      b.setAttribute("aria-label",(vd.label[LANG]||vd.label.en)); b.onclick=()=>show(i,true); d.appendChild(b); }); }
+  function show(i,autoplay){ const el=vid(); if(!el) return; idx=(i+vids.length)%vids.length;
+    el.classList.remove("show");
+    setTimeout(()=>{ el.src=vids[idx].src; el.poster=vids[idx].poster; el.load();
+      el.classList.add("show"); if(autoplay){ const p=el.play(); if(p&&p.catch) p.catch(()=>{}); } dots(); }, 260); }
+  function init(){ const el=vid(), host=document.getElementById("videoShowcase"); if(!el||!host) return;
+    dots(); el.addEventListener("ended",()=>show(idx+1,true));
+    const io=new IntersectionObserver((es)=>es.forEach(e=>{ if(e.isIntersecting&&!started){ started=true; show(0,true); } }),{threshold:0.35});
+    io.observe(host); }
+  return { init, sync:dots };
+})();
+
 // ── Descent progress rail (00 → 06) ──
 const RAIL_SECTIONS=[
   {id:"home",en:"Surface",ar:"السطح"}, {id:"mission",en:"Mission",ar:"المهمة"},
@@ -1942,7 +1995,7 @@ function onScrollDepth(){ if(_depthTick) return; _depthTick=true; requestAnimati
 window.addEventListener("DOMContentLoaded", ()=>{
   document.getElementById("year").textContent=new Date().getFullYear();
   try{ Stage.init(); }catch(err){ console.warn("WebGL water unavailable:",err); document.getElementById("gl").style.display="none"; document.body.style.background="linear-gradient(180deg,#eaf5fe,#cfeaff)"; }
-  /* hero now uses a static jug image (assets/hero-jug.png) — 3D bottle disabled */
+  /* hero now uses a static jug image (assets/hero-jug.webp) — 3D bottle disabled */
   window.addEventListener("pointerdown",(e)=>{
     const big=!!(e.target.closest&&e.target.closest(".btn,.add"));
     if(window.Stage) Stage.splashAt(e.clientX,e.clientY,big);
@@ -1953,7 +2006,7 @@ window.addEventListener("DOMContentLoaded", ()=>{
     const now=performance.now(); if(now-lastMove<90) return; lastMove=now;
     if(window.Splash&&Splash.burst) Splash.burst(e.clientX, e.clientY, 0.25); });   // light trailing spray (mouse only)
   buildMarquee(); renderChips(); renderProducts(); renderCart(); initReveal();
-  carousel.build(); carousel.initSwipe(); carousel.restart();
+  videoShow.init();
   initWaterInteractions(); initCounters(); initBubbles(); buildRail(); initDepthFX(); initProductPhotoRotator(); initLoyaltyRotator();
   window.addEventListener("scroll",onScroll,{passive:true}); onScroll(); updateRail();
   window.addEventListener("resize",()=>{ updateRail(); depthScroll(); if(carousel&&carousel.sync) carousel.sync(); });
